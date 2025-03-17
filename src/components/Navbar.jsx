@@ -8,8 +8,8 @@ const Navbar = () => {
         <nav className='navbar-menu'>
           <ul>
             <li><Link to="/">Home</Link></li>
-            <li><Link to="/about">Studies</Link></li>
-            <li><Link to="/services">History</Link></li>
+            <li><Link to="/studies">Studies</Link></li>
+            <li><Link to="/history">History</Link></li>
 
             <li className="dropdown">
                 <Link to="/mural">Mural</Link>
