@@ -1,10 +1,16 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
+import { Routes, Route, Link } from 'react-router-dom';
+import HomePage from './pages/HomePage';
+import SearchPage from './pages/SearchPage';
+import DetailPage from './pages/DetailPage';
+import ProfilePage from './pages/ProfilePage';
 import './App.css'
 
+
 function App() {
-  const [count, setCount] = useState(0)
+  /*const [count, setCount] = useState(0)*/
 
   return (
     <>
