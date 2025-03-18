@@ -7,8 +7,8 @@ const exhibitionSchema = new mongoose.Schema({
     required: true
   },
   theme: String,
-  curator: String, // the user who created the exhibition
-  featuredArtifacts: [ // the artifacts list that are featured in the exhibition
+  curator: String,
+  featuredArtifacts: [
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Artifact'
@@ -16,8 +16,7 @@ const exhibitionSchema = new mongoose.Schema({
   ],
   startDate: Date,
   endDate: Date,
-  narrative: String // the story/intro of the exhibition...
-// multimediaResources: [String] links to videos, audio, etc...
+  narrative: String
 }, {
   timestamps: true
 });
