@@ -34,7 +34,7 @@ app.get('/', (req, res) => {
 })
 
 //CRUD
-app.use('/api/artifacts', artifactRoute);
+app.use('/api/artifacts', artifactRoutes);
 app.use('/api/caves', caveRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/exhibitions', exhibitionRoutes);

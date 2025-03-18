@@ -6,7 +6,7 @@ import dotenv from 'dotenv'
 import userRoutes from './routes/userRoutes.js'
 import artifactRoute from './routes/artifactRoutes.js'
 import caveRoutes from './routes/caveRoutes.js'
-import exhibitionRoutes from './routes/exhibitionRoutes.js'
+import exhibitionRoutes from './routes/digitalExhibitionRoutes.js'
 
 
 dotenv.config();
@@ -34,7 +34,7 @@ app.get('/', (req, res) => {
 })
 
 //CRUD
-app.use('/api/artifacts', artifactRoute);
+app.use('/api/artifacts', artifactRoutes);
 app.use('/api/caves', caveRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/exhibitions', exhibitionRoutes);
