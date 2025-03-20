@@ -15,6 +15,7 @@ app.use(cors());
 app.use(express.json());
 
 
+// Connect to MongoDB
 const MONGODB_URI = process.env.MONGODB_URI
 mongoose.connect(MONGODB_URI, {
   useNewUrlParser: true,
@@ -26,6 +27,8 @@ mongoose.connect(MONGODB_URI, {
   .catch((err) => {
     console.error('MongoDB connection error:', err)
   })
+  
+  console.log("MongoDB URI:", process.env.MONGODB_URI);
 
 
 // // test: GET /api/test
@@ -46,7 +49,7 @@ app.use((err, req, res, next) => {
 });
 
 // Start server
-const PORT = process.env.PORT || 4000
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`)
-});
+// const PORT = process.env.PORT || 4000
+// app.listen(PORT, () => {
+//   console.log(`Server is running on http://localhost:${PORT}`)
+// });
