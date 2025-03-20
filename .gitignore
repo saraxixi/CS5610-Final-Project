@@ -21,8 +21,8 @@ dist-ssr
 *.ntvs*
 *.njsproj
 *.sln
-
 *.sw?
 
+# files
 .env
 .history
