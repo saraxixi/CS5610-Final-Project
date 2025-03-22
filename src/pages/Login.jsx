@@ -37,7 +37,7 @@ const Login = () => {
         password,
       });
       alert("Login successful!");
-      navigate("/home");
+      navigate("/");
     } catch (err) {
       console.error(err);
       alert("Login failed. Please check your email or password.");
