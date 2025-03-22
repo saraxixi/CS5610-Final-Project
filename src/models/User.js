@@ -22,6 +22,7 @@ const userSchema = new mongoose.Schema({
     enum: ['user', 'admin'],
     default: 'user'
   },
+  
   // the artifacts that the user has saved...
   savedArtifacts: [
     {
