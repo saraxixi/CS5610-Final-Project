@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
+import Chatbot from "../components/Chatbot";
 import "../styles/Home.css";
 
 // images
@@ -41,6 +42,7 @@ const Home = () => {
           </div>
         ))}
       </div>
+      <Chatbot />
     </>
   );
 }
