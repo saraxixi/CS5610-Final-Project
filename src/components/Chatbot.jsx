@@ -1,4 +1,3 @@
-// src/components/Chatbot.js
 import React, { useState } from 'react';
 import '../styles/Chatbot.css';
 
@@ -11,20 +10,29 @@ const Chatbot = () => {
 
   const toggleChat = () => setIsOpen(!isOpen);
 
-  const handleSend = () => {
+  const handleSend = async() => {
     if (!input.trim()) return;
 
-    // 用户消息
+    // user message
     const userMessage = { from: 'user', text: input };
-    setMessages([...messages, userMessage]);
-
-    // 模拟AI回复（你可以替换为API请求）
-    setTimeout(() => {
-      const botReply = { from: 'bot', text: "I'm an AI assistant. Let me get back to you!" };
-      setMessages(prev => [...prev, botReply]);
-    }, 1000);
-
+    setMessages(prev => [...prev, userMessage]);
     setInput('');
+
+    try {
+      const response = await fetch('http://localhost:4000/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: input })
+      });
+
+      const data = await response.json();
+
+      const botReply = { from: 'bot', text: data.reply };
+      setMessages(prev => [...prev, botReply]);
+    } catch (err) {
+      console.error('Failed to send message:', err);
+      setMessages(prev => [...prev, { from: 'bot', text: 'Sorry, I failed to respond' }]);
+    }
   };
 
   return (
