@@ -8,6 +8,7 @@ import userRoutes from './src/routes/userRoutes.js'
 import artifactRoute from './src/routes/artifactRoutes.js'
 import caveRoutes from './src/routes/caveRoutes.js'
 import exhibitionRoutes from './src/routes/exhibitionRoutes.js'
+import chatRoutes from './src/routes/chatRoutes.js'
 
 const app = express();
 app.use(cors());
@@ -38,6 +39,7 @@ app.use('/api/artifacts', artifactRoute);
 app.use('/api/caves', caveRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/exhibitions', exhibitionRoutes);
+app.use('/api/chat', chatRoutes);
 
 // Error handler
 app.use((err, req, res) => {
