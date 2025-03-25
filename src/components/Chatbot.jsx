@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { BsChatLeftText } from "react-icons/bs";
+import { IoClose } from "react-icons/io5";
 import '../styles/Chatbot.css';
 
 const Chatbot = () => {
@@ -38,14 +40,16 @@ const Chatbot = () => {
   return (
     <div className="chatbot-container">
       <button className="chatbot-toggle" onClick={toggleChat}>
-        💬
+        <BsChatLeftText style={{width: '100%', height: '100%'}} color="#fff"/>
       </button>
 
       {isOpen && (
         <div className="chatbot-popup">
           <div className="chatbot-header">
             <h4>AI Assistant</h4>
-            <button onClick={toggleChat}>✖</button>
+            <button className="header-close"onClick={toggleChat}>
+            <IoClose />
+            </button>
           </div>
           <div className="chatbot-messages">
             {messages.map((msg, idx) => (
