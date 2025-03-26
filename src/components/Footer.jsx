@@ -2,12 +2,17 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import "../styles/Footer.css";
 import { FaFacebook, FaTwitter, FaInstagram, FaYoutube } from 'react-icons/fa';
+import footerLeftImg from "../assets/images/footer_left.png";
+import footerRightImg from "../assets/images/footer_right.png";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
     <footer className="footer">
+      <img src={footerLeftImg} alt="Footer decoration left" className="footer-left-img" />
+      <img src={footerRightImg} alt="Footer decoration right" className="footer-right-img" />
+      
       <div className="footer-container">
         <div className="footer-section">
           <h4>DunHuang Museum</h4>
@@ -17,7 +22,7 @@ const Footer = () => {
         <div className="footer-section">
           <h4>Contact</h4>
           <address>
-            <p>o. 8, East Yangguan Road</p>
+            <p>No. 8, East Yangguan Road</p>
             <p>DunHuang, China</p>
             <p>Email: info@dunhuangmuseum.org</p>
             <p>Phone: +86 (937) 882 2981</p>

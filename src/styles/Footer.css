@@ -3,6 +3,26 @@
     color: #fff;
     padding: 40px 0 20px;
     margin-top: 50px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .footer-left-img {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 80%;
+    max-height: 200px;
+    opacity: 0.5;
+  }
+  
+  .footer-right-img {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    height: 80%;
+    max-height: 200px;
+    opacity: 0.5;
   }
   
   .footer-container {
@@ -12,8 +32,10 @@
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+    position: relative;
+    z-index: 2;
   }
-  
+
   .footer-section {
     flex: 1;
     min-width: 200px;
@@ -26,16 +48,6 @@
     margin-bottom: 20px;
     font-size: 18px;
     position: relative;
-  }
-  
-  .footer-section h4::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: -8px;
-    width: 40px;
-    height: 2px;
-    background-color: #f5a623;
   }
   
   .footer-section p {
@@ -83,7 +95,6 @@
     text-align: center;
     padding-top: 20px;
     margin-top: 20px;
-    border-top: 1px solid #555;
   }
   
   .footer-bottom p {
