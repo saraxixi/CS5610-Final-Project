@@ -9,11 +9,15 @@ import "../styles/Home.css";
 import bannerImage from "../assets/images/banner.png";
 import backgroundImage from "../assets/images/background2.jpg";
 import background3Image from "../assets/images/background3.png";
+import background4Image from "../assets/images/background4.png";
 import deerImage from "../assets/images/deer.png";
 import danceImage from "../assets/images/dance.png";
 import architectureImage from "../assets/images/architecture.png";
 import apsaraImage from "../assets/images/apsara.png";
 import sutraImage from "../assets/images/sutra.png";
+import create1Image from "../assets/images/create1.png";
+import create2Image from "../assets/images/create2.png";
+import create3Image from "../assets/images/create3.png";
 
 const Home = () => {
 
@@ -138,6 +142,54 @@ const Home = () => {
             </div>
             <div className="manuscript-image">
               <img src={sutraImage} alt="Ancient Sutra" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Co-created Works Section */}
+      <div className="co-creation-section" style={{ backgroundImage: `url(${background4Image})` }}>
+        <div className="co-creation-content">
+          <div className="section-header">
+            <h2>Co-created Works</h2>
+            <p>Creation awaits you here</p>
+          </div>
+          
+          <div className="creation-cards">
+            <div className="creation-card">
+              <div className="creation-image">
+                <img src={create1Image} alt="Millennial Music and Dance" />
+              </div>
+              <h3>Millennial Music and Dance</h3>
+              <p>
+                This creation is based on the north wall mural of Cave 220 from the Tang Dynasty in Dunhuang's 
+                Mogao Caves, digitally redrawing the iconic grand orchestra and Dipankara Bodhisattva scenes. 
+                Based on research into the original mural's colors, this piece attempts to recreate the vibrant 
+                colors of the mural from a thousand years ago.
+              </p>
+            </div>
+            
+            <div className="creation-card creation-card-middle">
+              <div className="creation-image">
+                <img src={create2Image} alt="Nine-Colored Deer" />
+              </div>
+              <h3>Nine-Colored Deer</h3>
+              <p>
+                A three-dimensional model created based on the nine-colored deer image from the Deer King Jataka 
+                story painting in Cave 257 of the Mogao Caves.
+              </p>
+            </div>
+            
+            <div className="creation-card">
+              <div className="creation-image">
+                <img src={create3Image} alt="Celestial Music Fantasy" />
+              </div>
+              <h3>Celestial Music Fantasy</h3>
+              <p>
+                The imagery is inspired by the "Instruments Playing Themselves" image from the Tang Dynasty Cave 220 
+                mural in Dunhuang's Mogao Caves, redrawing representative instruments including the jie drum, 
+                ornate-edge ruan, fang-xiang, konghou, jilou drum, flute, and others.
+              </p>
             </div>
           </div>
         </div>

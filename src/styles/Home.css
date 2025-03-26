@@ -200,3 +200,86 @@ p {
   height: auto;
   max-height: 400px;
 }
+
+/* Co-created Works Section */
+.co-creation-section {
+  width: 100%;
+  padding: 80px 50px;
+  background-image: url('../assets/images/background4.png');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.co-creation-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.co-creation-section .section-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.co-creation-section .section-header h2 {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.co-creation-section .section-header p {
+  font-size: 18px;
+  color: #666;
+}
+
+.creation-cards {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 30px;
+  position: relative;
+}
+
+.creation-card {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  padding: 20px;
+  width: calc(33.33% - 20px);
+  display: flex;
+  flex-direction: column;
+}
+
+.creation-card-middle {
+  margin-top: 60px;
+}
+
+.creation-image {
+  width: 100%;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.creation-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.creation-card h3 {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.creation-card p {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 0;
+  line-height: 1.6;
+}
