@@ -28,6 +28,11 @@ const Home = () => {
         <div className="banner-content">
           <div className="banner-text">
             <h1>DunHuang Museum</h1>
+            <p>
+            Dunhuang cultural art, also known as Mogao Caves art, is called the art museum of the Eastern world. 
+            It preserves 735 caves from the 4th to 11th centuries, over 3,000 painted sculptures, 45,000 square meters 
+            of murals, and five wooden structures from the Tang and Song dynasties.
+            </p>
             <Link to="/DunhuangMuseum" className="learn-more-btn">Learn More</Link>
           </div>
         </div>
