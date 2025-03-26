@@ -8,10 +8,12 @@ import "../styles/Home.css";
 // images
 import bannerImage from "../assets/images/banner.png";
 import backgroundImage from "../assets/images/background2.jpg";
+import background3Image from "../assets/images/background3.png";
 import deerImage from "../assets/images/deer.png";
 import danceImage from "../assets/images/dance.png";
 import architectureImage from "../assets/images/architecture.png";
 import apsaraImage from "../assets/images/apsara.png";
+import sutraImage from "../assets/images/sutra.png";
 
 const Home = () => {
 
@@ -47,7 +49,7 @@ const Home = () => {
       <div className="mural-themes-section" style={{ backgroundImage: `url(${backgroundImage})` }}>
         <div className="mural-themes-content">
           <div className="section-header">
-            <h2>Mural Themes</h2>
+            <h2>Murals</h2>
             <p>Abundant murals for your enjoyment</p>
           </div>
           
@@ -110,6 +112,32 @@ const Home = () => {
               <div className="materials-count">
                 <span>4</span> materials collected
               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Manuscripts Section */}
+      <div className="manuscripts-section" style={{ backgroundImage: `url(${background3Image})` }}>
+        <div className="manuscripts-content">
+          <div className="section-header">
+            <h2>Manuscripts</h2>
+            <p>An encounter with thousand-year-old treasures</p>
+          </div>
+          
+          <div className="manuscripts-display">
+            <div className="manuscripts-list">
+              <ul>
+                <li>Selections: Essay on Destiny</li>
+                <li>Mahaparinirvana Sutra Volume 1, Chapter on Longevity</li>
+                <li>Mahayana Amitayus Sutra Essential Teachings</li>
+                <li>Guiyijun Government Office Wine Calendar</li>
+                <li>Lotus Sutra Volume 2, Chapter on Parables</li>
+                <li>Tang Dynasty Jingyun 2nd Year (711 CE) Zhang Junyi Merit Notification</li>
+              </ul>
+            </div>
+            <div className="manuscript-image">
+              <img src={sutraImage} alt="Ancient Sutra" />
             </div>
           </div>
         </div>
