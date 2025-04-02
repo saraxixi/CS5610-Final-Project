@@ -27,11 +27,28 @@ const Navbar = () => {
 
         <div className='navbar-right'>
           <input type="text" placeholder='search' className='search-box'/>
-          <Link to="/login" className='login-btn'>Login</Link>
+          {localStorage.getItem("userId") ? (
+            <>
+            <span style={{ marginRight: '10px' }}>
+              Welcome, {localStorage.getItem("userRole")}
+              </span>
+              <button
+                onClick={() => {
+                  localStorage.clear();
+                  window.location.href = "/";
+                }}
+                className="login-btn"
+              >
+                Logout
+              </button>
+            </>
+          ) : (
+            <Link to="/login" className='login-btn'>Login</Link>
+          )}
         </div>
       </div>
     </header>
   );
-};
+}
 
 export default Navbar;
