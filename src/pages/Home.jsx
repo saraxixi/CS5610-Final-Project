@@ -30,6 +30,20 @@ const Home = () => {
       .catch(err => console.error(err));
   }, []);
 
+  const handleDelete = async (id) => {
+    if (!window.confirm("Are you sure you want to delete this artifact?")) return;
+    try {
+      await fetch(`http://localhost:4000/api/artifacts/${id}`, {
+        method: 'DELETE'
+      });
+      // Update the list of artifacts，and remove the deleted artifact from the state
+      setArtifacts(prev => prev.filter(item => item._id !== id));
+    } catch (err) {
+      console.error("Delete failed", err);
+      alert("Failed to delete artifact.");
+    }
+  };
+
 
   return (
     <>
@@ -201,9 +215,15 @@ const Home = () => {
             <h3>{artifact.title}</h3>
             <img src={artifact.images[0]} alt={artifact.title} style={{width: '200px'}} />
             <p>{artifact.description}</p>
+
+            {/* Only admin can see delete button */}
+            {localStorage.getItem("userRole") === "admin" && (
+              <button onClick={() => handleDelete(artifact._id)}>Delete</button>
+            )}
           </div>
         ))}
       </div>
+
       <Chatbot />
       <Footer />
     </>
