@@ -11,6 +11,7 @@ const Login = () => {
   const [username, setUsername] = useState(""); // nickname
   const [email, setEmail] = useState(""); // email
   const [password, setPassword] = useState(""); // password
+  const [role, setRole] = useState("user"); // role
   const navigate = useNavigate();
 
   const handleRegister = async (e) => {
@@ -20,6 +21,7 @@ const Login = () => {
         username,
         email,
         password,
+        role,
       });
       alert("Registration successful! Please log in.");
       setIsLogin(true);
@@ -120,6 +122,28 @@ const Login = () => {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
+              </li>
+              <li className="list_in role_select">
+                <label className={`role_option ${role === "user" ? "selected" : ""}`}>
+                  <input
+                    type="radio"
+                    name="role"
+                    value="user"
+                    checked={role === "user"}
+                    onChange={(e) => setRole(e.target.value)}
+                  />
+                  User
+                </label>
+                <label className={`role_option ${role === "admin" ? "selected" : ""}`}>
+                  <input
+                    type="radio"
+                    name="role"
+                    value="admin"
+                    checked={role === "admin"}
+                    onChange={(e) => setRole(e.target.value)}
+                  />
+                  Admin
+                </label>
               </li>
               <li className="submit">
                 <button type="submit">REGISTER</button>
