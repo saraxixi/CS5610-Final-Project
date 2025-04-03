@@ -102,11 +102,27 @@
 .login-btn {
   font-weight: bold;
   color: black;
+  background-color: white;
   text-decoration: none;
   font-size: 18px;
 }
 
 .login-btn:hover {
+  color: yellowgreen;
+  text-decoration: underline;
+}
+
+.admin-button {
+  background-color: white;
+  color: black;
+  padding: 5px 15px;
+  border-radius: 4px;
+  margin-right: 10px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.admin-button:hover {
   color: #FF3030;
   text-decoration: underline;
 }

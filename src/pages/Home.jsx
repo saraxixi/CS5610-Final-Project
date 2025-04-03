@@ -20,29 +20,46 @@ import create2Image from "../assets/images/create2.png";
 import create3Image from "../assets/images/create3.png";
 
 const Home = () => {
-
   const [artifacts, setArtifacts] = useState([]);
+  const userRole = localStorage.getItem("userRole");
+  const isAdmin = userRole === "admin";
 
   useEffect(() => {
+    console.log("userRole:", userRole);
+    console.log("isAdmin:", isAdmin);
+
     fetch('http://localhost:4000/api/artifacts')
       .then(res => res.json())
       .then(data => setArtifacts(data))
       .catch(err => console.error(err));
   }, []);
 
+  const handleDelete = async (id) => {
+    if (!window.confirm("Are you sure you want to delete this artifact?")) return;
+    try {
+      await fetch(`http://localhost:4000/api/artifacts/${id}`, {
+        method: 'DELETE'
+      });
+      setArtifacts(prev => prev.filter(item => item._id !== id));
+    } catch (err) {
+      console.error("Delete failed", err);
+      alert("Failed to delete artifact.");
+    }
+  };
 
   return (
     <>
       <Navbar />
+
       {/* Banner */}
       <div id="banner" style={{ backgroundImage: `url(${bannerImage})` }}>
         <div className="banner-content">
           <div className="banner-text">
             <h1>DunHuang Museum</h1>
             <p>
-            Dunhuang was a major stop on the ancient Silk Road and is best known for the nearby Mogao Caves. 
-            It preserves 735 caves from the 4th to 11th centuries, over 3,000 painted sculptures, 45,000 square meters 
-            of murals, and five wooden structures from the Tang and Song dynasties.
+              Dunhuang was a major stop on the ancient Silk Road and is best known for the nearby Mogao Caves.
+              It preserves 735 caves from the 4th to 11th centuries, over 3,000 painted sculptures, 45,000 square meters
+              of murals, and five wooden structures from the Tang and Song dynasties.
             </p>
             <Link to="/DunhuangMuseum" className="learn-more-btn">Learn More</Link>
           </div>
@@ -56,68 +73,31 @@ const Home = () => {
             <h2>Murals</h2>
             <p>Abundant murals for your enjoyment</p>
           </div>
-          
           <div className="theme-cards">
+            {/* Theme Cards */}
             <div className="theme-card">
-              <div className="theme-image">
-                <img src={deerImage} alt="Animal Theme" />
-              </div>
+              <div className="theme-image"><img src={deerImage} alt="Animal Theme" /></div>
               <h3>Animals</h3>
-              <p>
-                Animal paintings in Dunhuang caves are centered around Buddhist content. Exploring the history 
-                of animal paintings in Dunhuang caves allows viewers to feast their eyes on ancient 
-                expression forms and techniques.
-              </p>
-              <div className="materials-count">
-                <span>10</span> materials collected
-              </div>
+              <p>Animal paintings in Dunhuang caves are centered around Buddhist content...</p>
+              <div className="materials-count"><span>10</span> materials collected</div>
             </div>
-            
             <div className="theme-card">
-              <div className="theme-image">
-                <img src={danceImage} alt="Dance Theme" />
-              </div>
+              <div className="theme-image"><img src={danceImage} alt="Dance Theme" /></div>
               <h3>Dance</h3>
-              <p>
-                The Dunhuang caves created dazzling and colorful dance images. 
-                These dance images can be divided into two main categories: 
-                celestial music and dance from the divine Buddha world in people's imagination, 
-                and secular dance from the human world.
-              </p>
-              <div className="materials-count">
-                <span>9</span> materials collected
-              </div>
+              <p>The Dunhuang caves created dazzling and colorful dance images...</p>
+              <div className="materials-count"><span>9</span> materials collected</div>
             </div>
-            
             <div className="theme-card">
-              <div className="theme-image">
-                <img src={architectureImage} alt="Architecture Theme" />
-              </div>
+              <div className="theme-image"><img src={architectureImage} alt="Architecture Theme" /></div>
               <h3>Architecture</h3>
-              <p>
-              The various architectural images of palaces, city gates, temples, residences, 
-              and other buildings provided in the Dunhuang murals, although not actual ancient buildings themselves, 
-              serve as visual historical resources for architectural history.
-              </p>
-              <div className="materials-count">
-                <span>7</span> materials collected
-              </div>
+              <p>The various architectural images of palaces, city gates, temples...</p>
+              <div className="materials-count"><span>7</span> materials collected</div>
             </div>
-            
             <div className="theme-card">
-              <div className="theme-image">
-                <img src={apsaraImage} alt="Flying Apsaras Theme" />
-              </div>
+              <div className="theme-image"><img src={apsaraImage} alt="Flying Apsaras Theme" /></div>
               <h3>Flying Apsaras</h3>
-              <p>
-              Flying Apsaras were transmitted from India to China via the Silk Road, 
-              and after more than a thousand years of evolution and development, 
-              they formed distinctly Chinese stylistic forms. 
-              They eventually transcended their Buddhist significance and became symbols of auspiciousness.
-              </p>
-              <div className="materials-count">
-                <span>4</span> materials collected
-              </div>
+              <p>Flying Apsaras were transmitted from India to China via the Silk Road...</p>
+              <div className="materials-count"><span>4</span> materials collected</div>
             </div>
           </div>
         </div>
@@ -130,7 +110,6 @@ const Home = () => {
             <h2>Manuscripts</h2>
             <p>An encounter with thousand-year-old treasures</p>
           </div>
-          
           <div className="manuscripts-display">
             <div className="manuscripts-list">
               <ul>
@@ -156,51 +135,42 @@ const Home = () => {
             <h2>Co-created Works</h2>
             <p>Creation awaits you here</p>
           </div>
-          
           <div className="creation-cards">
             <div className="creation-card">
-              <div className="creation-image">
-                <img src={create1Image} alt="Millennial Music and Dance" />
-              </div>
+              <div className="creation-image"><img src={create1Image} alt="Millennial Music and Dance" /></div>
               <h3>Millennial Music and Dance</h3>
-              <p>
-                This painting is based on the north wall mural of Cave 220 (Tang Dynasty), 
-                digitally recreating the iconic grand orchestra and Dipankara Bodhisattva scenes. 
-              </p>
+              <p>This painting is based on the north wall mural of Cave 220...</p>
             </div>
-            
             <div className="creation-card creation-card-middle">
-              <div className="creation-image">
-                <img src={create2Image} alt="Nine-Colored Deer" />
-              </div>
+              <div className="creation-image"><img src={create2Image} alt="Nine-Colored Deer" /></div>
               <h3>Nine-Colored Deer</h3>
-              <p>
-                A three-dimensional model created based on the nine-colored deer image from the Deer King Jataka 
-                story painting in Cave 257 of the Mogao Caves.
-              </p>
+              <p>3D model based on Cave 257 mural story painting.</p>
             </div>
-            
             <div className="creation-card">
-              <div className="creation-image">
-                <img src={create3Image} alt="Celestial Music Fantasy" />
-              </div>
+              <div className="creation-image"><img src={create3Image} alt="Celestial Music Fantasy" /></div>
               <h3>Celestial Music Fantasy</h3>
-              <p>
-                The imagery is inspired by the "Instruments Playing Themselves" image from Cave 220's 
-                mural (Tang Dynasty ), redrawing a flying Bodhisattva playing a Konghou.
-              </p>
+              <p>Inspired by mural from Cave 220 of a flying Bodhisattva playing Konghou.</p>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Artifacts */}
+      {/* Artifacts Section */}
       <div className="artifacts-container">
         {artifacts.map(artifact => (
           <div key={artifact._id} className="artifact-card">
             <h3>{artifact.title}</h3>
-            <img src={artifact.images[0]} alt={artifact.title} style={{width: '200px'}} />
+            <img src={artifact.images[0]} alt={artifact.title} style={{ width: '200px' }} />
             <p>{artifact.description}</p>
+
+            {localStorage.getItem("userRole") === "admin" && (
+              <>
+                <div style={{ textAlign: 'center', margin: '1rem 0' }}>
+                  <Link to="/admin" className="admin-panel-btn">Go to Admin Panel</Link>
+                </div>
+                <button onClick={() => handleDelete(artifact._id)}>Delete</button>
+              </>
+            )}
           </div>
         ))}
       </div>
@@ -208,6 +178,6 @@ const Home = () => {
       <Footer />
     </>
   );
-}
+};
 
 export default Home;

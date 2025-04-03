@@ -283,3 +283,12 @@ p {
   margin-bottom: 0;
   line-height: 1.6;
 }
+
+.admin-panel-btn {
+  padding: 10px 20px;
+  background-color: #660000;
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+}

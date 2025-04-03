@@ -32,10 +32,15 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:4000/api/users/login", {
+      const res = await axios.post("http://localhost:4000/api/users/login", {
         email,
         password,
       });
+
+      // save user info to local storage
+      localStorage.setItem("userId", res.data.user.id);
+      localStorage.setItem("userRole", res.data.user.role);
+
       alert("Login successful!");
       navigate("/");
     } catch (err) {

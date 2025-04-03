@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import "../styles/Navbar.css";
 
 const Navbar = () => {
+  const isAdmin = localStorage.getItem("userRole") === "admin";
   return (
     <header className='navbar'>
       <div className='navbar-container'>
@@ -27,11 +28,31 @@ const Navbar = () => {
 
         <div className='navbar-right'>
           <input type="text" placeholder='search' className='search-box'/>
-          <Link to="/login" className='login-btn'>Login</Link>
+          {localStorage.getItem("userId") ? (
+            <>
+            {isAdmin && (
+                <Link to="/admin" className="admin-button">
+                  Admin Panel
+                </Link>
+              )}
+
+              <button
+                onClick={() => {
+                  localStorage.clear();
+                  window.location.href = "/";
+                }}
+                className="login-btn"
+              >
+                Logout
+              </button>
+            </>
+          ) : (
+            <Link to="/login" className='login-btn'>Login</Link>
+          )}
         </div>
       </div>
     </header>
   );
-};
+}
 
 export default Navbar;
