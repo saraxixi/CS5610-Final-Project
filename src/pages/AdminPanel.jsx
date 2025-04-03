@@ -124,6 +124,75 @@ const AdminPanel = () => {
     setIsLoading(false);
   }
 
+  // cave handlers
+  const handleCreateCave = async (e) => {
+    e.preventDefault();
+    try{
+      setIsLoading(true);
+      await axios.post("http://localhost:4000/api/caves", newCave);
+      setNewCave({ name: "", creationPeriod: "", architecturalFeatures: "", significance: "" });
+      fetchCaves();
+      setMessage({text: 'Cave created successfully', type: 'success'});
+    } catch (error) {
+      console.error("Error creating cave:", error);
+      setMessage({text: 'Error creating cave', type: 'error'});
+    }
+    setIsLoading(false);
+  };
+
+  // edit cave
+  const handleEditCave = (cave) => {
+    setEditingCave(cave);
+  }
+
+  // update cave
+  const handleUpdateCave = async (e) => {
+    e.preventDefault();
+    try{
+      setIsLoading(true);
+      await axios.put(`http://localhost:4000/api/caves/${editingCave._id}`, editingCave);
+      setEditingCave(null);
+      fetchCaves();
+      setMessage({text: 'Cave updated successfully', type: 'success'});
+    } catch (error) {
+      console.error("Error updating cave:", error);
+      setMessage({text: 'Error updating cave', type: 'error'});
+    }
+    setIsLoading(false);
+  }
+};
+
+  // delete cave
+  const handleDeleteCave = async (id) => {
+    if(!window.confirm("Are you sure you want to delete this cave?")) return;
+    try{
+      setIsLoading(true);
+      await axios.delete(`http://localhost:4000/api/caves/${id}`);
+      setCaves(prev => prev.filter(item=> item._id !== id));
+      setMessage({text: 'Cave deleted successfully', type: 'success'});
+    } catch (error) {
+      console.error("Error deleting cave:", error);
+      setMessage({text: 'Error deleting cave', type: 'error'});
+    }
+    setIsLoading(false);
+  }
+
+  // Access control
+  if (role !== "admin") {
+    return (
+      <>
+        <Navbar />
+        <div className="access-denied">
+          <h2>Access Denied</h2>
+          <p>You must be an administrator to view this page.</p>
+          <Link to="/" className="back-btn">Back to Home</Link>
+        </div>
+        <Footer />
+      </>
+    );
+  }
+
+
   return (
     <>
       <Navbar />
