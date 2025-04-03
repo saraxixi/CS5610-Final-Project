@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import "../styles/Navbar.css";
 
 const Navbar = () => {
+  const isAdmin = localStorage.getItem("userRole") === "admin";
   return (
     <header className='navbar'>
       <div className='navbar-container'>
@@ -29,9 +30,12 @@ const Navbar = () => {
           <input type="text" placeholder='search' className='search-box'/>
           {localStorage.getItem("userId") ? (
             <>
-            <span style={{ marginRight: '10px' }}>
-              Welcome, {localStorage.getItem("userRole")}
-              </span>
+            {isAdmin && (
+                <Link to="/admin" className="admin-button">
+                  Admin Panel
+                </Link>
+              )}
+
               <button
                 onClick={() => {
                   localStorage.clear();

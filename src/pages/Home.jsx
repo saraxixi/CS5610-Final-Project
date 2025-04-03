@@ -21,8 +21,13 @@ import create3Image from "../assets/images/create3.png";
 
 const Home = () => {
   const [artifacts, setArtifacts] = useState([]);
+  const userRole = localStorage.getItem("userRole");
+  const isAdmin = userRole === "admin";
 
   useEffect(() => {
+    console.log("userRole:", userRole);
+    console.log("isAdmin:", isAdmin);
+
     fetch('http://localhost:4000/api/artifacts')
       .then(res => res.json())
       .then(data => setArtifacts(data))
@@ -169,7 +174,6 @@ const Home = () => {
           </div>
         ))}
       </div>
-
       <Chatbot />
       <Footer />
     </>
