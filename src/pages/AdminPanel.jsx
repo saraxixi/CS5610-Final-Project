@@ -3,8 +3,7 @@ import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import axios from 'axios';
-import { text } from 'express';
-//import '../styles/AdminPanel.css';
+import '../styles/AdminPanel.css';
 
 const AdminPanel = () => {
   const role = localStorage.getItem("userRole");
@@ -107,7 +106,7 @@ const AdminPanel = () => {
       setMessage({text: 'Error updating artifact', type: 'error'});
     }
     setIsLoading(false);
-  }
+  };
 
   // delete artifact
   const handleDeleteArtifact = async (id) => {
@@ -122,7 +121,7 @@ const AdminPanel = () => {
       setMessage({text: 'Error deleting artifact', type: 'error'});
     }
     setIsLoading(false);
-  }
+  };
 
   // cave handlers
   const handleCreateCave = async (e) => {
@@ -160,7 +159,6 @@ const AdminPanel = () => {
     }
     setIsLoading(false);
   }
-};
 
   // delete cave
   const handleDeleteCave = async (id) => {
@@ -175,7 +173,7 @@ const AdminPanel = () => {
       setMessage({text: 'Error deleting cave', type: 'error'});
     }
     setIsLoading(false);
-  }
+  };
 
   // Access control
   if (role !== "admin") {
@@ -191,50 +189,372 @@ const AdminPanel = () => {
       </>
     );
   }
-
-
+  
   return (
     <>
       <Navbar />
-      <div className="admin-panel" style={{ padding: '2rem' }}>
+      <div className="admin-panel">
         <h2>Admin Dashboard</h2>
-        <div style={{ marginBottom: "1rem" }}>
-          <button onClick={() => setTab("artifacts")}>📦 Manage Artifacts</button>
-          <button onClick={() => setTab("caves")}>🏛️ Manage Caves</button>
+
+        {message.text && (
+          <div className={`message ${message.type}`}>
+            {message.text}
+            <button onClick={() => setMessage({text: '', type: ''})}>x</button>
+          </div>
+        )}
+
+
+        <div className="admin-tabs">
+          <button 
+            className={tab === "artifacts" ? "active" : ""}
+            onClick={() => setTab("artifacts")}
+          >
+            Artifacts
+          </button>
+          <button
+            className={tab === "caves" ? "active" : ""}
+            onClick={() => setTab("caves")}
+          >
+            Caves
+          </button>
+          <button
+            className={tab === "exhibitions" ? "active" : ""}
+            onClick={() => setTab("exhibitions")}
+          >
+            Exhibitions
+          </button>
         </div>
+
+        {isLoading && <div className="loading-spinner">Loading...</div>}
 
 
         {tab === "artifacts" && (
-          <>
-            <h3>Create New Artifact</h3>
-            <form onSubmit={handleCreateArtifact}>
-              <input type="text" placeholder="Title" value={newArtifact.title} onChange={e => setNewArtifact({ ...newArtifact, title: e.target.value })} required />
-              <input type="text" placeholder="Type" value={newArtifact.type} onChange={e => setNewArtifact({ ...newArtifact, type: e.target.value })} />
-              <input type="text" placeholder="Era" value={newArtifact.era} onChange={e => setNewArtifact({ ...newArtifact, era: e.target.value })} />
-              <input type="text" placeholder="Location" value={newArtifact.location} onChange={e => setNewArtifact({ ...newArtifact, location: e.target.value })} />
-              <input type="text" placeholder="Images (comma separated)" value={newArtifact.images} onChange={e => setNewArtifact({ ...newArtifact, images: e.target.value })} />
-              <input type="text" placeholder="Conservation Status" value={newArtifact.conservationStatus} onChange={e => setNewArtifact({ ...newArtifact, conservationStatus: e.target.value })} />
-              <textarea placeholder="Description" value={newArtifact.description} onChange={e => setNewArtifact({ ...newArtifact, description: e.target.value })} />
-              <button type="submit">Create Artifact</button>
-            </form>
-
-            <h4>Artifact Count: {artifacts.length}</h4>
-          </>
+          <div className="tab-content">
+            <h2>Artifacts Management</h2>
+            
+            {editingArtifact ? (
+              <div className="edit-form">
+                <h3>Edit Artifact</h3>
+                <form onSubmit={handleUpdateArtifact}>
+                  <div className="form-group">
+                    <label>Title:</label>
+                    <input 
+                      type="text" 
+                      value={editingArtifact.title} 
+                      onChange={(e) => setEditingArtifact({...editingArtifact, title: e.target.value})}
+                      required 
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>Type:</label>
+                    <input 
+                      type="text" 
+                      value={editingArtifact.type || ''} 
+                      onChange={(e) => setEditingArtifact({...editingArtifact, type: e.target.value})}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>Era:</label>
+                    <input 
+                      type="text" 
+                      value={editingArtifact.era || ''} 
+                      onChange={(e) => setEditingArtifact({...editingArtifact, era: e.target.value})}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>Location:</label>
+                    <input 
+                      type="text" 
+                      value={editingArtifact.location || ''} 
+                      onChange={(e) => setEditingArtifact({...editingArtifact, location: e.target.value})}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>Images (comma separated URLs):</label>
+                    <input 
+                      type="text" 
+                      value={editingArtifact.images || ''} 
+                      onChange={(e) => setEditingArtifact({...editingArtifact, images: e.target.value})}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>Conservation Status:</label>
+                    <input 
+                      type="text" 
+                      value={editingArtifact.conservationStatus || ''} 
+                      onChange={(e) => setEditingArtifact({...editingArtifact, conservationStatus: e.target.value})}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>Associated Cave:</label>
+                    <select 
+                      value={editingArtifact.cave || ''} 
+                      onChange={(e) => setEditingArtifact({...editingArtifact, cave: e.target.value})}
+                    >
+                      <option value="">None</option>
+                      {caves.map(cave => (
+                        <option key={cave._id} value={cave._id}>{cave.name}</option>
+                      ))}
+                    </select>
+                  </div>
+                  <div className="form-group">
+                    <label>Description:</label>
+                    <textarea 
+                      value={editingArtifact.description || ''} 
+                      onChange={(e) => setEditingArtifact({...editingArtifact, description: e.target.value})}
+                      rows="4"
+                    />
+                  </div>
+                  <div className="form-actions">
+                    <button type="submit" className="save-btn">Save Changes</button>
+                    <button type="button" className="cancel-btn" onClick={() => setEditingArtifact(null)}>Cancel</button>
+                  </div>
+                </form>
+              </div>
+            ) : (
+              <div className="create-form">
+                <h3>Create New Artifact</h3>
+                <form onSubmit={handleCreateArtifact}>
+                  <div className="form-group">
+                    <label>Title:</label>
+                    <input 
+                      type="text" 
+                      value={newArtifact.title} 
+                      onChange={(e) => setNewArtifact({...newArtifact, title: e.target.value})}
+                      required 
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>Type:</label>
+                    <input 
+                      type="text" 
+                      value={newArtifact.type} 
+                      onChange={(e) => setNewArtifact({...newArtifact, type: e.target.value})}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>Era:</label>
+                    <input 
+                      type="text" 
+                      value={newArtifact.era} 
+                      onChange={(e) => setNewArtifact({...newArtifact, era: e.target.value})}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>Location:</label>
+                    <input 
+                      type="text" 
+                      value={newArtifact.location} 
+                      onChange={(e) => setNewArtifact({...newArtifact, location: e.target.value})}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>Images (comma separated URLs):</label>
+                    <input 
+                      type="text" 
+                      value={newArtifact.images} 
+                      onChange={(e) => setNewArtifact({...newArtifact, images: e.target.value})}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>Conservation Status:</label>
+                    <input 
+                      type="text" 
+                      value={newArtifact.conservationStatus} 
+                      onChange={(e) => setNewArtifact({...newArtifact, conservationStatus: e.target.value})}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>Associated Cave:</label>
+                    <select 
+                      value={newArtifact.cave} 
+                      onChange={(e) => setNewArtifact({...newArtifact, cave: e.target.value})}
+                    >
+                      <option value="">None</option>
+                      {caves.map(cave => (
+                        <option key={cave._id} value={cave._id}>{cave.name}</option>
+                      ))}
+                    </select>
+                  </div>
+                  <div className="form-group">
+                    <label>Description:</label>
+                    <textarea 
+                      value={newArtifact.description} 
+                      onChange={(e) => setNewArtifact({...newArtifact, description: e.target.value})}
+                      rows="4"
+                    />
+                  </div>
+                  <button type="submit" className="create-btn">Create Artifact</button>
+                </form>
+              </div>
+            )}
+            
+            <div className="data-list">
+              <h3>Artifacts List ({artifacts.length})</h3>
+              
+              {artifacts.length === 0 ? (
+                <p>No artifacts found.</p>
+              ) : (
+                <div className="data-table">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Title</th>
+                        <th>Type</th>
+                        <th>Era</th>
+                        <th>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {artifacts.map(artifact => (
+                        <tr key={artifact._id}>
+                          <td>{artifact.title}</td>
+                          <td>{artifact.type || '-'}</td>
+                          <td>{artifact.era || '-'}</td>
+                          <td className="action-buttons">
+                            <button onClick={() => handleEditArtifact(artifact)} className="edit-btn">Edit</button>
+                            <button onClick={() => handleDeleteArtifact(artifact._id)} className="delete-btn">Delete</button>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              )}
+            </div>
+          </div>
         )}
 
         {tab === "caves" && (
-          <>
-            <h3>Create New Cave</h3>
-            <form onSubmit={handleCreateCave}>
-              <input type="text" placeholder="Name" value={newCave.name} onChange={e => setNewCave({ ...newCave, name: e.target.value })} required />
-              <input type="text" placeholder="Creation Period" value={newCave.creationPeriod} onChange={e => setNewCave({ ...newCave, creationPeriod: e.target.value })} />
-              <input type="text" placeholder="Architectural Features" value={newCave.architecturalFeatures} onChange={e => setNewCave({ ...newCave, architecturalFeatures: e.target.value })} />
-              <textarea placeholder="Cultural Significance" value={newCave.significance} onChange={e => setNewCave({ ...newCave, significance: e.target.value })} />
-              <button type="submit">Create Cave</button>
-            </form>
+          <div className="tab-content">
+            <h2>Caves Management</h2>
+            
+            {editingCave ? (
+              <div className="edit-form">
+                <h3>Edit Cave</h3>
+                <form onSubmit={handleUpdateCave}>
+                  <div className="form-group">
+                    <label>Name:</label>
+                    <input 
+                      type="text" 
+                      value={editingCave.name} 
+                      onChange={(e) => setEditingCave({...editingCave, name: e.target.value})}
+                      required 
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>Creation Period:</label>
+                    <input 
+                      type="text" 
+                      value={editingCave.creationPeriod || ''} 
+                      onChange={(e) => setEditingCave({...editingCave, creationPeriod: e.target.value})}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>Architectural Features:</label>
+                    <textarea 
+                      value={editingCave.architecturalFeatures || ''} 
+                      onChange={(e) => setEditingCave({...editingCave, architecturalFeatures: e.target.value})}
+                      rows="3"
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>Cultural Significance:</label>
+                    <textarea 
+                      value={editingCave.significance || ''} 
+                      onChange={(e) => setEditingCave({...editingCave, significance: e.target.value})}
+                      rows="4"
+                    />
+                  </div>
+                  <div className="form-actions">
+                    <button type="submit" className="save-btn">Save Changes</button>
+                    <button type="button" className="cancel-btn" onClick={() => setEditingCave(null)}>Cancel</button>
+                  </div>
+                </form>
+              </div>
+            ) : (
+              <div className="create-form">
+                <h3>Create New Cave</h3>
+                <form onSubmit={handleCreateCave}>
+                  <div className="form-group">
+                    <label>Name:</label>
+                    <input 
+                      type="text" 
+                      value={newCave.name} 
+                      onChange={(e) => setNewCave({...newCave, name: e.target.value})}
+                      required 
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>Creation Period:</label>
+                    <input 
+                      type="text" 
+                      value={newCave.creationPeriod} 
+                      onChange={(e) => setNewCave({...newCave, creationPeriod: e.target.value})}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>Architectural Features:</label>
+                    <textarea 
+                      value={newCave.architecturalFeatures} 
+                      onChange={(e) => setNewCave({...newCave, architecturalFeatures: e.target.value})}
+                      rows="3"
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>Cultural Significance:</label>
+                    <textarea 
+                      value={newCave.significance} 
+                      onChange={(e) => setNewCave({...newCave, significance: e.target.value})}
+                      rows="4"
+                    />
+                  </div>
+                  <button type="submit" className="create-btn">Create Cave</button>
+                </form>
+              </div>
+            )}
+            
+            <div className="data-list">
+              <h3>Caves List ({caves.length})</h3>
+              
+              {caves.length === 0 ? (
+                <p>No caves found.</p>
+              ) : (
+                <div className="data-table">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Name</th>
+                        <th>Creation Period</th>
+                        <th>Artifacts</th>
+                        <th>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {caves.map(cave => (
+                        <tr key={cave._id}>
+                          <td>{cave.name}</td>
+                          <td>{cave.creationPeriod || '-'}</td>
+                          <td>{cave.artifacts ? cave.artifacts.length : 0}</td>
+                          <td className="action-buttons">
+                            <button onClick={() => handleEditCave(cave)} className="edit-btn">Edit</button>
+                            <button onClick={() => handleDeleteCave(cave._id)} className="delete-btn">Delete</button>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
 
-            <h4>Cave Count: {caves.length}</h4>
-          </>
+        {tab === "exhibitions" && (
+          <div className="tab-content">
+            <h2>Exhibitions Management</h2>
+            <p>Exhibition management functionality will be implemented soon.</p>
+          </div>
         )}
       </div>
       <Footer />
