@@ -4,11 +4,11 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 dotenv.config();
 
-import userRoutes from '../client/src/routes/userRoutes.js'
-import artifactRoute from '../client/src/routes/artifactRoutes.js'
-import caveRoutes from '../client/src/routes/caveRoutes.js'
-import exhibitionRoutes from '../client/src/routes/exhibitionRoutes.js'
-import chatRoutes from '../client/src/routes/chatRoutes.js'
+import userRoutes from './src/routes/userRoutes.js'
+import artifactRoute from './src/routes/artifactRoutes.js'
+import caveRoutes from './src/routes/caveRoutes.js'
+import exhibitionRoutes from './src/routes/exhibitionRoutes.js'
+import chatRoutes from './src/routes/chatRoutes.js'
 
 const app = express();
 app.use(cors());
