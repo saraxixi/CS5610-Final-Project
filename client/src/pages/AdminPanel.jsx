@@ -63,22 +63,52 @@ const AdminPanel = () => {
   // create cave
   const handleCreateArtifact = async (e) => {
     e.preventDefault();
-    try{
+    try {
       setIsLoading(true);
-      await axios.post("http://localhost:4000/api/artifacts", {
-        ...newArtifact,
-        images: newArtifact.images.split(',').map(i => i.trim())
-      });
+      
+      const artifactData = {
+        title: newArtifact.title.trim(),
+        type: newArtifact.type?.trim() || "",
+        era: newArtifact.era?.trim() || "",
+        description: newArtifact.description?.trim() || "",
+        location: newArtifact.location?.trim() || "",
+        conservationStatus: newArtifact.conservationStatus?.trim() || "",
+        images: newArtifact.images?.trim() 
+          ? newArtifact.images.split(',').map(i => i.trim()).filter(i => i)
+          : []
+      };
 
+      if (newArtifact.cave && newArtifact.cave.trim() !== "") {
+        artifactData.cave = newArtifact.cave;
+      }
+      
+      console.log("Sending artifact data:", artifactData);
+      
+      const response = await axios.post(
+        "http://localhost:4000/api/artifacts", 
+        artifactData
+      );
+      console.log("Response:", response.data);
+  
       setNewArtifact({ title: "", type: "", era: "", description: "", location: "", images: "", conservationStatus: "", cave: "" });
       fetchArtifacts();
       setMessage({text: 'Artifact created successfully', type: 'success'});
     } catch (error) {
       console.error("Error creating artifact:", error);
-      setMessage({text: 'Error creating artifact', type: 'error'});
+      if (error.response) {
+        console.error("Response data:", error.response.data);
+        setMessage({
+          text: `Error creating artifact: ${error.response.data?.message || error.response.data?.error || error.message}`, 
+          type: 'error'
+        });
+      } else {
+        setMessage({text: `Error creating artifact: ${error.message}`, type: 'error'});
+      }
     }
     setIsLoading(false);
   };
+  
+
 
   // edit artifact
   const handleEditArtifact =  (artifact) => {
