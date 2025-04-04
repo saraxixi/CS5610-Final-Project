@@ -17,7 +17,7 @@ const Login = () => {
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:4000/api/users", {
+      await axios.post("/api/users", {
         username,
         email,
         password,
@@ -34,7 +34,7 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:4000/api/users/login", {
+      const res = await axios.post("/api/users/login", {
         email,
         password,
       });
