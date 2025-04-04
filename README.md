@@ -1,15 +1,25 @@
-# React + Vite
-Currently, two official plugins are available:
+# Dunhuang Digital Museum
+The Dunhuang Digital Museum will be an immersive virtual platform showcasing the artistic and cultural treasures of the Dunhuang Caves.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# Teams Menbers
+- Xi Xi 
+- Lian Liu
+- Shuojun Chen
 
-## Expanding the ESLint configuration
+# Video Link
 
-We use TypeScript and enable type-aware lint rules: [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) and [`typescript-eslint`](https://typescript-eslint.io).
+## Literation 2: 
+- Lian Liu: https://youtu.be/-tr40KSYCRo
 
-# CS5610-Final-Project
+# Features
 
 # Chatbot API
 Openrouter: https://openrouter.ai/
 Create account and copy paste the OPENROUTER_API_KEY to .env
+
+# Firestore Collections and Data Model
+## Example Data Models
+
+# CRUD Operations
+
+# Contributions
