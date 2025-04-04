@@ -63,22 +63,51 @@ const AdminPanel = () => {
   // create cave
   const handleCreateArtifact = async (e) => {
     e.preventDefault();
-    try{
+    try {
       setIsLoading(true);
-      await axios.post("http://localhost:4000/api/artifacts", {
-        ...newArtifact,
-        images: newArtifact.images.split(',').map(i => i.trim())
-      });
+      
+      const artifactData = {
+        title: newArtifact.title.trim(),
+        type: newArtifact.type?.trim() || "",
+        era: newArtifact.era?.trim() || "",
+        description: newArtifact.description?.trim() || "",
+        location: newArtifact.location?.trim() || "",
+        conservationStatus: newArtifact.conservationStatus?.trim() || "",
+        images: newArtifact.images?.trim() 
+          ? newArtifact.images.split(',').map(i => i.trim()).filter(i => i)
+          : []
+      };
 
+      if (newArtifact.cave && newArtifact.cave.trim() !== "") {
+        artifactData.cave = newArtifact.cave;
+      }
+      
+      console.log("Sending artifact data:", artifactData);
+      
+      const response = await axios.post(
+        "http://localhost:4000/api/artifacts", 
+        artifactData
+      );
+      console.log("Response:", response.data);
+  
       setNewArtifact({ title: "", type: "", era: "", description: "", location: "", images: "", conservationStatus: "", cave: "" });
       fetchArtifacts();
       setMessage({text: 'Artifact created successfully', type: 'success'});
     } catch (error) {
       console.error("Error creating artifact:", error);
-      setMessage({text: 'Error creating artifact', type: 'error'});
+      if (error.response) {
+        console.error("Response data:", error.response.data);
+        setMessage({
+          text: `Error creating artifact: ${error.response.data?.message || error.response.data?.error || error.message}`, 
+          type: 'error'
+        });
+      } else {
+        setMessage({text: `Error creating artifact: ${error.message}`, type: 'error'});
+      }
     }
     setIsLoading(false);
   };
+  
 
   // edit artifact
   const handleEditArtifact =  (artifact) => {
@@ -91,19 +120,47 @@ const AdminPanel = () => {
 
   const handleUpdateArtifact = async (e) => {
     e.preventDefault();
-    try{
+    try {
       setIsLoading(true);
-      const updatedData ={
-        ...editingArtifact,
-        images: editingArtifact.images.split(',').map(i => i.trim())
+      
+      const updatedData = {
+        _id: editingArtifact._id,
+        title: editingArtifact.title.trim(),
+        type: editingArtifact.type?.trim() || "",
+        era: editingArtifact.era?.trim() || "",
+        description: editingArtifact.description?.trim() || "",
+        location: editingArtifact.location?.trim() || "",
+        conservationStatus: editingArtifact.conservationStatus?.trim() || "",
+        images: editingArtifact.images?.trim() 
+          ? editingArtifact.images.split(',').map(i => i.trim()).filter(i => i)
+          : []
+      };
+      
+      if (editingArtifact.cave && editingArtifact.cave.trim() !== "") {
+        updatedData.cave = editingArtifact.cave;
       }
-      await axios.put(`http://localhost:4000/api/artifacts/${editingArtifact._id}`, updatedData);
+      
+      console.log("Updating with data:", updatedData);
+      
+      await axios.put(
+        `http://localhost:4000/api/artifacts/${editingArtifact._id}`, 
+        updatedData
+      );
+      
       setEditingArtifact(null);
       fetchArtifacts();
       setMessage({text: 'Artifact updated successfully', type: 'success'});
     } catch (error) {
       console.error("Error updating artifact:", error);
-      setMessage({text: 'Error updating artifact', type: 'error'});
+      if (error.response) {
+        console.error("Response data:", error.response.data);
+        setMessage({
+          text: `Error updating artifact: ${error.response.data?.message || error.response.data?.error || error.message}`, 
+          type: 'error'
+        });
+      } else {
+        setMessage({text: `Error updating artifact: ${error.message}`, type: 'error'});
+      }
     }
     setIsLoading(false);
   };
@@ -399,6 +456,7 @@ const AdminPanel = () => {
                   <table>
                     <thead>
                       <tr>
+                        <th>Image</th>
                         <th>Title</th>
                         <th>Type</th>
                         <th>Era</th>
@@ -408,6 +466,21 @@ const AdminPanel = () => {
                     <tbody>
                       {artifacts.map(artifact => (
                         <tr key={artifact._id}>
+                          <td className="artifact-image-cell">
+                            {artifact.images && artifact.images.length > 0 ? (
+                              <img 
+                                src={artifact.images[0]} 
+                                alt={artifact.title} 
+                                className="artifact-thumbnail"
+                                onError={(e) => {
+                                  e.target.onerror = null; 
+                                  e.target.src = "https://placehold.co/60x60?text=No+Image";
+                                }}
+                              />
+                            ) : (
+                              <div className="no-image">No image</div>
+                            )}
+                          </td>
                           <td>{artifact.title}</td>
                           <td>{artifact.type || '-'}</td>
                           <td>{artifact.era || '-'}</td>
