@@ -8,7 +8,7 @@ The Dunhuang Digital Museum will be an immersive virtual platform showcasing the
 
 ## Video Link
 
-### Literation 2: 
+### iteration 2: 
 - Lian Liu: https://youtu.be/-tr40KSYCRo
 
 ## Features
