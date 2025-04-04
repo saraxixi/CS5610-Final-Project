@@ -1,8 +1,9 @@
 .admin-panel {
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
     padding: 30px;
     color: #000;
+    padding-top: 120px;
   }
   
   .admin-tabs {
@@ -34,7 +35,7 @@
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 2px 4px #e29b40;;
-    padding: 20px;
+    padding: 50px;
     margin-bottom: 20px;
   }
   
@@ -79,7 +80,6 @@
 .form-group select {
   background-color: white;
   color: #333;
-  /* 保持其他样式不变 */
   width: 100%;
   padding: 8px;
   border: 1px solid #ddd;

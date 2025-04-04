@@ -19,7 +19,7 @@ const AdminPanel = () => {
 
   // caves state
   const [caves, setCaves] = useState([]);
-  const [newCave, setNewCave] = useState({ name: "", creationPeriod: "", architecturalFeatures: "", significance: "" });
+  const [newCave, setNewCave] = useState({ name: "", creationPeriod: "", architecturalFeatures: "", significance: "", images: ""  });
   const [editingCave, setEditingCave] = useState(null);
 
   // fetch artifacts and caves data
@@ -165,7 +165,7 @@ const AdminPanel = () => {
     }
     setIsLoading(false);
   };
-  
+
   // delete artifact
   const handleDeleteArtifact = async (id) => {
     if(!window.confirm("Are you sure you want to delete this artifact?")) return;
@@ -186,8 +186,19 @@ const AdminPanel = () => {
     e.preventDefault();
     try{
       setIsLoading(true);
-      await axios.post("http://localhost:4000/api/caves", newCave);
-      setNewCave({ name: "", creationPeriod: "", architecturalFeatures: "", significance: "" });
+
+      const caveData = {
+        name: newCave.name.trim(),
+        creationPeriod: newCave.creationPeriod?.trim() || "",
+        architecturalFeatures: newCave.architecturalFeatures?.trim() || "",
+        significance: newCave.significance?.trim() || "",
+        images: newCave.images?.trim() 
+          ? newCave.images.split(',').map(i => i.trim()).filter(i => i)
+          : []
+      };
+
+      await axios.post("http://localhost:4000/api/caves", caveData);
+      setNewCave({ name: "", creationPeriod: "", architecturalFeatures: "", significance: "", images: "" });
       fetchCaves();
       setMessage({text: 'Cave created successfully', type: 'success'});
     } catch (error) {
@@ -199,7 +210,10 @@ const AdminPanel = () => {
 
   // edit cave
   const handleEditCave = (cave) => {
-    setEditingCave(cave);
+    setEditingCave({
+      ...cave,
+      images: cave.images ? cave.images.join(', ') : ''
+    });
   }
 
   // update cave
@@ -207,7 +221,19 @@ const AdminPanel = () => {
     e.preventDefault();
     try{
       setIsLoading(true);
-      await axios.put(`http://localhost:4000/api/caves/${editingCave._id}`, editingCave);
+
+      const updatedData = {
+        _id: editingCave._id,
+        name: editingCave.name.trim(),
+        creationPeriod: editingCave.creationPeriod?.trim() || "",
+        architecturalFeatures: editingCave.architecturalFeatures?.trim() || "",
+        significance: editingCave.significance?.trim() || "",
+        images: editingCave.images?.trim() 
+          ? editingCave.images.split(',').map(i => i.trim()).filter(i => i)
+          : []
+      };
+
+      await axios.put(`http://localhost:4000/api/caves/${editingCave._id}`, updatedData);
       setEditingCave(null);
       fetchCaves();
       setMessage({text: 'Cave updated successfully', type: 'success'});
@@ -524,6 +550,15 @@ const AdminPanel = () => {
                       rows="4"
                     />
                   </div>
+                  <div className="form-group">
+                    <label>Images (comma separated URLs):</label>
+                    <input
+                      type="text" 
+                      value={editingCave.images || ''}
+                      onChange={(e) => setEditingCave({...editingCave, images: e.target.value})}
+                    />
+                  </div>
+                        
                   <div className="form-actions">
                     <button type="submit" className="save-btn">Save Changes</button>
                     <button type="button" className="cancel-btn" onClick={() => setEditingCave(null)}>Cancel</button>
@@ -567,6 +602,14 @@ const AdminPanel = () => {
                       rows="4"
                     />
                   </div>
+                  <div className="form-group">
+                    <label>Images (comma separated URLs):</label>
+                    <input 
+                      type="text" 
+                      value={newCave.images} 
+                      onChange={(e) => setNewCave({...newCave, images: e.target.value})}
+                    />
+                  </div>
                   <button type="submit" className="create-btn">Create Cave</button>
                 </form>
               </div>
@@ -582,6 +625,7 @@ const AdminPanel = () => {
                   <table>
                     <thead>
                       <tr>
+                        <th>Image</th>
                         <th>Name</th>
                         <th>Creation Period</th>
                         <th>Artifacts</th>
@@ -591,6 +635,21 @@ const AdminPanel = () => {
                     <tbody>
                       {caves.map(cave => (
                         <tr key={cave._id}>
+                          <td className="artifact-image-cell">
+                            {cave.images && cave.images.length > 0 ? (
+                              <img 
+                                src={cave.images[0]} 
+                                alt={cave.name} 
+                                className="artifact-thumbnail"
+                                onError={(e) => {
+                                  e.target.onerror = null; 
+                                  e.target.src = "https://placehold.co/60x60?text=No+Image";
+                                }}
+                              />
+                            ) : (
+                              <div className="no-image">No image</div>
+                            )}
+                          </td>
                           <td>{cave.name}</td>
                           <td>{cave.creationPeriod || '-'}</td>
                           <td>{cave.artifacts ? cave.artifacts.length : 0}</td>
