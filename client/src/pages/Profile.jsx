@@ -11,7 +11,7 @@ const Profile = () => {
 
   useEffect(() => {
     if (userId) {
-      axios.get(`http://localhost:4000/api/users/${userId}`)
+      axios.get(`/api/users/${userId}`)
         .then(res => {
           setFormData({
             username: res.data.username,
@@ -30,7 +30,7 @@ const Profile = () => {
   const handleSubmit = async e => {
     e.preventDefault();
     try {
-      await axios.put(`http://localhost:4000/api/users/${userId}`, formData);
+      await axios.put(`/api/users/${userId}`, formData);
       alert("Profile updated!");
     } catch (err) {
       console.error(err);
