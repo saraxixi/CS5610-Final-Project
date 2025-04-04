@@ -121,23 +121,51 @@ const AdminPanel = () => {
 
   const handleUpdateArtifact = async (e) => {
     e.preventDefault();
-    try{
+    try {
       setIsLoading(true);
-      const updatedData ={
-        ...editingArtifact,
-        images: editingArtifact.images.split(',').map(i => i.trim())
+      
+      const updatedData = {
+        _id: editingArtifact._id,
+        title: editingArtifact.title.trim(),
+        type: editingArtifact.type?.trim() || "",
+        era: editingArtifact.era?.trim() || "",
+        description: editingArtifact.description?.trim() || "",
+        location: editingArtifact.location?.trim() || "",
+        conservationStatus: editingArtifact.conservationStatus?.trim() || "",
+        images: editingArtifact.images?.trim() 
+          ? editingArtifact.images.split(',').map(i => i.trim()).filter(i => i)
+          : []
+      };
+      
+      if (editingArtifact.cave && editingArtifact.cave.trim() !== "") {
+        updatedData.cave = editingArtifact.cave;
       }
-      await axios.put(`http://localhost:4000/api/artifacts/${editingArtifact._id}`, updatedData);
+      
+      console.log("Updating with data:", updatedData);
+      
+      await axios.put(
+        `http://localhost:4000/api/artifacts/${editingArtifact._id}`, 
+        updatedData
+      );
+      
       setEditingArtifact(null);
       fetchArtifacts();
       setMessage({text: 'Artifact updated successfully', type: 'success'});
     } catch (error) {
       console.error("Error updating artifact:", error);
-      setMessage({text: 'Error updating artifact', type: 'error'});
+      if (error.response) {
+        console.error("Response data:", error.response.data);
+        setMessage({
+          text: `Error updating artifact: ${error.response.data?.message || error.response.data?.error || error.message}`, 
+          type: 'error'
+        });
+      } else {
+        setMessage({text: `Error updating artifact: ${error.message}`, type: 'error'});
+      }
     }
     setIsLoading(false);
   };
-
+  
   // delete artifact
   const handleDeleteArtifact = async (id) => {
     if(!window.confirm("Are you sure you want to delete this artifact?")) return;
