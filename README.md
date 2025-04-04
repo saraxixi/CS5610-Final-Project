@@ -6,20 +6,103 @@ The Dunhuang Digital Museum will be an immersive virtual platform showcasing the
 - Lian Liu
 - Shuojun Chen
 
-# Video Link
+## Video Link
 
-## Literation 2: 
+### Literation 2: 
 - Lian Liu: https://youtu.be/-tr40KSYCRo
 
-# Features
+## Features
 
-# Chatbot API
+### Chatbot API
 Openrouter: https://openrouter.ai/
 Create account and copy paste the OPENROUTER_API_KEY to .env
 
-# Firestore Collections and Data Model
-## Example Data Models
+## Firestore Collections and Data Model
+Based on our MongoDB data modeling:
 
-# CRUD Operations
+### Artifacts Collection
+- id: Unique artifact ID
 
-# Contributions
+- title, type, era, description, location
+
+- images: Array of image URLs
+
+### Caves Collection
+- id, name, creationPeriod, architectural Features, significance
+
+- artifacts: Array of artifact references
+- images: Array of image URLs
+
+### Users Collection
+- id, username, email, password
+
+#### Example Data Models
+- Sample Admin User Document 
+```json
+{
+        "_id": "67ecc5ee92156e21cf9072ec",
+        "username": "admin1",
+        "email": "admin1@example.com",
+        "password": "admin123",
+        "role": "admin",
+        "savedArtifacts": [],
+        "createdAt": "2025-04-02T05:06:54.753Z",
+        "updatedAt": "2025-04-02T05:06:54.753Z",
+        "__v": 0
+}
+```
+
+- Sample User Document 
+```json
+{
+        "_id": "67ee4c386954b7644bc2635c",
+        "username": "testuser1",
+        "email": "user1@example.com",
+        "password": "user123",
+        "role": "user",
+        "savedArtifacts": [],
+        "createdAt": "2025-04-03T08:52:08.224Z",
+        "updatedAt": "2025-04-03T08:52:08.224Z",
+        "__v": 0
+    }
+```
+## CRUD Operations
+- Create
+    - Users register
+
+    - Admins add artifacts/caves and create exhibitions
+- Read
+    - Users browse and search through artifacts, caves, and exhibitions
+    - Filters available by type, era, location
+    - Real-time chatbot provides descriptive context
+
+- Update
+    - Users update their profile and saved preferences
+
+    - Admins and contributors update artifact/cave metadata
+
+    - Contributions go through a review system
+- Delete
+    - Admins can delete inappropriate content
+
+
+
+## Contributions
+- Xi Xi:
+- Lian Liu: 
+    - Set up backend framework using Express.js and MongoDB
+    - Developed the Admin Panel for managing artifacts and caves
+
+    - Implemented CRUD logic (create, update, delete) with error handling
+
+    - Designed role-based access (admin vs. user) and route protection
+    -  Styled the dashboard and added image preview logic
+
+    - Integrated with backend using Axios for full-stack functionality
+    <p align="center">
+    <img src="./src/liulian1.jpg" width="600"/>
+    <img src="./src/liulian2.jpg" width="600">
+    <img src="./src/liulian3.jpg" width="600">
+    </p>
+
+- Shuojun Chen:
