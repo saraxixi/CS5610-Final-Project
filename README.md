@@ -12,6 +12,12 @@ The Dunhuang Digital Museum will be an immersive virtual platform showcasing the
 - Lian Liu: https://youtu.be/-tr40KSYCRo
 
 ## Features
+- Authentication: Sign up, log in, and manage user sessions with role-based access for admins.
+- AI Chatbot: Interact with an AI assistant to explore historical context and learn about artifacts and Dunhuang culture.
+- Artifact Management: Admins can upload, edit, and organize artifact data with images and metadata.
+- Digital Exhibitions: Create and curate virtual exhibitions showcasing selected artifacts and stories.
+- Profile Management: Edit personal profile information and view browsing or collection history.
+- Admin Dashboard: Manage users, moderate AI responses, and maintain exhibitions through a centralized panel.
 
 ### Chatbot API
 Openrouter: https://openrouter.ai/
