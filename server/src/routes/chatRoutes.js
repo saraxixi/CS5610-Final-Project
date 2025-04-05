@@ -1,7 +1,7 @@
 // src/routes/chatRoutes.js
 import express from 'express';
 import dotenv from 'dotenv';
-import { translateText } from '../utils/translationUtil.js';
+import { translateText } from '../../../client/src/contexts/utils/translationUtil.js';
 dotenv.config();
 
 const router = express.Router();

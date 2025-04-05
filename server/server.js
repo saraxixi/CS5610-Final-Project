@@ -4,9 +4,8 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import path from 'path';
 import { fileURLToPath } from 'url';
-
+import translationRoutes from './src/routes/translationRoutes.js';
 dotenv.config();
-
 import userRoutes from './src/routes/userRoutes.js';
 import artifactRoute from './src/routes/artifactRoutes.js';
 import caveRoutes from './src/routes/caveRoutes.js';
@@ -17,18 +16,24 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
-
 app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public'))); // Serve static files
+app.use('/api/translate', translationRoutes);
 
-// MongoDB connection
-mongoose.connect(process.env.MONGODB_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
-.then(() => console.log('Connected to MongoDB Atlas'))
-.catch((err) => console.error('MongoDB connection error:', err));
+// MongoDB connection - removed deprecated options
+mongoose.connect(process.env.MONGODB_URI)
+  .then(() => console.log('Connected to MongoDB Atlas successfully'))
+  .catch((err) => console.error('MongoDB connection error:', err));
+
+// Add connection event listeners for better error handling
+mongoose.connection.on('error', (err) => {
+  console.error('MongoDB connection error during runtime:', err);
+});
+
+mongoose.connection.on('disconnected', () => {
+  console.log('MongoDB disconnected');
+});
 
 // API routes
 app.use('/api/users', userRoutes);
@@ -51,6 +56,13 @@ app.get('*', (req, res) => {
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).json({ error: err.message });
+});
+
+// Gracefully close MongoDB connection on app termination
+process.on('SIGINT', async () => {
+  await mongoose.connection.close();
+  console.log('MongoDB connection closed due to app termination');
+  process.exit(0);
 });
 
 // Start server
