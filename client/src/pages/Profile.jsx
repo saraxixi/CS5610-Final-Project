@@ -20,12 +20,7 @@ const Profile = () => {
         .then(res => {
           const { username, email, avatar } = res.data;
           setFormData({ username, email, avatar });
-
-          // 处理头像路径
-          const avatarUrl = avatar?.startsWith("/uploads")
-            ? avatar
-            : avatar || "/avatar-default-light.svg";
-
+          const avatarUrl = avatar?.startsWith("/uploads") ? avatar : (avatar || "/avatar-default-light.svg");
           setPreview(avatarUrl);
         })
         .catch(err => console.error(err));
@@ -42,12 +37,24 @@ const Profile = () => {
     setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleAvatarUpload = e => {
+  const handleAvatarUpload = async (e) => {
     const file = e.target.files[0];
-    if (file) {
-      const tempUrl = URL.createObjectURL(file);
-      setPreview(tempUrl);
-      // 你可以将 file 保存起来，之后用 FormData 上传
+    if (!file) return;
+
+    setPreview(URL.createObjectURL(file));
+
+    const form = new FormData();
+    form.append('avatar', file);
+
+    try {
+      const res = await axios.post(`/api/users/${userId}/avatar`, form, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      });
+
+      setFormData(prev => ({ ...prev, avatar: res.data.avatar }));
+      setPreview(res.data.avatar);
+    } catch (err) {
+      console.error('Upload failed:', err);
     }
   };
 
@@ -75,7 +82,7 @@ const Profile = () => {
       <div className="profile-container">
         <div className="user-info">
           <img
-            src={preview || "/avatar-default-light.svg"}
+            src={preview ? `http://localhost:4000${preview}` : "/avatar-default-light.svg"}
             alt="avatar"
             className="avatar"
             onError={(e) => { e.target.src = "/avatar-default-light.svg"; }}
@@ -104,14 +111,13 @@ const Profile = () => {
         </div>
       </div>
 
-      {/* 编辑弹窗 */}
       {showModal && (
         <div className="modal-overlay">
           <div className="modal">
             <h3>Edit Your Profile</h3>
 
             <img
-              src={preview || "/avatar-default-light.svg"}
+              src={preview ? `http://localhost:4000${preview}` : "/avatar-default-light.svg"}
               alt="Preview"
               className="avatar-preview"
               onError={(e) => { e.target.src = "/avatar-default-light.svg"; }}
