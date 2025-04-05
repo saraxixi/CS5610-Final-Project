@@ -122,7 +122,23 @@
   text-decoration: none;
 }
 
-.admin-button:hover {
+.admin-button:hover { 
+  color: #FF3030;
+  text-decoration: underline;
+}
+
+.profile-btn {
+  background-color: white;
+  color: black;
+  padding: 5px 15px;
+  border-radius: 4px;
+  margin-right: 10px;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.profile-btn:hover {
   color: #FF3030;
   text-decoration: underline;
 }
