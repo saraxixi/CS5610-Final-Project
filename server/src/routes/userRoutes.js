@@ -81,5 +81,17 @@ router.delete('/:id', async (req, res) => {
   }
 });
 
+// Get user favorites
+router.get('/:id/favorites', async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id).populate('savedArtifacts');
+    if (!user) return res.status(404).json({ message: 'User not found' });
+
+    res.json(user.savedArtifacts);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
 
 export default router;
