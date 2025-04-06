@@ -22,6 +22,8 @@ https://dunhuang-museum.onrender.com
 - Digital Exhibitions: Create and curate virtual exhibitions showcasing selected artifacts and stories.
 - Profile Management: Edit personal profile information and view browsing or collection history.
 - Admin Dashboard: Manage users, moderate AI responses, and maintain exhibitions through a centralized panel.
+- Dynamic Translation: Add multi-language support to Chatbot by using LLM
+- Static Translation: Add google translate for all texts on our webpage
 
 ### Chatbot API
 Openrouter: https://openrouter.ai/
@@ -116,11 +118,13 @@ Based on our MongoDB data modeling:
     </p>
 - Lian Liu: 
     - Set up backend framework using Express.js and MongoDB
+    
     - Developed the Admin Panel for managing artifacts and caves
 
     - Implemented CRUD logic (create, update, delete) with error handling
 
     - Designed role-based access (admin vs. user) and route protection
+
     -  Styled the dashboard and added image preview logic
 
     - Integrated with backend using Axios for full-stack functionality
@@ -131,3 +135,15 @@ Based on our MongoDB data modeling:
     </p>
 
 - Shuojun Chen:
+    - Implement 10 languages' translations to Chatbot through the OpenRouter API, to better serve non-English users
+
+    - Built up the google translate widget for all static texts on website
+
+    - Add search functionality to the nav bar
+
+    - Collaborated on testing, debugging, and UI improvements to enhance overall user experience
+        <p align="center">
+    <img src="./src/shuojun1.png" width="600" />
+    <img src="./src/shuojun2.png" width="600" />
+    <img src="./src/shuojun3.png" width="600" />
+    </p>
