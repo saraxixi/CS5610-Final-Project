@@ -1,11 +1,20 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import "../styles/Navbar.css";
 import GoogleTranslate from './GoogleTranslate';
 
 const Navbar = () => {
   const isAdmin = localStorage.getItem("userRole") === "admin";
-  
+  const [searchQuery, setSearchQuery] = useState('');
+  const navigate = useNavigate();
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      navigate(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
+    }
+  };
+
   return (
     <header className='navbar'>
       <div className='navbar-container'>
@@ -25,12 +34,19 @@ const Navbar = () => {
             </li>
             <li><Link to="/document">Document</Link></li>
             <li><Link to="/creation">Creation</Link></li>
-            {/* Google Translate as a dropdown menu item */}
             <GoogleTranslate />
           </ul>
         </nav>
         <div className='navbar-right'>
-          <input type="text" placeholder='search' className='search-box'/>
+          <form onSubmit={handleSearch}>
+            <input 
+              type="text" 
+              placeholder='search' 
+              className='search-box'
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+          </form>
           {localStorage.getItem("userId") ? (
             <>
               {isAdmin && (
