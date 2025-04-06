@@ -1,3 +1,5 @@
+/* index.css (Final Version) */
+
 :root {
   font-family: 'Poppins', system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -16,18 +18,19 @@
 * {
   box-sizing: border-box;
   list-style: none;
-  margin: 0;
-  padding: 0;
+  margin: 0; /* Added reset consistency */
+  padding: 0; /* Added reset consistency */
 }
 
 body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+  /* Background color is handled by :root and the media query */
 }
 
 /* Ensure the main app container can take full width */
-#root {
+#root { /* Adjust if your root element is different */
   width: 100%;
 }
 
