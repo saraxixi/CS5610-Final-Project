@@ -14,6 +14,7 @@ https://dunhuang-museum.onrender.com
 ### iteration 2: 
 - Lian Liu: https://youtu.be/-tr40KSYCRo
 - Xi Xi: https://youtu.be/hMG4uQLy4kk
+- Shuojun Chen: https://youtu.be/T6_ktecRWzY
 
 ## Features
 - Authentication: Sign up, log in, and manage user sessions with role-based access for admins.
