@@ -109,9 +109,10 @@ Based on our MongoDB data modeling:
 
     - Collaborated on testing, debugging, and UI improvements to enhance overall user experience
         <p align="center">
-    <img src="./src/xixi1.png" width="600"/>
-    <img src="./src/xixi2.png" width="600">
-    <img src="./src/xixi3.png" width="600">
+    <img src="./src/xixi4.jpg" width="600" />
+    <img src="./src/xixi1.png" width="600" />
+    <img src="./src/xixi2.png" width="600" />
+    <img src="./src/xixi3.png" width="600" />
     </p>
 - Lian Liu: 
     - Set up backend framework using Express.js and MongoDB
