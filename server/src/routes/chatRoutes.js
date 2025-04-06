@@ -32,7 +32,8 @@ router.post('/', async (req, res) => {
         model: 'anthropic/claude-3-7-sonnet',
         messages: [
           { role: 'user', content: message }
-        ]
+        ],
+        max_tokens: 2000 // Limit token usage to stay within available credits
       })
     });
     
