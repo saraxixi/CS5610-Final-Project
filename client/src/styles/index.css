@@ -1,5 +1,7 @@
+/* index.css (Final Version) */
+
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Poppins', system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -13,6 +15,25 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+* {
+  box-sizing: border-box;
+  list-style: none;
+  margin: 0; /* Added reset consistency */
+  padding: 0; /* Added reset consistency */
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  /* Background color is handled by :root and the media query */
+}
+
+/* Ensure the main app container can take full width */
+#root { /* Adjust if your root element is different */
+  width: 100%;
+}
+
 a {
   font-weight: 500;
   color: #646cff;
@@ -20,14 +41,6 @@ a {
 }
 a:hover {
   color: #535bf2;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
 }
 
 h1 {
@@ -52,6 +65,10 @@ button:hover {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+
+.clear {
+  clear: both;
 }
 
 @media (prefers-color-scheme: light) {

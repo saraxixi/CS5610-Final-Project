@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BsChatLeftText } from "react-icons/bs";
 import { IoClose } from "react-icons/io5";
 import '../styles/Chatbot.css';
@@ -6,8 +6,9 @@ import '../styles/Chatbot.css';
 const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
-    { from: 'bot', text: 'Hi! How can I help you today?' }
+    { from: 'bot', text: 'Welcome to the Dunhuang Digital Museum! I can answer your questions about Dunhuang history, art, and culture in 10 languages including English, Chinese, and Spanish. What would you like to know about this website?' }
   ]);
+
   const [input, setInput] = useState('');
 
   const toggleChat = () => setIsOpen(!isOpen);

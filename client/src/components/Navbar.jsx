@@ -1,9 +1,20 @@
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import "../styles/Navbar.css";
+import GoogleTranslate from './GoogleTranslate';
 
 const Navbar = () => {
   const isAdmin = localStorage.getItem("userRole") === "admin";
   const isLoggedIn = !!localStorage.getItem("userId");
+  const [searchQuery, setSearchQuery] = useState('');
+  const navigate = useNavigate();
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      navigate(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
+    }
+  };
 
   return (
     <header className='navbar'>
@@ -13,7 +24,6 @@ const Navbar = () => {
             <li><Link to="/">Home</Link></li>
             <li><Link to="/studies">Studies</Link></li>
             <li><Link to="/history">History</Link></li>
-
             <li className="dropdown">
               <Link to="/mural">Mural</Link>
               <ul className='dropdown-menu'>
@@ -25,9 +35,9 @@ const Navbar = () => {
             </li>
             <li><Link to="/document">Document</Link></li>
             <li><Link to="/creation">Creation</Link></li>
+            <GoogleTranslate />
           </ul>
         </nav>
-
         <div className='navbar-right'>
           <input type="text" placeholder='search' className='search-box' />
           {isLoggedIn ? (
