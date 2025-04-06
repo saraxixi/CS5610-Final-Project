@@ -1,19 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { useLocation, Link } from "react-router-dom";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
+import { useLocation, Link, useNavigate } from "react-router-dom";
 import "../styles/SearchResults.css";
-
-// Import the same background image used in other pages for consistency
-import backgroundImage from "../assets/images/background2.jpg";
 
 const SearchResults = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const query = new URLSearchParams(location.search).get('q');
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // Scroll to top when component mounts
+    window.scrollTo(0, 0);
+    
     if (query) {
       setLoading(true);
       // Simulate a search delay
@@ -80,35 +79,41 @@ const SearchResults = () => {
     setLoading(false);
   };
 
+  const handleBackToHome = () => {
+    navigate('/');
+  };
+
   return (
-    <>
-      <Navbar />
-      <div className="search-results-section" style={{ backgroundImage: `url(${backgroundImage})` }}>
-        <div className="search-results-container">
-          <h1>Search Results for "{query}"</h1>
-          
-          {loading ? (
-            <div className="loading-results">Loading results...</div>
-          ) : results.length > 0 ? (
-            <div className="results-list">
-              {results.map((result, index) => (
-                <div key={index} className="result-item">
-                  <div className="result-type">{result.type}</div>
-                  <h3><Link to={result.path}>{result.title}</Link></h3>
-                  <p>{result.content}</p>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <div className="no-results">
-              <p>No results found for "{query}".</p>
-              <p>Try different keywords or browse our categories from the menu.</p>
-            </div>
-          )}
-        </div>
+    <div id="search_results_page">
+      <div className="search-header">
+        <button className="back-button" onClick={handleBackToHome}>
+          Back to Home
+        </button>
       </div>
-      <Footer />
-    </>
+
+      <div className="search-results-content">
+        <h1>Search Results for "{query}"</h1>
+        
+        {loading ? (
+          <div className="loading-results">Loading results...</div>
+        ) : results.length > 0 ? (
+          <div className="results-list">
+            {results.map((result, index) => (
+              <div key={index} className="result-item">
+                <div className="result-type">{result.type}</div>
+                <h3><Link to={result.path}>{result.title}</Link></h3>
+                <p>{result.content}</p>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="no-results">
+            <p>No results found for "{query}".</p>
+            <p>Try different keywords or browse our categories from the menu.</p>
+          </div>
+        )}
+      </div>
+    </div>
   );
 };
 
