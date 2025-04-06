@@ -5,6 +5,7 @@ import GoogleTranslate from './GoogleTranslate';
 
 const Navbar = () => {
   const isAdmin = localStorage.getItem("userRole") === "admin";
+  const isLoggedIn = !!localStorage.getItem("userId");
   const [searchQuery, setSearchQuery] = useState('');
   const navigate = useNavigate();
 
@@ -38,22 +39,17 @@ const Navbar = () => {
           </ul>
         </nav>
         <div className='navbar-right'>
-          <form onSubmit={handleSearch}>
-            <input 
-              type="text" 
-              placeholder='search' 
-              className='search-box'
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
-          </form>
-          {localStorage.getItem("userId") ? (
+          <input type="text" placeholder='search' className='search-box' />
+          {isLoggedIn ? (
             <>
               {isAdmin && (
                 <Link to="/admin" className="admin-button">
                   Admin Panel
                 </Link>
               )}
+              <Link to="/profile" className="profile-btn">
+                Profile
+              </Link>
               <button
                 onClick={() => {
                   localStorage.clear();
