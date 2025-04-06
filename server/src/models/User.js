@@ -22,10 +22,6 @@ const userSchema = new mongoose.Schema({
     enum: ['user', 'admin'],
     default: 'user'
   },
-  avatar: {
-    type: String,
-    default: '/default-avatar-light.svg' // 默认头像路径
-  },
   
   // the artifacts that the user has saved...
   savedArtifacts: [

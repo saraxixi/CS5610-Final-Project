@@ -1,20 +1,7 @@
 import { Router } from 'express';
 import User from '../models/User.js';
-import multer from 'multer';
-import path from 'path';
 
 const router = Router();
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, path.join('public', 'uploads')); // 注意: 实际上传在 public/uploads
-  },
-  filename: function (req, file, cb) {
-    const ext = path.extname(file.originalname);
-    cb(null, `avatar-${Date.now()}${ext}`);
-  }
-});
-
-const upload = multer({ storage });
 
 // Create (register user)
 router.post('/', async (req, res) => {
@@ -94,42 +81,5 @@ router.delete('/:id', async (req, res) => {
   }
 });
 
-// Get user favorites
-router.get('/:id/favorites', async (req, res) => {
-  try {
-    const user = await User.findById(req.params.id).populate('savedArtifacts');
-    if (!user) return res.status(404).json({ message: 'User not found' });
-
-    res.json(user.savedArtifacts);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: 'Server error' });
-  }
-});
-
-// upload avatar
-router.post('/:id/avatar', upload.single('avatar'), async (req, res) => {
-  try {
-    if (!req.file) {
-      return res.status(400).json({ error: 'No file uploaded' });
-    }
-
-    const avatarPath = `/uploads/${req.file.filename}`; // 前端可通过该路径访问
-    const updatedUser = await User.findByIdAndUpdate(
-      req.params.id,
-      { avatar: avatarPath },
-      { new: true }
-    );
-
-    if (!updatedUser) {
-      return res.status(404).json({ error: 'User not found' });
-    }
-
-    res.json({ message: 'Avatar updated!', avatar: avatarPath });
-  } catch (err) {
-    console.error('Upload error:', err);
-    res.status(500).json({ error: err.message });
-  }
-});
 
 export default router;
