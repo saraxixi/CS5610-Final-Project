@@ -29,7 +29,7 @@ router.post('/', async (req, res) => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        model: 'anthropic/claude-3-7-sonnet',
+        model: 'openai/gpt-3.5-turbo',
         messages: [
           { role: 'user', content: message }
         ],
