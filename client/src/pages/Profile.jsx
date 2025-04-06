@@ -3,6 +3,9 @@ import axios from "axios";
 import Navbar from "../components/Navbar";
 import "../styles/Profile.css";
 
+import { storage } from "../firebase";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+
 const Profile = () => {
   const userId = localStorage.getItem("userId");
   const [formData, setFormData] = useState({
@@ -20,8 +23,7 @@ const Profile = () => {
         .then(res => {
           const { username, email, avatar } = res.data;
           setFormData({ username, email, avatar });
-          const avatarUrl = avatar?.startsWith("/uploads") ? avatar : (avatar || "/avatar-default-light.svg");
-          setPreview(avatarUrl);
+          setPreview(avatar || "/avatar-default-light.svg");
         })
         .catch(err => console.error(err));
 
@@ -41,32 +43,22 @@ const Profile = () => {
     const file = e.target.files[0];
     if (!file) return;
 
-    setPreview(URL.createObjectURL(file));
+    const avatarRef = ref(storage, `avatars/${Date.now()}-${file.name}`);
+    await uploadBytes(avatarRef, file);
 
-    const form = new FormData();
-    form.append('avatar', file);
+    const downloadURL = await getDownloadURL(avatarRef);
+    setFormData(prev => ({ ...prev, avatar: downloadURL }));
+    setPreview(downloadURL); // 立即显示预览
 
-    try {
-      const res = await axios.post(`/api/users/${userId}/avatar`, form, {
-        headers: { 'Content-Type': 'multipart/form-data' },
-      });
-
-      setFormData(prev => ({ ...prev, avatar: res.data.avatar }));
-      setPreview(res.data.avatar);
-    } catch (err) {
-      console.error('Upload failed:', err);
-    }
+    // 更新数据库头像字段
+    await axios.put(`/api/users/${userId}`, { avatar: downloadURL });
   };
 
   const handleSave = () => {
     axios.put(`/api/users/${userId}`, formData)
       .then(res => {
         alert("Profile updated!");
-        setFormData({
-          username: res.data.username,
-          email: res.data.email,
-          avatar: res.data.avatar,
-        });
+        setFormData(res.data);
         setPreview(res.data.avatar || "/avatar-default-light.svg");
         setShowModal(false);
       })
@@ -82,7 +74,7 @@ const Profile = () => {
       <div className="profile-container">
         <div className="user-info">
           <img
-            src={preview ? `http://localhost:4000${preview}` : "/avatar-default-light.svg"}
+            src={preview || "/avatar-default-light.svg"}
             alt="avatar"
             className="avatar"
             onError={(e) => { e.target.src = "/avatar-default-light.svg"; }}
@@ -117,7 +109,7 @@ const Profile = () => {
             <h3>Edit Your Profile</h3>
 
             <img
-              src={preview ? `http://localhost:4000${preview}` : "/avatar-default-light.svg"}
+              src={preview || "/avatar-default-light.svg"}
               alt="Preview"
               className="avatar-preview"
               onError={(e) => { e.target.src = "/avatar-default-light.svg"; }}
