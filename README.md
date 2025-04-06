@@ -1,6 +1,9 @@
 # Dunhuang Digital Museum
 The Dunhuang Digital Museum will be an immersive virtual platform showcasing the artistic and cultural treasures of the Dunhuang Caves.
 
+# Website Link
+https://dunhuang-museum.onrender.com
+
 # Teams Menbers
 - Xi Xi 
 - Lian Liu
@@ -10,6 +13,7 @@ The Dunhuang Digital Museum will be an immersive virtual platform showcasing the
 
 ### iteration 2: 
 - Lian Liu: https://youtu.be/-tr40KSYCRo
+- Xi Xi: https://youtu.be/hMG4uQLy4kk
 
 ## Features
 - Authentication: Sign up, log in, and manage user sessions with role-based access for admins.
@@ -95,6 +99,20 @@ Based on our MongoDB data modeling:
 
 ## Contributions
 - Xi Xi:
+    - Developed the Chatbot feature using the OpenRouter API, enabling users to interact and ask questions about Dunhuang artifacts and caves
+
+    - Deployed the entire web application with Vercel (frontend) and Render (backend), ensuring reliable online access
+
+    - Merged frontend and backend ports into a single unified environment for smoother development and deployment
+
+    - Designed and implemented the Profile Page, allowing users to view and manage their personal information
+
+    - Collaborated on testing, debugging, and UI improvements to enhance overall user experience
+        <p align="center">
+    <img src="./src/xixi1.png" width="600"/>
+    <img src="./src/xixi2.png" width="600">
+    <img src="./src/xixi3.png" width="600">
+    </p>
 - Lian Liu: 
     - Set up backend framework using Express.js and MongoDB
     - Developed the Admin Panel for managing artifacts and caves
