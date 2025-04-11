@@ -6,7 +6,7 @@ module.exports = [
       category: "manuscript",
       subcategory: "buddhist text",
       rating: 5,
-      images: ["/assets/images/dunhuang-manuscript.png"]
+      images: ["/assets/images/.png"]
     },
     {
       title: "Prajnaparamita Sutra",
@@ -49,26 +49,8 @@ module.exports = [
       period: "Northern Wei to Five Dynasties",
       description: "Although 'The True and Cursive Thousand Character Classic Fragment' is few in number and has defects, it provides us with certain evidence. However, the calligraphy of sutras reveals its style in this environment - focused on the text rather than resembling Wang's flowing style, it instead has a stern and forceful beauty. Judging from excavated artifacts, Tang dynasty Dunhuang manuscripts mostly feature elegant composition and vigorous brushwork, similar in style to Ouyang Xun and Yu Shinan.",
       category: "manuscript",
-      subcategory: "buddhist text",
+      subcategory: "caligraphy",
       rating: 5,
       images: ["/assets/images/thousand-character.png"]
-    },
-    {
-      title: "Wonderful Dharma Lotus Sutra",
-      period: "Northern Wei to Five Dynasties",
-      description: "The Tang Dynasty's calligraphy revered the 'Wang style,' and the Dunhuang caves once housed copies of famous works such as Wang Xizhi's 'Zhan Jin Note' and 'Long Bao Note,' as well as Zhiyong's 'True and Cursive Thousand Character Classic Fragment.' Though few in number and fragmentary, they provide certain corroborating evidence. However, sutra calligraphy displays a distinct style in this context—focused on the text rather than emulating Wang's flowing style, it possesses a certain stern and powerful beauty.",
-      category: "manuscript",
-      subcategory: "buddhist text",
-      rating: 5,
-      images: ["/assets/images/dharma-lotus.png"]
-    },
-    {
-      title: "True and Cursive Thousand Character Classic Fragment",
-      period: "Northern Wei to Five Dynasties",
-      description: "Although 'The True and Cursive Thousand Character Classic Fragment' is few in number and has defects, it provides us with certain evidence. However, the calligraphy of sutras reveals its style in this environment - focused on the text rather than resembling Wang's flowing style, it instead has a stern and forceful beauty. Judging from excavated artifacts, Tang dynasty Dunhuang manuscripts mostly feature elegant composition and vigorous brushwork, similar in style to Ouyang Xun and Yu Shinan.",
-      category: "manuscript",
-      subcategory: "calligraphy",
-      rating: 5,
-      images: ["/assets/images/cursive-thousand.png"]
     }
-  ];
+  ]
