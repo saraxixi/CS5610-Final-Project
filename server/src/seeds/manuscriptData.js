@@ -15,10 +15,10 @@ export const manuscriptData = [
     category: "manuscript",
     subcategory: "buddhist text",
     rating: 5,
-    images: "https://firebasestorage.googleapis.com/v0/b/dunhuang-2e99c.firebasestorage.app/o/manuscripts%2Fprajnaparamita.png?alt=media&token=6f50f0b6-9a7e-4c60-ad1d-78f7796c15eb"
+    images: "https://firebasestorage.googleapis.com/v0/b/dunhuang-2e99c.firebasestorage.app/o/manuscripts%2Fprajnaparamita.png?alt=media&token=8864fe4f-a820-49bb-a73e-7119c8cc2b47"
   },
   {
-    title: "Bhaisajyaguru-vaidurya-prabharaja Sutra",
+    title: "Bhaisajyaguru-vaidurya-prabharaja Sutra (Part 1)",
     period: "Northern Wei to Five Dynasties",
     description: "Bhaisajyaguru (Medicine Buddha) is a buddha in Buddhism believed to possess special healing and curative powers, and is worshipped as the Medicine Bodhisattva. This sutra describes the vows and powers of the Medicine Buddha, and how devotees can receive protection through faith and repentance. The Mogao Caves at Dunhuang preserved a large number of Buddhist texts.",
     category: "manuscript",
@@ -27,7 +27,7 @@ export const manuscriptData = [
     images: "https://firebasestorage.googleapis.com/v0/b/dunhuang-2e99c.firebasestorage.app/o/manuscripts%2Fmedicine-buddha1.png?alt=media&token=ee5aed5a-be20-491b-b099-0f115e2f849f"
   },
   {
-    title: "Bhaisajyaguru-vaidurya-prabharaja Sutra",
+    title: "Bhaisajyaguru-vaidurya-prabharaja Sutra (Part 2)",
     period: "Northern Wei to Five Dynasties",
     description: "Manuscripts discovered in the Library Cave of Dunhuang Mogao Grottoes date from the Wei and Jin periods to the Song and Yuan dynasties, with the majority being Tang dynasty manuscripts. Those who copied sutras throughout history were mostly professional scribes, copyists, and monks skilled in writing. Some were hired, while others volunteered to copy. The primary focus when copying sutras was on the text itself, with accuracy being paramount.",
     category: "manuscript",
