@@ -1,4 +1,4 @@
-.studies_banner {
+.history_banner {
   width: 100vw;
   height: 140px;
   background-image: url("../src/assets/images/banner-two.png");
@@ -12,36 +12,29 @@
   margin-top: 110px;
 }
 
-.studies_banner h3 {
+.history_banner h3 {
   color: #812918;
   font-size: 30px;
   line-height: 40px;
 }
 
-.studies_main_box {
+.history_main_box {
   width: 1100px;
   margin: 60px auto;
 }
 
-.studies_main_box h3 {
+.history_main_box h3 {
   font-size: 30px;
   border-bottom: 1px solid #EEEEEE;
   padding: 10px 0px;
   margin-bottom: 30px;
 }
 
-.studies_main_txt {
+.history_main_txt {
   padding: 20px;
 }
 
-.studies_main_txt .wenhua {
-  float: left;
-  width: 200px;
-  margin-right: 20px;
-  margin-bottom: 10px;
-}
-
-.studies_main_txt p {
+.history_main_txt p {
   text-indent: 2rem;
   line-height: 2em;
   color: #333;

@@ -8,16 +8,16 @@ const Studies = () => {
     <>
       <Navbar />
 
-      <div className="banner2">
+      <div className="studies_banner">
         <h3>The Emergence of Dunhuang Studies</h3>
         <p>Ancient manuscripts and cultural treasures</p>
       </div>
 
-      <div className="main_box">
+      <div className="studies_main_box">
         <h3>
           The Emergence of Dunhuang Studies
         </h3>
-        <div className="main_txt">
+        <div className="studies_main_txt">
           <img className="wenhua" src="../src/assets/images/wenhua.png" alt="Cultural Illustration" />
           <p>
             On May 26, 1900 (Lunar Calendar), an unforgettable date, a hidden cave was discovered in the Mogao Grottoes
