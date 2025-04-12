@@ -14,7 +14,7 @@ const Exhibitions = () => {
       title: "Silk Road Caravan Experience",
       description:
         "Step into the ancient trade routes with a guided experience through the desert, exploring the lives of Silk Road merchants.",
-      image: "../src/assets/images/event1.jpg", // 驼队图
+      image: "../src/assets/images/event1.jpg", 
       category: "Immersive Tour",
       date: "Various dates",
       price: "Free",
