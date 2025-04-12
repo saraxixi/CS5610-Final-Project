@@ -33,8 +33,8 @@ const Navbar = () => {
                 <li><Link to="/mural/flying">Flying</Link></li>
               </ul>
             </li>
-            <li><Link to="/document">Document</Link></li>
-            <li><Link to="/creation">Creation</Link></li>
+            <li><Link to="/exhibitions">Exhibitions</Link></li>
+            <li><Link to="/artifacts">Artifacts</Link></li>
             <GoogleTranslate />
           </ul>
         </nav>
