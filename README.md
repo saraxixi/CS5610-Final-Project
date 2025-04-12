@@ -1,5 +1,5 @@
 # Dunhuang Digital Museum
-The Dunhuang Digital Museum will be an immersive virtual platform showcasing the artistic and cultural treasures of the Dunhuang Caves.
+The Dunhuang Digital Museum will be an immersive virtual platform showcasing the artistic and cultural treasures of the Dunhuang murals.
 
 # Website Link
 https://dunhuang-museum.onrender.com
@@ -40,7 +40,7 @@ Based on our MongoDB data modeling:
 
 - images: Array of image URLs
 
-### Caves Collection
+### murals Collection
 - id, name, creationPeriod, architectural Features, significance
 
 - artifacts: Array of artifact references
@@ -83,16 +83,16 @@ Based on our MongoDB data modeling:
 - Create
     - Users register
 
-    - Admins add artifacts/caves and create exhibitions
+    - Admins add artifacts/murals and create exhibitions
 - Read
-    - Users browse and search through artifacts, caves, and exhibitions
+    - Users browse and search through artifacts, murals, and exhibitions
     - Filters available by type, era, location
     - Real-time chatbot provides descriptive context
 
 - Update
     - Users update their profile and saved preferences
 
-    - Admins and contributors update artifact/cave metadata
+    - Admins and contributors update artifact/mural metadata
 
     - Contributions go through a review system
 - Delete
@@ -102,7 +102,7 @@ Based on our MongoDB data modeling:
 
 ## Contributions
 - Xi Xi:
-    - Developed the Chatbot feature using the OpenRouter API, enabling users to interact and ask questions about Dunhuang artifacts and caves
+    - Developed the Chatbot feature using the OpenRouter API, enabling users to interact and ask questions about Dunhuang artifacts and murals
 
     - Deployed the entire web application with Vercel (frontend) and Render (backend), ensuring reliable online access
 
@@ -120,7 +120,7 @@ Based on our MongoDB data modeling:
 - Lian Liu: 
     - Set up backend framework using Express.js and MongoDB
     
-    - Developed the Admin Panel for managing artifacts and caves
+    - Developed the Admin Panel for managing artifacts and murals
 
     - Implemented CRUD logic (create, update, delete) with error handling
 

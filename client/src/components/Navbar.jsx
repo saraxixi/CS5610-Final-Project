@@ -23,7 +23,7 @@ const Navbar = () => {
           <ul>
             <li><Link to="/">Home</Link></li>
             <li><Link to="/studies">Studies</Link></li>
-            <li><Link to="/history">History</Link></li>
+            <li><Link to="/exhibitions">Exhibitions</Link></li>
             <li className="dropdown">
               <Link to="/mural">Murals</Link>
               <ul className='dropdown-menu'>
@@ -34,7 +34,7 @@ const Navbar = () => {
               </ul>
             </li>
             <li><Link to="/manuscript">Manuscripts</Link></li>
-            <li><Link to="/creation">Co-created Works</Link></li>
+            <li><Link to="/artificats">Artifacts</Link></li>
             <GoogleTranslate />
           </ul>
         </nav>

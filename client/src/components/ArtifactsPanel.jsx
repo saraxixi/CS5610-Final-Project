@@ -6,7 +6,7 @@ import { ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage
 
 const ArtifactsPanel = () => {
   const [artifacts, setArtifacts] = useState([]);
-  const [newArtifact, setNewArtifact] = useState({ title: '', type: '', era: '', description: '', location: '', images: null, conservationStatus: '', cave: '' });
+  const [newArtifact, setNewArtifact] = useState({ title: '', type: '', era: '', description: '', location: '', images: null, conservationStatus: '', mural: '' });
   const [editingArtifact, setEditingArtifact] = useState(null);
   const [message, setMessage] = useState({ text: '', type: '' });
   const [isLoading, setIsLoading] = useState(false);
@@ -63,7 +63,7 @@ const ArtifactsPanel = () => {
       };
 
       await axios.post("http://localhost:4000/api/artifacts", artifactData);
-      setNewArtifact({ title: '', type: '', era: '', description: '', location: '', images: null, conservationStatus: '', cave: '' });
+      setNewArtifact({ title: '', type: '', era: '', description: '', location: '', images: null, conservationStatus: '', mural: '' });
       fetchArtifacts();
       setMessage({ text: 'Artifact created successfully', type: 'success' });
     } catch (error) {

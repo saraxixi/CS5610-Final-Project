@@ -7,10 +7,11 @@ import { fileURLToPath } from 'url';
 import translationRoutes from './src/routes/translationRoutes.js';
 dotenv.config();
 import userRoutes from './src/routes/userRoutes.js';
-import artifactRoute from './src/routes/muralRoutes.js';
+import muralRoutes from './src/routes/muralRoutes.js';
 import manuscriptRoutes from './src/routes/manuscriptRoutes.js';
 import exhibitionRoutes from './src/routes/exhibitionRoutes.js';
 import chatRoutes from './src/routes/chatRoutes.js';
+import artifactRoutes from './src/routes/artifactRoutes.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -38,10 +39,11 @@ mongoose.connection.on('disconnected', () => {
 
 // API routes
 app.use('/api/users', userRoutes);
-app.use('/api/artifacts', artifactRoute);
+app.use('/api/mural', muralRoutes);
 app.use('/api/manuscripts', manuscriptRoutes);
 app.use('/api/exhibitions', exhibitionRoutes);
 app.use('/api/chat', chatRoutes);
+app.use('/api/artifacts', artifactRoutes);
 
 // Test route
 app.get('/', (req, res) => {

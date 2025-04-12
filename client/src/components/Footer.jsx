@@ -15,7 +15,7 @@ const Footer = () => {
       <div className="footer-container">
         <div className="footer-section">
           <h4>DunHuang Museum</h4>
-          <p>Explore the rich history and cultural heritage of DunHuang caves and artifacts.</p>
+          <p>Explore the rich history and cultural heritage of DunHuang murals and artifacts.</p>
         </div>
 
         <div className="footer-section">

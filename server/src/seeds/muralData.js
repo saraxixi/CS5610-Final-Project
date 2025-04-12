@@ -2,11 +2,11 @@ export const muralData = [
   {
     title: "Crouching Tiger",
     period: "Northern Wei Dynasty (386-534 CE)",
-    description: "Crouching tiger depicted on the south wall of the main chamber in Mogao Cave 285. The dynamic posture and naturalistic rendering of the tiger shows the artistic mastery of Northern Wei artists.",
+    description: "Crouching tiger depicted on the south wall of the main chamber in Mogao mural 285. The dynamic posture and naturalistic rendering of the tiger shows the artistic mastery of Northern Wei artists.",
     category: "mural",
     subcategory: "animal",
     rating: 5,
-    location: "South wall of the main chamber, Mogao Cave 285",
+    location: "South wall of the main chamber, Mogao mural 285",
     images: ["/assets/images/tiger.png"]
   },
   {
@@ -16,7 +16,7 @@ export const muralData = [
     category: "mural",
     subcategory: "animal",
     rating: 5,
-    location: "South wall of the main chamber, Mogao Cave 285",
+    location: "South wall of the main chamber, Mogao mural 285",
     images: ["/assets/images/donkey.png"]
   },
   {
@@ -26,7 +26,7 @@ export const muralData = [
     category: "mural",
     subcategory: "animal",
     rating: 5,
-    location: "South wall of the main chamber, Mogao Cave 285",
+    location: "South wall of the main chamber, Mogao mural 285",
     images: ["/assets/images/roosters.png"]
   },
   {
@@ -36,7 +36,7 @@ export const muralData = [
     category: "mural",
     subcategory: "animal",
     rating: 5,
-    location: "South wall of the main chamber, Mogao Cave 285",
+    location: "South wall of the main chamber, Mogao mural 285",
     images: ["/assets/images/phoenix.png"]
   },
   {
@@ -46,7 +46,7 @@ export const muralData = [
     category: "mural",
     subcategory: "animal",
     rating: 4,
-    location: "North wall of the main chamber, Mogao Cave 285",
+    location: "North wall of the main chamber, Mogao mural 285",
     images: ["/assets/images/crane.png"]
   },
   {
@@ -56,7 +56,7 @@ export const muralData = [
     category: "mural",
     subcategory: "animal",
     rating: 4,
-    location: "South wall of the main chamber, Mogao Cave 061",
+    location: "South wall of the main chamber, Mogao mural 061",
     images: ["/assets/images/ox-deer-sheep.png"]
   },
   {
@@ -66,7 +66,7 @@ export const muralData = [
     category: "mural",
     subcategory: "animal",
     rating: 4,
-    location: "South wall of the main chamber, Mogao Cave 061",
+    location: "South wall of the main chamber, Mogao mural 061",
     images: ["/assets/images/deer-tiger.png"]
   },
   {
@@ -76,7 +76,7 @@ export const muralData = [
     category: "mural",
     subcategory: "animal",
     rating: 4,
-    location: "South wall of the main chamber, Mogao Cave 061",
+    location: "South wall of the main chamber, Mogao mural 061",
     images: ["/assets/images/kalavinka.png"]
   },
   {
@@ -86,7 +86,7 @@ export const muralData = [
     category: "mural",
     subcategory: "animal",
     rating: 4,
-    location: "South wall of the main chamber, Mogao Cave 103",
+    location: "South wall of the main chamber, Mogao mural 103",
     images: ["/assets/images/elephant-mule.png"]
   },
   {
@@ -96,7 +96,7 @@ export const muralData = [
     category: "mural",
     subcategory: "animal",
     rating: 4,
-    location: "South wall of the main chamber, Mogao Cave 103",
+    location: "South wall of the main chamber, Mogao mural 103",
     images: ["/assets/images/white-elephant.png"]
   },
   {
@@ -106,7 +106,7 @@ export const muralData = [
     category: "mural",
     subcategory: "animal",
     rating: 4,
-    location: "South wall of the main chamber, Mogao Cave 103",
+    location: "South wall of the main chamber, Mogao mural 103",
     images: ["/assets/images/horse.png"]
   },
   {
@@ -116,7 +116,7 @@ export const muralData = [
     category: "mural",
     subcategory: "animal",
     rating: 4,
-    location: "North wall of the main chamber, Mogao Cave 061",
+    location: "North wall of the main chamber, Mogao mural 061",
     images: ["/assets/images/phoenix-lion.png"]
   },
   {
@@ -126,7 +126,7 @@ export const muralData = [
     category: "mural",
     subcategory: "dance",
     rating: 5,
-    location: "South wall of the main chamber, Mogao Cave 220",
+    location: "South wall of the main chamber, Mogao mural 220",
     images: ["/assets/images/hu-dance1.png"]
   },
   {
@@ -136,7 +136,7 @@ export const muralData = [
     category: "mural",
     subcategory: "dance",
     rating: 5,
-    location: "South wall of the main chamber, Mogao Cave 220",
+    location: "South wall of the main chamber, Mogao mural 220",
     images: ["/assets/images/hu-dance2.png"]
   },
   {
@@ -146,7 +146,7 @@ export const muralData = [
     category: "mural",
     subcategory: "dance",
     rating: 5,
-    location: "South wall of the main chamber, Mogao Cave 220",
+    location: "South wall of the main chamber, Mogao mural 220",
     images: ["/assets/images/hu-dance3.png"]
   },
   {
@@ -156,7 +156,7 @@ export const muralData = [
     category: "mural",
     subcategory: "dance",
     rating: 5,
-    location: "South wall of the main chamber, Mogao Cave 220",
+    location: "South wall of the main chamber, Mogao mural 220",
     images: ["/assets/images/hu-dance4.png"]
   },
   {
@@ -166,7 +166,7 @@ export const muralData = [
     category: "mural",
     subcategory: "dance",
     rating: 5,
-    location: "South wall of the main chamber, Mogao Cave 220",
+    location: "South wall of the main chamber, Mogao mural 220",
     images: ["/assets/images/hu-dance5.png"]
   },
   {
@@ -176,7 +176,7 @@ export const muralData = [
     category: "mural",
     subcategory: "dance",
     rating: 4,
-    location: "South wall of the main chamber, Mogao Cave 112",
+    location: "South wall of the main chamber, Mogao mural 112",
     images: ["/assets/images/tocha-dance1.png"]
   },
   {
@@ -186,7 +186,7 @@ export const muralData = [
     category: "mural",
     subcategory: "dance",
     rating: 4,
-    location: "South wall of the main chamber, Mogao Cave 112",
+    location: "South wall of the main chamber, Mogao mural 112",
     images: ["/assets/images/scarf-dance1.png"]
   },
   {
@@ -196,7 +196,7 @@ export const muralData = [
     category: "mural",
     subcategory: "dance",
     rating: 4,
-    location: "South wall of the main chamber, Mogao Cave 112",
+    location: "South wall of the main chamber, Mogao mural 112",
     images: ["/assets/images/tocha-dance2.png"]
   },
   {
@@ -206,7 +206,7 @@ export const muralData = [
     category: "mural",
     subcategory: "dance",
     rating: 4,
-    location: "South wall of the main chamber, Mogao Cave 061",
+    location: "South wall of the main chamber, Mogao mural 061",
     images: ["/assets/images/scarf-dance2.png"]
   },
   {
@@ -216,7 +216,7 @@ export const muralData = [
     category: "mural",
     subcategory: "dance",
     rating: 4,
-    location: "South wall of the main chamber, Mogao Cave 061",
+    location: "South wall of the main chamber, Mogao mural 061",
     images: ["/assets/images/dharma-protector.png"]
   },
   {
@@ -226,7 +226,7 @@ export const muralData = [
     category: "mural",
     subcategory: "dance",
     rating: 4,
-    location: "South wall of the main chamber, Mogao Cave 103",
+    location: "South wall of the main chamber, Mogao mural 103",
     images: ["/assets/images/flying-apsaras.png"]
   },
   {
@@ -236,7 +236,7 @@ export const muralData = [
     category: "mural",
     subcategory: "dance",
     rating: 4,
-    location: "East wall of the main chamber, Mogao Cave 012",
+    location: "East wall of the main chamber, Mogao mural 012",
     images: ["/assets/images/scarf-dance3.png"]
   }
 ];

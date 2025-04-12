@@ -19,8 +19,8 @@
 //   const [editingArtifact, setEditingArtifact] = useState(null);
 
 
-//   // caves state
-//   const [caves, setCaves] = useState([]);
+//   // murals state
+//   const [murals, setmurals] = useState([]);
 //   const [newCave, setNewCave] = useState({ name: "", creationPeriod: "", architecturalFeatures: "", significance: "", images: null, category: "" });
 //   const [editingCave, setEditingCave] = useState(null);
 
@@ -29,13 +29,13 @@
 //       if (tab === "artifacts") {
 //         fetchArtifacts();
 //       }
-//       if (tab === "caves") {
-//         fetchCaves();
+//       if (tab === "murals") {
+//         fetchmurals();
 //       }
 //     }
 //   }, [tab, role]);
   
-//   // fetch artifacts and caves data
+//   // fetch artifacts and murals data
 //   const fetchArtifacts = async () => {
 //     try{
 //       setIsLoading(true);
@@ -49,15 +49,15 @@
 //     }
 //   };
 
-//   const fetchCaves = async () => {
+//   const fetchmurals = async () => {
 //     try{
 //       setIsLoading(true);
-//       const res = await axios.get("http://localhost:4000/api/caves");
-//       setCaves(res.data);
+//       const res = await axios.get("http://localhost:4000/api/murals");
+//       setmurals(res.data);
 //       setIsLoading(false);
 //     } catch (error) {
-//       console.error("Error fetching caves:", error);
-//       setMessage({text: 'Error fetching caves', type: 'error'});
+//       console.error("Error fetching murals:", error);
+//       setMessage({text: 'Error fetching murals', type: 'error'});
 //       setIsLoading(false);
 //     }
 //   };
@@ -201,14 +201,14 @@
 //       };
   
 //       console.log("Sending caveData", caveData);  // Debug 用
-//       await axios.post("http://localhost:4000/api/caves", caveData);
+//       await axios.post("http://localhost:4000/api/murals", caveData);
   
 //       setNewCave({
 //         name: "", creationPeriod: "", architecturalFeatures: "",
 //         significance: "", category: "", images: null
 //       });
   
-//       fetchCaves();
+//       fetchmurals();
 //       setMessage({ text: 'Cave created successfully', type: 'success' });
 //     } catch (error) {
 //       console.error("Error creating cave:", error);
@@ -245,9 +245,9 @@
 //           : []
 //       };
 
-//       await axios.put(`http://localhost:4000/api/caves/${editingCave._id}`, updatedData);
+//       await axios.put(`http://localhost:4000/api/murals/${editingCave._id}`, updatedData);
 //       setEditingCave(null);
-//       fetchCaves();
+//       fetchmurals();
 //       setMessage({text: 'Cave updated successfully', type: 'success'});
 //     } catch (error) {
 //       console.error("Error updating cave:", error);
@@ -261,8 +261,8 @@
 //     if(!window.confirm("Are you sure you want to delete this cave?")) return;
 //     try{
 //       setIsLoading(true);
-//       await axios.delete(`http://localhost:4000/api/caves/${id}`);
-//       setCaves(prev => prev.filter(item=> item._id !== id));
+//       await axios.delete(`http://localhost:4000/api/murals/${id}`);
+//       setmurals(prev => prev.filter(item=> item._id !== id));
 //       setMessage({text: 'Cave deleted successfully', type: 'success'});
 //     } catch (error) {
 //       console.error("Error deleting cave:", error);
@@ -308,10 +308,10 @@
 //             Artifacts
 //           </button>
 //           <button
-//             className={tab === "caves" ? "active" : ""}
-//             onClick={() => setTab("caves")}
+//             className={tab === "murals" ? "active" : ""}
+//             onClick={() => setTab("murals")}
 //           >
-//             Caves
+//             murals
 //           </button>
 //           <button
 //             className={tab === "exhibitions" ? "active" : ""}
@@ -388,7 +388,7 @@
 //                       onChange={(e) => setEditingArtifact({...editingArtifact, cave: e.target.value})}
 //                     >
 //                       <option value="">None</option>
-//                       {caves.map(cave => (
+//                       {murals.map(cave => (
 //                         <option key={cave._id} value={cave._id}>{cave.name}</option>
 //                       ))}
 //                     </select>
@@ -469,7 +469,7 @@
 //                       onChange={(e) => setNewArtifact({...newArtifact, cave: e.target.value})}
 //                     >
 //                       <option value="">None</option>
-//                       {caves.map(cave => (
+//                       {murals.map(cave => (
 //                         <option key={cave._id} value={cave._id}>{cave.name}</option>
 //                       ))}
 //                     </select>
@@ -523,9 +523,9 @@
 //           </div>
 //         )}
 
-//         {tab === "caves" && (
+//         {tab === "murals" && (
 //           <div className="tab-content">
-//             <h2>Caves Management</h2>
+//             <h2>murals Management</h2>
             
 //             {editingCave ? (
 //               <div className="edit-form">
@@ -662,10 +662,10 @@
 //             )}
             
 //             <div className="data-list">
-//               <h3>Caves List ({caves.length})</h3>
+//               <h3>murals List ({murals.length})</h3>
               
-//               {caves.length === 0 ? (
-//                 <p>No caves found.</p>
+//               {murals.length === 0 ? (
+//                 <p>No murals found.</p>
 //               ) : (
 //                 <div className="data-table">
 //                   <table>
@@ -679,7 +679,7 @@
 //                       </tr>
 //                     </thead>
 //                     <tbody>
-//                       {caves.map(cave => (
+//                       {murals.map(cave => (
 //                         <tr key={cave._id}>
 //                           <td className="artifact-image-cell">
 //                             {cave.images && cave.images.length > 0 ? (

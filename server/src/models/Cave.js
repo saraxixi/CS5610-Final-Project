@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const caveSchema = new mongoose.Schema({
+const muralschema = new mongoose.Schema({
   name: {
     type: String,
     required: true
@@ -27,4 +27,4 @@ const caveSchema = new mongoose.Schema({
   timestamps: true
 });
 
-export default mongoose.model('Cave', caveSchema);
+export default mongoose.model('mural', muralschema);
