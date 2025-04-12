@@ -1,0 +1,84 @@
+.event-card {
+  background-color: #1a1a1a;
+  color: white;
+  width: 380px;
+  border-radius: 6px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.event-img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+.event-content {
+  padding: 20px;
+  position: relative;
+}
+
+.event-tags {
+  display: flex;
+  gap: 20px;
+  font-size: 14px;
+  color: #ccc;
+  margin-bottom: 10px;
+}
+
+.event-tags span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.event-price {
+  position: absolute;
+  top: -25px;
+  right: 20px;
+  background-color: white;
+  color: black;
+  font-weight: 600;
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.event-title {
+  font-size: 22px;
+  margin: 16px 0 8px;
+}
+
+.event-desc {
+  color: #aaa;
+  font-size: 15px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.event-btn {
+  background-color: black;
+  color: white;
+  padding: 14px 20px;
+  width: 100%;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.3s ease;
+}
+
+.event-btn:hover {
+  background-color: #333;
+}
+
+.arrow {
+  font-size: 18px;
+}

@@ -1,0 +1,36 @@
+.exhibitions-page {
+  margin-top: 110px;
+  min-height: 100vh;
+  background-color: white;
+}
+
+.container {
+  padding: 60px 120px;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.container h1 {
+  font-size: 42px;
+  margin-bottom: 40px;
+}
+
+.container h2 {
+  font-size: 32px;
+  margin-top: 60px;
+  margin-bottom: 30px;
+}
+
+/* Events Card 区域：三列排布 */
+.event-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+
+/* Exhibition Card 区域：自动适应宽度，两列 */
+.exhibition-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+  gap: 40px;
+}
