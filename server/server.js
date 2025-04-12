@@ -7,7 +7,7 @@ import { fileURLToPath } from 'url';
 import translationRoutes from './src/routes/translationRoutes.js';
 dotenv.config();
 import userRoutes from './src/routes/userRoutes.js';
-import artifactRoute from './src/routes/artifactRoutes.js';
+import artifactRoute from './src/routes/muralRoutes.js';
 import manuscriptRoutes from './src/routes/manuscriptRoutes.js';
 import exhibitionRoutes from './src/routes/exhibitionRoutes.js';
 import chatRoutes from './src/routes/chatRoutes.js';
