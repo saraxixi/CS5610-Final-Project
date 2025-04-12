@@ -33,8 +33,6 @@ const Navbar = () => {
                 <li><Link to="/mural/flying">Flying Apsaras</Link></li>
               </ul>
             </li>
-            <li><Link to="/exhibitions">Exhibitions</Link></li>
-            <li><Link to="/artifacts">Artifacts</Link></li>
             <li><Link to="/manuscript">Manuscripts</Link></li>
             <li><Link to="/creation">Co-created Works</Link></li>
             <GoogleTranslate />
