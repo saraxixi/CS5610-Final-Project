@@ -5,6 +5,8 @@ import Login from './pages/Login';
 import Profile from './pages/Profile';
 import AdminPanel from './pages/AdminPanel';
 import SearchResults from './pages/SearchResults';
+import Studies from './pages/Studies';
+import History from './pages/History';
 import { LanguageProvider } from './contexts/LanguageContext';
 import "./styles/Global.css";
 
@@ -17,7 +19,10 @@ function App() {
           <Route path='/login' element={<Login />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/admin" element={<AdminPanel />} />
+          <Route path="/studies" element={<Studies />} />
           <Route path="/search" element={<SearchResults />} />
+          <Route path="/history" element={<History />} />
+          {/* Add more routes as needed */}
         </Routes>
       </div>
     </LanguageProvider>
