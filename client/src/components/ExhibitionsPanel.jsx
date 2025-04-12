@@ -1,8 +1,7 @@
-// components/admin/ExhibitionsPanel.jsx
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { storage } from '../firebase';
-import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage';
 
 const ExhibitionsPanel = () => {
   const [exhibitions, setExhibitions] = useState([]);
@@ -34,6 +33,16 @@ const ExhibitionsPanel = () => {
     return await getDownloadURL(snapshot.ref);
   };
 
+  const handleDeleteImageFromStorage = async (imageURL) => {
+    if (!imageURL) return;
+    try {
+      const imageRef = ref(storage, decodeURIComponent(new URL(imageURL).pathname.split("/o/")[1].split("?")[0]));
+      await deleteObject(imageRef);
+    } catch (err) {
+      console.warn("Image deletion warning:", err.message);
+    }
+  };
+
   const handleCreateExhibition = async (e) => {
     e.preventDefault();
     try {
@@ -63,17 +72,24 @@ const ExhibitionsPanel = () => {
   };
 
   const handleEditExhibition = (exhibition) => {
-    setEditingExhibition({ ...exhibition });
+    setEditingExhibition({ ...exhibition, newImageFile: null });
   };
 
   const handleUpdateExhibition = async (e) => {
     e.preventDefault();
     try {
       setIsLoading(true);
+      let imageURL = editingExhibition.image;
+
+      if (editingExhibition.newImageFile) {
+        await handleDeleteImageFromStorage(editingExhibition.image);
+        imageURL = await handleImageUpload(editingExhibition.newImageFile);
+      }
+
       const updatedData = {
         title: editingExhibition.title.trim(),
         theme: editingExhibition.theme.trim(),
-        image: editingExhibition.image,
+        image: imageURL,
         startDate: editingExhibition.startDate,
         endDate: editingExhibition.endDate,
         location: editingExhibition.location.trim(),
@@ -92,10 +108,12 @@ const ExhibitionsPanel = () => {
   };
 
   const handleDeleteExhibition = async (id) => {
+    const exhibitionToDelete = exhibitions.find(e => e._id === id);
     if (!window.confirm("Are you sure you want to delete this exhibition?")) return;
     try {
       setIsLoading(true);
       await axios.delete(`http://localhost:4000/api/exhibitions/${id}`);
+      await handleDeleteImageFromStorage(exhibitionToDelete?.image);
       setExhibitions(prev => prev.filter(e => e._id !== id));
       setMessage({ text: 'Exhibition deleted successfully', type: 'success' });
     } catch (error) {
@@ -142,6 +160,10 @@ const ExhibitionsPanel = () => {
             <div className="form-group">
               <label>Narrative:</label>
               <textarea value={editingExhibition.narrative} onChange={(e) => setEditingExhibition({ ...editingExhibition, narrative: e.target.value })} rows="4" required />
+            </div>
+            <div className="form-group">
+              <label>Replace Image:</label>
+              <input type="file" accept="image/*" onChange={(e) => setEditingExhibition({ ...editingExhibition, newImageFile: e.target.files[0] })} />
             </div>
             <div className="form-actions">
               <button type="submit" className="save-btn">Save Changes</button>
@@ -193,6 +215,7 @@ const ExhibitionsPanel = () => {
             <table>
               <thead>
                 <tr>
+                  <th>Image</th>
                   <th>Title</th>
                   <th>Theme</th>
                   <th>Dates</th>
@@ -202,6 +225,13 @@ const ExhibitionsPanel = () => {
               <tbody>
                 {exhibitions.map(e => (
                   <tr key={e._id}>
+                    <td className="artifact-image-cell">
+                      {e.image ? (
+                        <img src={e.image} alt={e.title} className="artifact-thumbnail" onError={(e) => { e.target.onerror = null; e.target.src = "https://placehold.co/60x60?text=No+Image"; }} />
+                      ) : (
+                        <div className="no-image">No image</div>
+                      )}
+                    </td>
                     <td>{e.title}</td>
                     <td>{e.theme}</td>
                     <td>{e.startDate?.slice(0,10)} → {e.endDate?.slice(0,10)}</td>

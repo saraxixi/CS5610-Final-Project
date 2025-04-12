@@ -16,7 +16,7 @@ router.post('/', async (req, res) => {
 // Read all
 router.get('/', async (req, res) => {
   try {
-    const exhibitions = await DigitalExhibition.find().populate('featuredArtifacts');
+    const exhibitions = await DigitalExhibition.find()
     res.json(exhibitions);
   } catch (err) {
     res.status(500).json({ error: err.message });

@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { storage } from '../firebase';
-import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage';
 
 const ArtifactsPanel = () => {
   const [artifacts, setArtifacts] = useState([]);
@@ -34,6 +34,17 @@ const ArtifactsPanel = () => {
     return await getDownloadURL(snapshot.ref);
   };
 
+  const handleDeleteImageFromStorage = async (imageURL) => {
+    if (!imageURL) return;
+    try {
+      const path = decodeURIComponent(new URL(imageURL).pathname.split("/o/")[1].split("?")[0]);
+      const imageRef = ref(storage, path);
+      await deleteObject(imageRef);
+    } catch (err) {
+      console.warn("Image deletion warning:", err.message);
+    }
+  };
+
   const handleCreateArtifact = async (e) => {
     e.preventDefault();
     try {
@@ -63,13 +74,20 @@ const ArtifactsPanel = () => {
   };
 
   const handleEditArtifact = (artifact) => {
-    setEditingArtifact({ ...artifact, images: artifact.images });
+    setEditingArtifact({ ...artifact, newImageFile: null });
   };
 
   const handleUpdateArtifact = async (e) => {
     e.preventDefault();
     try {
       setIsLoading(true);
+      let imageURL = editingArtifact.images;
+
+      if (editingArtifact.newImageFile) {
+        await handleDeleteImageFromStorage(editingArtifact.images);
+        imageURL = await handleImageUpload(editingArtifact.newImageFile);
+      }
+
       const updatedData = {
         _id: editingArtifact._id,
         title: editingArtifact.title.trim(),
@@ -78,7 +96,7 @@ const ArtifactsPanel = () => {
         description: editingArtifact.description?.trim() || "",
         location: editingArtifact.location?.trim() || "",
         conservationStatus: editingArtifact.conservationStatus?.trim() || "",
-        images: editingArtifact.images?.trim()
+        images: imageURL
       };
 
       await axios.put(`http://localhost:4000/api/artifacts/${editingArtifact._id}`, updatedData);
@@ -93,10 +111,12 @@ const ArtifactsPanel = () => {
   };
 
   const handleDeleteArtifact = async (id) => {
+    const artifactToDelete = artifacts.find(a => a._id === id);
     if (!window.confirm("Are you sure you want to delete this artifact?")) return;
     try {
       setIsLoading(true);
       await axios.delete(`http://localhost:4000/api/artifacts/${id}`);
+      await handleDeleteImageFromStorage(artifactToDelete?.images);
       setArtifacts(prev => prev.filter(a => a._id !== id));
       setMessage({ text: 'Artifact deleted', type: 'success' });
     } catch (error) {
@@ -137,8 +157,8 @@ const ArtifactsPanel = () => {
               <input type="text" value={editingArtifact.location || ''} onChange={(e) => setEditingArtifact({ ...editingArtifact, location: e.target.value })} />
             </div>
             <div className="form-group">
-              <label>Images (comma separated URLs):</label>
-              <input type="text" value={editingArtifact.images || ''} onChange={(e) => setEditingArtifact({ ...editingArtifact, images: e.target.value })} />
+              <label>Replace Image:</label>
+              <input type="file" accept="image/*" onChange={(e) => setEditingArtifact({ ...editingArtifact, newImageFile: e.target.files[0] })} />
             </div>
             <div className="form-group">
               <label>Conservation Status:</label>
@@ -198,6 +218,7 @@ const ArtifactsPanel = () => {
             <table>
               <thead>
                 <tr>
+                  <th>Image</th>
                   <th>Title</th>
                   <th>Type</th>
                   <th>Era</th>
@@ -207,6 +228,13 @@ const ArtifactsPanel = () => {
               <tbody>
                 {artifacts.map(artifact => (
                   <tr key={artifact._id}>
+                    <td className="artifact-image-cell">
+                      {artifact.images ? (
+                        <img src={artifact.images} alt={artifact.title} className="artifact-thumbnail" onError={(e) => { e.target.onerror = null; e.target.src = "https://placehold.co/60x60?text=No+Image"; }} />
+                      ) : (
+                        <div className="no-image">No image</div>
+                      )}
+                    </td>
                     <td>{artifact.title}</td>
                     <td>{artifact.type || '-'}</td>
                     <td>{artifact.era || '-'}</td>

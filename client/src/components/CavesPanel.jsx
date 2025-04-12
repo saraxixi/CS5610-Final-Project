@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { storage } from '../firebase';
-import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage';
 
 const CavesPanel = () => {
   const [caves, setCaves] = useState([]);
@@ -33,6 +33,16 @@ const CavesPanel = () => {
     return await getDownloadURL(snapshot.ref);
   };
 
+  const handleDeleteImageFromStorage = async (imageURL) => {
+    if (!imageURL) return;
+    try {
+      const imageRef = ref(storage, decodeURIComponent(new URL(imageURL).pathname.split("/o/")[1].split("?")[0]));
+      await deleteObject(imageRef);
+    } catch (err) {
+      console.warn("Image deletion warning:", err.message);
+    }
+  };
+
   const handleCreateCave = async (e) => {
     e.preventDefault();
     try {
@@ -61,20 +71,27 @@ const CavesPanel = () => {
   };
 
   const handleEditCave = (cave) => {
-    setEditingCave({ ...cave, images: cave.images });
+    setEditingCave({ ...cave, newImageFile: null });
   };
 
   const handleUpdateCave = async (e) => {
     e.preventDefault();
     try {
       setIsLoading(true);
+      let imageURL = editingCave.images;
+
+      if (editingCave.newImageFile) {
+        await handleDeleteImageFromStorage(editingCave.images);
+        imageURL = await handleImageUpload(editingCave.newImageFile);
+      }
+
       const updatedData = {
         _id: editingCave._id,
         name: editingCave.name.trim(),
         creationPeriod: editingCave.creationPeriod?.trim() || "",
         architecturalFeatures: editingCave.architecturalFeatures?.trim() || "",
         significance: editingCave.significance?.trim() || "",
-        images: editingCave.images?.trim(),
+        images: imageURL,
         category: editingCave.category?.trim() || ""
       };
 
@@ -90,10 +107,12 @@ const CavesPanel = () => {
   };
 
   const handleDeleteCave = async (id) => {
+    const caveToDelete = caves.find((c) => c._id === id);
     if (!window.confirm("Are you sure you want to delete this cave?")) return;
     try {
       setIsLoading(true);
       await axios.delete(`http://localhost:4000/api/caves/${id}`);
+      await handleDeleteImageFromStorage(caveToDelete?.images);
       setCaves(prev => prev.filter(c => c._id !== id));
       setMessage({ text: 'Cave deleted', type: 'success' });
     } catch (error) {
@@ -142,6 +161,10 @@ const CavesPanel = () => {
             <div className="form-group">
               <label>Cultural Significance:</label>
               <textarea value={editingCave.significance || ''} onChange={(e) => setEditingCave({ ...editingCave, significance: e.target.value })} rows="4" />
+            </div>
+            <div className="form-group">
+              <label>Replace Image:</label>
+              <input type="file" accept="image/*" onChange={(e) => setEditingCave({ ...editingCave, newImageFile: e.target.files[0] })} />
             </div>
             <div className="form-actions">
               <button type="submit" className="save-btn">Save Changes</button>
