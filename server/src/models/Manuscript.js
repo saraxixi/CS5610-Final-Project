@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const ManuscriptSchema = new mongoose.Schema({
   title: {
@@ -37,4 +37,6 @@ const ManuscriptSchema = new mongoose.Schema({
   }
 });
 
-module.exports = mongoose.model('Manuscript', ManuscriptSchema);
+const Manuscript = mongoose.model('Manuscript', ManuscriptSchema);
+
+export default Manuscript;
