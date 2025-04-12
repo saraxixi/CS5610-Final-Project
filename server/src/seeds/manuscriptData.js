@@ -20,7 +20,7 @@ export const manuscriptData = [
   {
     title: "Bhaisajyaguru-vaidurya-prabharaja Sutra",
     period: "Northern Wei to Five Dynasties",
-    description: "Bhaisajyaguru (Medicine Buddha) is a buddha in Buddhism believed to possess special healing and curative powers, and is worshipped as the Medicine Bodhisattva. This sutra describes the vows and powers of the Medicine Buddha, and how devotees can receive protection through faith and repentance. The Mogao Caves at Dunhuang preserved a large number of Buddhist texts.",
+    description: "Bhaisajyaguru (Medicine Buddha) is a buddha in Buddhism believed to possess special healing and curative powers, and is worshipped as the Medicine Bodhisattva. This sutra describes the vows and powers of the Medicine Buddha, and how devotees can receive protection through faith and repentance. The Mogao murals at Dunhuang preserved a large number of Buddhist texts.",
     category: "manuscript",
     subcategory: "buddhist text",
     rating: 5,
@@ -38,7 +38,7 @@ export const manuscriptData = [
   {
     title: "Lotus Sutra",
     period: "Northern Wei to Five Dynasties",
-    description: "Tang dynasty calligraphy revered the 'Wang style.' The Dunhuang caves once housed copies of famous works such as Wang Xizhi's 'Zhan Jin Note' and 'Long Bao Note,' and Zhiyong's 'True and Cursive Thousand Character Classic Fragment.' Though few in number and fragmentary, they provide certain corroborating evidence. However, sutra calligraphy displays a distinct style in this context—focused on the text rather than emulating Wang's flowing style, it possesses a certain stern and powerful beauty. Based on excavated artifacts, Tang dynasty Dunhuang manuscripts generally feature elegant composition and vigorous brushwork.",
+    description: "Tang dynasty calligraphy revered the 'Wang style.' The Dunhuang murals once housed copies of famous works such as Wang Xizhi's 'Zhan Jin Note' and 'Long Bao Note,' and Zhiyong's 'True and Cursive Thousand Character Classic Fragment.' Though few in number and fragmentary, they provide certain corroborating evidence. However, sutra calligraphy displays a distinct style in this context—focused on the text rather than emulating Wang's flowing style, it possesses a certain stern and powerful beauty. Based on excavated artifacts, Tang dynasty Dunhuang manuscripts generally feature elegant composition and vigorous brushwork.",
     category: "manuscript",
     subcategory: "buddhist text",
     rating: 5,

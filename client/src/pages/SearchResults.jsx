@@ -28,19 +28,19 @@ const SearchResults = () => {
       { 
         title: "Dunhuang Museum", 
         path: "/", 
-        content: "Dunhuang was a major stop on the ancient Silk Road and is best known for the nearby Mogao Caves. It preserves 735 caves from the 4th to 11th centuries.",
+        content: "Dunhuang was a major stop on the ancient Silk Road and is best known for the nearby Mogao murals. It preserves 735 murals from the 4th to 11th centuries.",
         type: "Page"
       },
       { 
         title: "Animal Murals", 
         path: "/mural/animal", 
-        content: "Animal paintings in Dunhuang caves are centered around Buddhist content...",
+        content: "Animal paintings in Dunhuang murals are centered around Buddhist content...",
         type: "Mural"
       },
       { 
         title: "Dance Murals", 
         path: "/mural/dance", 
-        content: "The Dunhuang caves created dazzling and colorful dance images...",
+        content: "The Dunhuang murals created dazzling and colorful dance images...",
         type: "Mural"
       },
       { 

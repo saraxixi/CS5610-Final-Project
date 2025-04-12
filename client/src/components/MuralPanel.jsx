@@ -3,24 +3,34 @@ import axios from 'axios';
 import { storage } from '../firebase';
 import { ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage';
 
-const CavesPanel = () => {
-  const [caves, setCaves] = useState([]);
+const muralsPanel = () => {
+  const [murals, setmurals] = useState([]);
   const [newCave, setNewCave] = useState({ name: '', creationPeriod: '', architecturalFeatures: '', significance: '', images: null, category: '' });
   const [editingCave, setEditingCave] = useState(null);
   const [message, setMessage] = useState({ text: '', type: '' });
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    fetchCaves();
+    fetchmurals();
   }, []);
 
-  const fetchCaves = async () => {
+  const fetchmurals = async () => {
     try {
       setIsLoading(true);
-      const res = await axios.get("http://localhost:4000/api/caves");
-      setCaves(res.data);
+      const res = await axios.get("http://localhost:4000/api/mural");
+      const data = res.data;
+      console.log("Fetched murals:", data);
+
+      if (Array.isArray(data)) {
+        setmurals(data);
+      } else if (Array.isArray(data.murals)) {
+        setmurals(data.murals);
+      } else {
+        setmurals([]);
+        setMessage({ text: 'Invalid murals data received', type: 'error' });
+      }
     } catch (error) {
-      setMessage({ text: 'Error fetching caves', type: 'error' });
+      setMessage({ text: 'Error fetching murals', type: 'error' });
     } finally {
       setIsLoading(false);
     }
@@ -59,9 +69,9 @@ const CavesPanel = () => {
         images: imageURL
       };
 
-      await axios.post("http://localhost:4000/api/caves", caveData);
+      await axios.post("http://localhost:4000/api/murals", caveData);
       setNewCave({ name: '', creationPeriod: '', architecturalFeatures: '', significance: '', category: '', images: null });
-      fetchCaves();
+      fetchmurals();
       setMessage({ text: 'Cave created successfully', type: 'success' });
     } catch (error) {
       setMessage({ text: 'Error creating cave', type: 'error' });
@@ -95,9 +105,9 @@ const CavesPanel = () => {
         category: editingCave.category?.trim() || ""
       };
 
-      await axios.put(`http://localhost:4000/api/caves/${editingCave._id}`, updatedData);
+      await axios.put(`http://localhost:4000/api/murals/${editingCave._id}`, updatedData);
       setEditingCave(null);
-      fetchCaves();
+      fetchmurals();
       setMessage({ text: 'Cave updated successfully', type: 'success' });
     } catch (error) {
       setMessage({ text: 'Error updating cave', type: 'error' });
@@ -107,13 +117,13 @@ const CavesPanel = () => {
   };
 
   const handleDeleteCave = async (id) => {
-    const caveToDelete = caves.find((c) => c._id === id);
+    const caveToDelete = murals.find((c) => c._id === id);
     if (!window.confirm("Are you sure you want to delete this cave?")) return;
     try {
       setIsLoading(true);
-      await axios.delete(`http://localhost:4000/api/caves/${id}`);
+      await axios.delete(`http://localhost:4000/api/murals/${id}`);
       await handleDeleteImageFromStorage(caveToDelete?.images);
-      setCaves(prev => prev.filter(c => c._id !== id));
+      setmurals(prev => prev.filter(c => c._id !== id));
       setMessage({ text: 'Cave deleted', type: 'success' });
     } catch (error) {
       setMessage({ text: 'Error deleting cave', type: 'error' });
@@ -124,7 +134,7 @@ const CavesPanel = () => {
 
   return (
     <div className="tab-content">
-      <h2>Caves Management</h2>
+      <h2>Murals Management</h2>
       {message.text && <div className={`message ${message.type}`}>
         {message.text}
         <button onClick={() => setMessage({ text: '', type: '' })}>x</button>
@@ -212,8 +222,10 @@ const CavesPanel = () => {
       )}
 
       <div className="data-list">
-        <h3>Caves List ({caves.length})</h3>
-        {caves.length === 0 ? <p>No caves found.</p> : (
+        <h3>murals List ({Array.isArray(murals) ? murals.length : 0})</h3>
+        {Array.isArray(murals) && murals.length === 0 ? (
+          <p>No murals found.</p>
+        ) : (
           <div className="data-table">
             <table>
               <thead>
@@ -226,11 +238,12 @@ const CavesPanel = () => {
                 </tr>
               </thead>
               <tbody>
-                {caves.map(cave => (
+                {Array.isArray(murals) && murals.map(cave => (
                   <tr key={cave._id}>
                     <td className="artifact-image-cell">
                       {cave.images ? (
-                        <img src={cave.images} alt={cave.name} className="artifact-thumbnail" onError={(e) => { e.target.onerror = null; e.target.src = "https://placehold.co/60x60?text=No+Image"; }} />
+                        <img src={cave.images} alt={cave.name} className="artifact-thumbnail"
+                             onError={(e) => { e.target.onerror = null; e.target.src = "https://placehold.co/60x60?text=No+Image"; }} />
                       ) : (
                         <div className="no-image">No image</div>
                       )}
@@ -253,4 +266,4 @@ const CavesPanel = () => {
   );
 };
 
-export default CavesPanel;
+export default muralsPanel;
