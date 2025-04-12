@@ -3,7 +3,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Profile from './pages/Profile';
-import AdminPanel from './pages/AdminPanel';
+import AdminPanel from './pages/AdminPanel_new';
 import SearchResults from './pages/SearchResults';
 import Studies from './pages/Studies';
 import History from './pages/History';

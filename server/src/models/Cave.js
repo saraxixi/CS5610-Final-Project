@@ -1,4 +1,3 @@
-// models/Cave.js
 import mongoose from 'mongoose';
 
 const caveSchema = new mongoose.Schema({
@@ -6,10 +5,18 @@ const caveSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  creationPeriod: String,  // the period when the cave was created
-  architecturalFeatures: String, // the architectural features of the cave
-  significance: String, // the culture/history significance of the cave
-  // the artifacts that are found in the cave...
+  creationPeriod: String,
+  architecturalFeatures: String,
+  significance: String,
+  category: {
+    type: String,
+    enum: ['Animal', 'Dance', 'Architecture', 'Flying'],
+    required: true
+  },
+  images: {
+    type: String,
+    required: true
+  },
   artifacts: [
     {
       type: mongoose.Schema.Types.ObjectId,

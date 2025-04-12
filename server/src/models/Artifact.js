@@ -11,7 +11,10 @@ const artifactSchema = new mongoose.Schema({
   era: String,
   description: String,
   location: String,
-  images: [String],
+  images: {
+    type: String,
+    required: true
+  },
   conservationStatus: String, // the conservation status of the artifact
   cave: {
     type: mongoose.Schema.Types.ObjectId,

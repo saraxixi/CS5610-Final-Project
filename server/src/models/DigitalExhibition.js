@@ -1,4 +1,3 @@
-// models/DigitalExhibition.js
 import mongoose from 'mongoose';
 
 const exhibitionSchema = new mongoose.Schema({
@@ -6,18 +5,30 @@ const exhibitionSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  theme: String,
-  curator: String, // the user who created the exhibition
-  featuredArtifacts: [ // the artifacts list that are featured in the exhibition
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Artifact'
-    }
-  ],
-  startDate: Date,
-  endDate: Date,
-  narrative: String // the story/intro of the exhibition...
-// multimediaResources: [String] links to videos, audio, etc...
+  theme: {
+    type: String,
+    required: true
+  },
+  image: {
+    type: String,
+    required: true
+  },
+  startDate: {
+    type: Date,
+    required: true
+  },
+  endDate: {
+    type: Date,
+    required: true
+  },
+  location: {
+    type: String,
+    required: true
+  },
+  narrative: {
+    type: String,
+    required: true
+  }
 }, {
   timestamps: true
 });
