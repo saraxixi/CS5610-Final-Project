@@ -7,7 +7,7 @@ import { fileURLToPath } from 'url';
 import translationRoutes from './src/routes/translationRoutes.js';
 dotenv.config();
 import userRoutes from './src/routes/userRoutes.js';
-import artifactRoute from './src/routes/muralRoutes.js';
+import muralRoutes from './src/routes/muralRoutes.js';     // Add mural routes
 import manuscriptRoutes from './src/routes/manuscriptRoutes.js';
 import exhibitionRoutes from './src/routes/exhibitionRoutes.js';
 import chatRoutes from './src/routes/chatRoutes.js';
@@ -38,7 +38,7 @@ mongoose.connection.on('disconnected', () => {
 
 // API routes
 app.use('/api/users', userRoutes);
-app.use('/api/artifacts', artifactRoute);
+app.use('/api/murals', muralRoutes);       // Add new route for murals
 app.use('/api/manuscripts', manuscriptRoutes);
 app.use('/api/exhibitions', exhibitionRoutes);
 app.use('/api/chat', chatRoutes);
