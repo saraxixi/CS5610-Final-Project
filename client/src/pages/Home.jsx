@@ -154,26 +154,6 @@ const Home = () => {
           </div>
         </div>
       </div>
-
-      {/* Artifacts Section */}
-      <div className="artifacts-container">
-        {artifacts.map(artifact => (
-          <div key={artifact._id} className="artifact-card">
-            <h3>{artifact.title}</h3>
-            <img src={artifact.images[0]} alt={artifact.title} style={{ width: '200px' }} />
-            <p>{artifact.description}</p>
-
-            {localStorage.getItem("userRole") === "admin" && (
-              <>
-                <div style={{ textAlign: 'center', margin: '1rem 0' }}>
-                  <Link to="/admin" className="admin-panel-btn">Go to Admin Panel</Link>
-                </div>
-                <button onClick={() => handleDelete(artifact._id)}>Delete</button>
-              </>
-            )}
-          </div>
-        ))}
-      </div>
       <Chatbot />
       <Footer />
     </>
