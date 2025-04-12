@@ -20,8 +20,8 @@ const Studies = () => {
         <div className="studies_main_txt">
           <img className="wenhua" src="../src/assets/images/wenhua.png" alt="Cultural Illustration" />
           <p>
-            On May 26, 1900 (Lunar Calendar), an unforgettable date, a hidden cave was discovered in the Mogao Grottoes
-            of Dunhuang. The cave was filled with ancient manuscripts. Among the over 50,000 documents unearthed, about
+            On May 26, 1900 (Lunar Calendar), an unforgettable date, a hidden mural was discovered in the Mogao Grottoes
+            of Dunhuang. The mural was filled with ancient manuscripts. Among the over 50,000 documents unearthed, about
             90% were Buddhist scriptures, with the rest consisting of Taoist, Manichaean, Nestorian texts, official
             documents, classical literature, secular writings, and more. These documents were written not only in
             Chinese but also in Tibetan, Tangut, Khotanese, Sanskrit, Uighur, Sogdian, Turkic, Kuchean, Brahmi, Hebrew,
@@ -30,20 +30,20 @@ const Studies = () => {
           </p>
           <p>
             The discovery of these materials is of great importance. Alongside oracle bones from Yinxu, the Grand
-            Secretariat archives of the Ming and Qing dynasties, and Han bamboo slips from Dunhuang, the Dunhuang cave
+            Secretariat archives of the Ming and Qing dynasties, and Han bamboo slips from Dunhuang, the Dunhuang mural
             library is considered one of the four greatest ancient Chinese document finds of the 20th century. The
             manuscripts and material culture provide invaluable firsthand resources for the study of medieval China and
             the Silk Road. Dunhuang studies emerged as a global academic discipline, offering scholars new perspectives
             and earning the title “key to unlocking the medieval world.”
           </p>
           <p>
-            Unfortunately, the corrupt Qing government failed to protect the cave. Many manuscripts and relics were
+            Unfortunately, the corrupt Qing government failed to protect the mural. Many manuscripts and relics were
             looted by foreign “expeditions,” and ended up scattered across institutions in the UK, France, Japan, the
             US, Russia, and beyond. Only a small number remain in China, marking a tragic loss in Chinese cultural
             history.
           </p>
           <p>
-            In 1910, the remaining manuscripts from the Dunhuang cave were transferred to the Imperial Library of
+            In 1910, the remaining manuscripts from the Dunhuang mural were transferred to the Imperial Library of
             Peking, the predecessor of the National Library of China. Today, over a century since the discovery, the
             National Library remains the world's largest collection site for Dunhuang manuscripts and has made
             significant contributions to Dunhuang research.
@@ -97,7 +97,7 @@ const Studies = () => {
             </p>
             <p>
               By the Ming Dynasty, Dunhuang was isolated and the Mogao Grottoes largely abandoned. However, restoration
-              efforts in the Qing era resumed under imperial policies. The accidental discovery of the Library Cave in
+              efforts in the Qing era resumed under imperial policies. The accidental discovery of the Library mural in
               1900 brought global attention, but foreign explorers took away large numbers of invaluable manuscripts and
               relics.
             </p>
@@ -109,7 +109,7 @@ const Studies = () => {
             <p>
               After the founding of the People's Republic of China, real protection and research efforts began. Recognized
               as a national heritage site, Dunhuang has become a symbol of Chinese civilization. Since the 1980s, the
-              Dunhuang Studies field has expanded globally, and the 100th anniversary of the Library Cave's discovery in
+              Dunhuang Studies field has expanded globally, and the 100th anniversary of the Library mural's discovery in
               2000 marked a new era in international scholarship.
             </p>
           </div>

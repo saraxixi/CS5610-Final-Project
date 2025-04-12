@@ -33,7 +33,7 @@ const Exhibitions = () => {
     {
       title: "Celestial Rhythms: Dunhuang Dance",
       description:
-        "A captivating dance performance inspired by the flying apsaras and musical motifs of Dunhuang cave art.",
+        "A captivating dance performance inspired by the flying apsaras and musical motifs of Dunhuang mural art.",
       image: "../src/assets/images/event3.jpg",
       category: "Performance",
       date: "25 May 2025",

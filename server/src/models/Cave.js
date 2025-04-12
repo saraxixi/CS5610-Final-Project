@@ -27,4 +27,4 @@ const muralschema = new mongoose.Schema({
   timestamps: true
 });
 
-export default mongoose.model('Cave', muralschema);
+export default mongoose.model('mural', muralschema);

@@ -2,7 +2,7 @@ export const manuscriptData = [
   {
     title: "Dunhuang Manuscripts",
     period: "Northern Wei to Five Dynasties",
-    description: "Dunhuang manuscripts are treasures among ancient Chinese texts. After the discovery of manuscript scrolls in the Dunhuang Library Cave in 1900, the long-hidden Dunhuang documents were scattered, and many complete manuscript scrolls were looted by foreign explorers. It wasn't until 1910 that the Qing Dynasty's Ministry of Education transported the remaining portions to Beijing.",
+    description: "Dunhuang manuscripts are treasures among ancient Chinese texts. After the discovery of manuscript scrolls in the Dunhuang Library mural in 1900, the long-hidden Dunhuang documents were scattered, and many complete manuscript scrolls were looted by foreign explorers. It wasn't until 1910 that the Qing Dynasty's Ministry of Education transported the remaining portions to Beijing.",
     category: "manuscript",
     subcategory: "buddhist text",
     rating: 5,
@@ -29,7 +29,7 @@ export const manuscriptData = [
   {
     title: "Bhaisajyaguru-vaidurya-prabharaja Sutra",
     period: "Northern Wei to Five Dynasties",
-    description: "Manuscripts discovered in the Library Cave of Dunhuang Mogao Grottoes date from the Wei and Jin periods to the Song and Yuan dynasties, with the majority being Tang dynasty manuscripts. Those who copied sutras throughout history were mostly professional scribes, copyists, and monks skilled in writing. Some were hired, while others volunteered to copy. The primary focus when copying sutras was on the text itself, with accuracy being paramount.",
+    description: "Manuscripts discovered in the Library mural of Dunhuang Mogao Grottoes date from the Wei and Jin periods to the Song and Yuan dynasties, with the majority being Tang dynasty manuscripts. Those who copied sutras throughout history were mostly professional scribes, copyists, and monks skilled in writing. Some were hired, while others volunteered to copy. The primary focus when copying sutras was on the text itself, with accuracy being paramount.",
     category: "manuscript",
     subcategory: "buddhist text",
     rating: 5,

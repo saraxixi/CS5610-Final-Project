@@ -16,9 +16,9 @@ const artifactSchema = new mongoose.Schema({
     required: true
   },
   conservationStatus: String, // the conservation status of the artifact
-  cave: {
+  mural: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Cave'
+    ref: 'mural'
   }
 }, {
   timestamps: true

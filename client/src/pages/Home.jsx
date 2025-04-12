@@ -156,7 +156,7 @@ const Home = () => {
               <div className="creation-image"><img src={create1Image} alt="Millennial Music and Dance" /></div>
               <h3>Millennial Music and Dance</h3>
               <p>
-                This creation is based on the north wall mural of Cave 220 from the Tang Dynasty in Dunhuang's 
+                This creation is based on the north wall mural of mural 220 from the Tang Dynasty in Dunhuang's 
                 Mogao murals, digitally redrawing the iconic grand orchestra and Dipankara Bodhisattva scenes. 
                 Based on research into the original mural's colors, this piece attempts to recreate the vibrant 
                 colors of the mural from a thousand years ago.
@@ -167,14 +167,14 @@ const Home = () => {
               <h3>Nine-Colored Deer</h3>
               <p>
                 A three-dimensional model created based on the nine-colored deer image from the Deer King Jataka 
-                story painting in Cave 257 of the Mogao murals.
+                story painting in mural 257 of the Mogao murals.
               </p>
             </div>
             <div className="creation-card">
               <div className="creation-image"><img src={create3Image} alt="Celestial Music Fantasy" /></div>
               <h3>Celestial Music Fantasy</h3>
               <p>
-                The imagery is inspired by the "Instruments Playing Themselves" image from the Tang Dynasty Cave 220 
+                The imagery is inspired by the "Instruments Playing Themselves" image from the Tang Dynasty mural 220 
                 mural in Dunhuang's Mogao murals, redrawing representative instruments including the jie drum, 
                 ornate-edge ruan, fang-xiang, konghou, jilou drum, flute, and others.
               </p>

@@ -5,8 +5,8 @@ import { ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage
 
 const muralsPanel = () => {
   const [murals, setmurals] = useState([]);
-  const [newCave, setNewCave] = useState({ name: '', creationPeriod: '', architecturalFeatures: '', significance: '', images: null, category: '' });
-  const [editingCave, setEditingCave] = useState(null);
+  const [newmural, setNewmural] = useState({ name: '', creationPeriod: '', architecturalFeatures: '', significance: '', images: null, category: '' });
+  const [editingmural, setEditingmural] = useState(null);
   const [message, setMessage] = useState({ text: '', type: '' });
   const [isLoading, setIsLoading] = useState(false);
 
@@ -38,7 +38,7 @@ const muralsPanel = () => {
 
   const handleImageUpload = async (file) => {
     if (!file) return null;
-    const storageRef = ref(storage, `caveImages/${file.name}_${Date.now()}`);
+    const storageRef = ref(storage, `muralImages/${file.name}_${Date.now()}`);
     const snapshot = await uploadBytes(storageRef, file);
     return await getDownloadURL(snapshot.ref);
   };
@@ -53,80 +53,80 @@ const muralsPanel = () => {
     }
   };
 
-  const handleCreateCave = async (e) => {
+  const handleCreatemural = async (e) => {
     e.preventDefault();
     try {
       setIsLoading(true);
       let imageURL = '';
-      if (newCave.images) imageURL = await handleImageUpload(newCave.images);
+      if (newmural.images) imageURL = await handleImageUpload(newmural.images);
 
-      const caveData = {
-        name: newCave.name.trim(),
-        creationPeriod: newCave.creationPeriod?.trim() || "",
-        architecturalFeatures: newCave.architecturalFeatures?.trim() || "",
-        significance: newCave.significance?.trim() || "",
-        category: newCave.category?.trim() || "",
+      const muralData = {
+        name: newmural.name.trim(),
+        creationPeriod: newmural.creationPeriod?.trim() || "",
+        architecturalFeatures: newmural.architecturalFeatures?.trim() || "",
+        significance: newmural.significance?.trim() || "",
+        category: newmural.category?.trim() || "",
         images: imageURL
       };
 
-      await axios.post("http://localhost:4000/api/murals", caveData);
-      setNewCave({ name: '', creationPeriod: '', architecturalFeatures: '', significance: '', category: '', images: null });
+      await axios.post("http://localhost:4000/api/murals", muralData);
+      setNewmural({ name: '', creationPeriod: '', architecturalFeatures: '', significance: '', category: '', images: null });
       fetchmurals();
-      setMessage({ text: 'Cave created successfully', type: 'success' });
+      setMessage({ text: 'mural created successfully', type: 'success' });
     } catch (error) {
-      setMessage({ text: 'Error creating cave', type: 'error' });
+      setMessage({ text: 'Error creating mural', type: 'error' });
     } finally {
       setIsLoading(false);
     }
   };
 
-  const handleEditCave = (cave) => {
-    setEditingCave({ ...cave, newImageFile: null });
+  const handleEditmural = (mural) => {
+    setEditingmural({ ...mural, newImageFile: null });
   };
 
-  const handleUpdateCave = async (e) => {
+  const handleUpdatemural = async (e) => {
     e.preventDefault();
     try {
       setIsLoading(true);
-      let imageURL = editingCave.images;
+      let imageURL = editingmural.images;
 
-      if (editingCave.newImageFile) {
-        await handleDeleteImageFromStorage(editingCave.images);
-        imageURL = await handleImageUpload(editingCave.newImageFile);
+      if (editingmural.newImageFile) {
+        await handleDeleteImageFromStorage(editingmural.images);
+        imageURL = await handleImageUpload(editingmural.newImageFile);
       }
 
       const updatedData = {
-        _id: editingCave._id,
-        name: editingCave.name.trim(),
-        creationPeriod: editingCave.creationPeriod?.trim() || "",
-        architecturalFeatures: editingCave.architecturalFeatures?.trim() || "",
-        significance: editingCave.significance?.trim() || "",
+        _id: editingmural._id,
+        name: editingmural.name.trim(),
+        creationPeriod: editingmural.creationPeriod?.trim() || "",
+        architecturalFeatures: editingmural.architecturalFeatures?.trim() || "",
+        significance: editingmural.significance?.trim() || "",
         images: imageURL,
-        category: editingCave.category?.trim() || ""
+        category: editingmural.category?.trim() || ""
       };
 
-      await axios.put(`http://localhost:4000/api/murals/${editingCave._id}`, updatedData);
-      setEditingCave(null);
+      await axios.put(`http://localhost:4000/api/murals/${editingmural._id}`, updatedData);
+      setEditingmural(null);
       fetchmurals();
-      setMessage({ text: 'Cave updated successfully', type: 'success' });
+      setMessage({ text: 'mural updated successfully', type: 'success' });
     } catch (error) {
-      setMessage({ text: 'Error updating cave', type: 'error' });
+      setMessage({ text: 'Error updating mural', type: 'error' });
     } finally {
       setIsLoading(false);
     }
   };
 
-  const handleDeleteCave = async (id) => {
-    const caveToDelete = murals.find((c) => c._id === id);
-    if (!window.confirm("Are you sure you want to delete this cave?")) return;
+  const handleDeletemural = async (id) => {
+    const muralToDelete = murals.find((c) => c._id === id);
+    if (!window.confirm("Are you sure you want to delete this mural?")) return;
     try {
       setIsLoading(true);
       await axios.delete(`http://localhost:4000/api/murals/${id}`);
-      await handleDeleteImageFromStorage(caveToDelete?.images);
+      await handleDeleteImageFromStorage(muralToDelete?.images);
       setmurals(prev => prev.filter(c => c._id !== id));
-      setMessage({ text: 'Cave deleted', type: 'success' });
+      setMessage({ text: 'mural deleted', type: 'success' });
     } catch (error) {
-      setMessage({ text: 'Error deleting cave', type: 'error' });
+      setMessage({ text: 'Error deleting mural', type: 'error' });
     } finally {
       setIsLoading(false);
     }
@@ -142,21 +142,21 @@ const muralsPanel = () => {
 
       {isLoading && <div className="loading-spinner">Loading...</div>}
 
-      {editingCave ? (
+      {editingmural ? (
         <div className="edit-form">
-          <h3>Edit Cave</h3>
-          <form onSubmit={handleUpdateCave}>
+          <h3>Edit mural</h3>
+          <form onSubmit={handleUpdatemural}>
             <div className="form-group">
               <label>Name:</label>
-              <input type="text" value={editingCave.name} onChange={(e) => setEditingCave({ ...editingCave, name: e.target.value })} required />
+              <input type="text" value={editingmural.name} onChange={(e) => setEditingmural({ ...editingmural, name: e.target.value })} required />
             </div>
             <div className="form-group">
               <label>Creation Period:</label>
-              <input type="text" value={editingCave.creationPeriod || ''} onChange={(e) => setEditingCave({ ...editingCave, creationPeriod: e.target.value })} />
+              <input type="text" value={editingmural.creationPeriod || ''} onChange={(e) => setEditingmural({ ...editingmural, creationPeriod: e.target.value })} />
             </div>
             <div className="form-group">
               <label>Category:</label>
-              <select value={editingCave.category || ''} onChange={(e) => setEditingCave({ ...editingCave, category: e.target.value })} required>
+              <select value={editingmural.category || ''} onChange={(e) => setEditingmural({ ...editingmural, category: e.target.value })} required>
                 <option value="">Select Category</option>
                 <option value="Animal">Animal</option>
                 <option value="Dance">Dance</option>
@@ -166,37 +166,37 @@ const muralsPanel = () => {
             </div>
             <div className="form-group">
               <label>Architectural Features:</label>
-              <textarea value={editingCave.architecturalFeatures || ''} onChange={(e) => setEditingCave({ ...editingCave, architecturalFeatures: e.target.value })} rows="3" />
+              <textarea value={editingmural.architecturalFeatures || ''} onChange={(e) => setEditingmural({ ...editingmural, architecturalFeatures: e.target.value })} rows="3" />
             </div>
             <div className="form-group">
               <label>Cultural Significance:</label>
-              <textarea value={editingCave.significance || ''} onChange={(e) => setEditingCave({ ...editingCave, significance: e.target.value })} rows="4" />
+              <textarea value={editingmural.significance || ''} onChange={(e) => setEditingmural({ ...editingmural, significance: e.target.value })} rows="4" />
             </div>
             <div className="form-group">
               <label>Replace Image:</label>
-              <input type="file" accept="image/*" onChange={(e) => setEditingCave({ ...editingCave, newImageFile: e.target.files[0] })} />
+              <input type="file" accept="image/*" onChange={(e) => setEditingmural({ ...editingmural, newImageFile: e.target.files[0] })} />
             </div>
             <div className="form-actions">
               <button type="submit" className="save-btn">Save Changes</button>
-              <button type="button" className="cancel-btn" onClick={() => setEditingCave(null)}>Cancel</button>
+              <button type="button" className="cancel-btn" onClick={() => setEditingmural(null)}>Cancel</button>
             </div>
           </form>
         </div>
       ) : (
         <div className="create-form">
-          <h3>Create New Cave</h3>
-          <form onSubmit={handleCreateCave}>
+          <h3>Create New mural</h3>
+          <form onSubmit={handleCreatemural}>
             <div className="form-group">
               <label>Name:</label>
-              <input type="text" value={newCave.name} onChange={(e) => setNewCave({ ...newCave, name: e.target.value })} required />
+              <input type="text" value={newmural.name} onChange={(e) => setNewmural({ ...newmural, name: e.target.value })} required />
             </div>
             <div className="form-group">
               <label>Creation Period:</label>
-              <input type="text" value={newCave.creationPeriod} onChange={(e) => setNewCave({ ...newCave, creationPeriod: e.target.value })} />
+              <input type="text" value={newmural.creationPeriod} onChange={(e) => setNewmural({ ...newmural, creationPeriod: e.target.value })} />
             </div>
             <div className="form-group">
               <label>Category:</label>
-              <select value={newCave.category} onChange={(e) => setNewCave({ ...newCave, category: e.target.value })} required>
+              <select value={newmural.category} onChange={(e) => setNewmural({ ...newmural, category: e.target.value })} required>
                 <option value="">Select Category</option>
                 <option value="Animal">Animal</option>
                 <option value="Dance">Dance</option>
@@ -206,17 +206,17 @@ const muralsPanel = () => {
             </div>
             <div className="form-group">
               <label>Architectural Features:</label>
-              <textarea value={newCave.architecturalFeatures} onChange={(e) => setNewCave({ ...newCave, architecturalFeatures: e.target.value })} rows="3" />
+              <textarea value={newmural.architecturalFeatures} onChange={(e) => setNewmural({ ...newmural, architecturalFeatures: e.target.value })} rows="3" />
             </div>
             <div className="form-group">
               <label>Cultural Significance:</label>
-              <textarea value={newCave.significance} onChange={(e) => setNewCave({ ...newCave, significance: e.target.value })} rows="4" />
+              <textarea value={newmural.significance} onChange={(e) => setNewmural({ ...newmural, significance: e.target.value })} rows="4" />
             </div>
             <div className="form-group">
               <label>Upload Image:</label>
-              <input type="file" accept="image/*" onChange={(e) => setNewCave({ ...newCave, images: e.target.files[0] })} />
+              <input type="file" accept="image/*" onChange={(e) => setNewmural({ ...newmural, images: e.target.files[0] })} />
             </div>
-            <button type="submit" className="create-btn">Create Cave</button>
+            <button type="submit" className="create-btn">Create mural</button>
           </form>
         </div>
       )}
@@ -238,22 +238,22 @@ const muralsPanel = () => {
                 </tr>
               </thead>
               <tbody>
-                {Array.isArray(murals) && murals.map(cave => (
-                  <tr key={cave._id}>
+                {Array.isArray(murals) && murals.map(mural => (
+                  <tr key={mural._id}>
                     <td className="artifact-image-cell">
-                      {cave.images ? (
-                        <img src={cave.images} alt={cave.name} className="artifact-thumbnail"
+                      {mural.images ? (
+                        <img src={mural.images} alt={mural.name} className="artifact-thumbnail"
                              onError={(e) => { e.target.onerror = null; e.target.src = "https://placehold.co/60x60?text=No+Image"; }} />
                       ) : (
                         <div className="no-image">No image</div>
                       )}
                     </td>
-                    <td>{cave.name}</td>
-                    <td>{cave.creationPeriod || '-'}</td>
-                    <td>{cave.artifacts ? cave.artifacts.length : 0}</td>
+                    <td>{mural.name}</td>
+                    <td>{mural.creationPeriod || '-'}</td>
+                    <td>{mural.artifacts ? mural.artifacts.length : 0}</td>
                     <td className="action-buttons">
-                      <button onClick={() => handleEditCave(cave)} className="edit-btn">Edit</button>
-                      <button onClick={() => handleDeleteCave(cave._id)} className="delete-btn">Delete</button>
+                      <button onClick={() => handleEditmural(mural)} className="edit-btn">Edit</button>
+                      <button onClick={() => handleDeletemural(mural._id)} className="delete-btn">Delete</button>
                     </td>
                   </tr>
                 ))}
