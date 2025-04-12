@@ -1,32 +1,214 @@
-// ManuscriptCard.jsx - Updated
-import React from 'react';
-import '../styles/ManuscriptCard.css';
-
-const ManuscriptCard = ({ manuscript }) => {
-  // Use the first image in the array or a placeholder
-  const displayImage = manuscript.images && manuscript.images.length > 0 
-    ? manuscript.images[0] 
-    : '/assets/placeholder-manuscript.jpg';
-
-  return (
-    <div className="manuscript-card">
-      <div className="manuscript-image-container">
-        <img 
-          src={displayImage} 
-          alt={manuscript.title} 
-          className="manuscript-image"
-        />
-      </div>
-      <div className="manuscript-info">
-        <h3 className="manuscript-title">{manuscript.title}</h3>
-        <p className="manuscript-period">
-          <span className="period-label">Period: </span>
-          <span className="period-value">{manuscript.period}</span>
-        </p>
-        <p className="manuscript-description">{manuscript.description}</p>
-      </div>
-    </div>
-  );
-};
-
-export default ManuscriptCard;
+/* Individual manuscript card styling */
+.manuscript-card {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin-bottom: 30px;
+    background-color: #f9f5eb;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  }
+  
+  .manuscript-image-container {
+    flex: 0 0 250px;
+    height: 280px;
+    overflow: hidden;
+  }
+  
+  .manuscript-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .manuscript-info {
+    flex: 1;
+    padding: 25px 30px 30px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .manuscript-title {
+    color: #6d2c0f;
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin: 0 0 15px 0;
+    letter-spacing: 0.5px;
+  }
+  
+  .manuscript-period {
+    margin: 0 0 12px 0;
+    font-size: 1.1rem;
+    color: #555;
+  }
+  
+  .period-label {
+    font-weight: normal;
+  }
+  
+  .period-value {
+    color: #8b4513;
+    font-weight: bold;
+  }
+  
+  .manuscript-divider {
+    height: 1px;
+    background-color: #d1b894;
+    margin: 15px 0 18px;
+    width: 100%;
+  }
+  
+  .manuscript-description {
+    margin: 10px 0 0;
+    color: #333;
+    line-height: 1.7;
+    font-size: 1.05rem;
+  }
+  
+  /* Main page styling */
+  .manuscripts-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #f5f5f5;
+    font-family: "Noto Sans SC", "Microsoft YaHei", sans-serif;
+  }
+  
+  .manuscripts-container {
+    padding: 2rem;
+    flex-grow: 1;
+    max-width: 1200px;
+    margin: 150px auto 0;
+    width: 100%;
+  }
+  
+  .page-header {
+    margin-bottom: 2rem;
+    border-bottom: 2px solid #8b4513;
+    padding-bottom: 1rem;
+    text-align: center;
+  }
+  
+  .page-title {
+    font-size: 2.2rem;
+    color: #8b4513;
+    margin: 0;
+    font-weight: bold;
+  }
+  
+  .page-subtitle {
+    font-size: 1rem;
+    color: #666;
+    margin: 0.5rem 0 0;
+  }
+  
+  .category-tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+  }
+  
+  .category-tab {
+    padding: 8px 20px;
+    margin: 0 5px 10px;
+    background-color: #f0e6d8;
+    border: 1px solid #d1b894;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    color: #8b4513;
+  }
+  
+  .category-tab:hover {
+    background-color: #e6d5b8;
+  }
+  
+  .category-tab.active {
+    background-color: #8b4513;
+    color: white;
+    border-color: #8b4513;
+  }
+  
+  .manuscripts-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .no-results {
+    text-align: center;
+    padding: 3rem;
+    color: #666;
+    font-size: 1.2rem;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  }
+  
+  .loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 300px;
+    width: 100%;
+  }
+  
+  .loader {
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #8b4513;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 2s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  .error-message {
+    text-align: center;
+    padding: 2rem;
+    color: #d32f2f;
+    background-color: #ffebee;
+    border-radius: 8px;
+    margin: 2rem auto;
+    max-width: 800px;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .manuscript-card {
+      flex-direction: column;
+    }
+    
+    .manuscript-image-container {
+      flex: 0 0 200px;
+      width: 100%;
+    }
+    
+    .manuscript-info {
+      padding: 20px;
+    }
+    
+    .manuscript-title {
+      font-size: 1.5rem;
+    }
+    
+    .page-title {
+      font-size: 1.8rem;
+    }
+    
+    .manuscripts-container {
+      padding: 1rem;
+    }
+    
+    .category-tab {
+      font-size: 0.9rem;
+      padding: 6px 12px;
+    }
+  }

@@ -13,6 +13,9 @@ import Mural from './pages/Mural';
 import { LanguageProvider } from './contexts/LanguageContext';
 import "./styles/Global.css";
 
+console.log("Firebase Project ID:", import.meta.env.VITE_FIREBASE_PROJECT_ID);
+console.log("All env variables:", import.meta.env);
+
 function App() {
   return (
     <LanguageProvider>
@@ -26,8 +29,8 @@ function App() {
           <Route path="/search" element={<SearchResults />} />
           <Route path="/history" element={<History />} />
           <Route path="/exhibitions" element={<Exhibitions />} />
-          <Route path="/manuscripts" element={<Manuscript />} />
-          <Route path="/murals" element={<Mural />} />
+          <Route path="/manuscript" element={<Manuscript />} />
+          <Route path="/mural" element={<Mural />} />
         </Routes>
       </div>
     </LanguageProvider>
