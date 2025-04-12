@@ -1,0 +1,49 @@
+.banner2 {
+  width: 100vw;
+  height: 140px;
+  background-image: url("../src/assets/images/banner-two.png");
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 800px;
+  margin-top: 110px;
+}
+
+.banner2 h3 {
+  color: #812918;
+  font-size: 30px;
+  line-height: 40px;
+}
+
+.main_box {
+  width: 1100px;
+  margin: 60px auto;
+}
+
+.main_box h3 {
+  font-size: 30px;
+  border-bottom: 1px solid #EEEEEE;
+  padding: 10px 0px;
+  margin-bottom: 30px;
+}
+
+.main_txt {
+  padding: 20px;
+}
+
+.main_txt .wenhua {
+  float: left;
+  width: 200px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+
+.main_txt p {
+  text-indent: 2rem;
+  line-height: 2em;
+  color: #333;
+  margin-bottom: 20px;
+}
