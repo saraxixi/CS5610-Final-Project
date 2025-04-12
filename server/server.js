@@ -19,6 +19,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public'))); // Serve static files
+app.use('/assets', express.static(path.join(__dirname, 'client/src/assets')));
 app.use('/api/translate', translationRoutes);
 
 // MongoDB connection - removed deprecated options
