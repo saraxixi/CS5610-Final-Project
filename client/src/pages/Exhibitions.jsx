@@ -11,36 +11,37 @@ const Exhibitions = () => {
 
   const events = [
     {
-      title: "The way of tea",
+      title: "Silk Road Caravan Experience",
       description:
-        "Discover the history of tea drinking and gathering in Japan in this free demonstration of a Japanese tea ceremony.",
-      image: "../src/assets/images/event1.jpg",
-      category: "Demonstration",
+        "Step into the ancient trade routes with a guided experience through the desert, exploring the lives of Silk Road merchants.",
+      image: "../src/assets/images/event1.jpg", // 驼队图
+      category: "Immersive Tour",
       date: "Various dates",
       price: "Free",
       buttonLabel: "Find out more",
     },
     {
-      title: "Relaxed evening: Bollywood dancing",
+      title: "Digital Dome: Mural Reawakens",
       description:
-        "Inclusive dance workshops designed for neurodivergent children and adults.",
+        "Experience the magic of Dunhuang murals through a 360° immersive dome projection with sound and light storytelling.",
       image: "../src/assets/images/event2.jpg",
-      category: "Accessible / Family activity",
+      category: "Multimedia Show",
       date: "3 May 2025",
       price: "Free",
       buttonLabel: "Book now",
     },
     {
-      title: "Psalms from the horse's mouth",
+      title: "Celestial Rhythms: Dunhuang Dance",
       description:
-        "Unravel timeless connections between humans and horses through myths, stories, and performances.",
+        "A captivating dance performance inspired by the flying apsaras and musical motifs of Dunhuang cave art.",
       image: "../src/assets/images/event3.jpg",
       category: "Performance",
       date: "25 May 2025",
-      price: "£10",
+      price: "Free",
       buttonLabel: "Book now",
     },
   ];
+  
 
   useEffect(() => {
     const fetchExhibitions = async () => {

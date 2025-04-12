@@ -14,9 +14,6 @@ const EventsCard = ({ image, type, dateInfo, price, title, description }) => {
         <div className="event-price">{price}</div>
         <h3 className="event-title">{title}</h3>
         <p className="event-desc">{description}</p>
-        <button className="event-btn">
-          Find out more <span className="arrow">→</span>
-        </button>
       </div>
     </div>
   );
