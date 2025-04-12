@@ -9,9 +9,16 @@ import Studies from './pages/Studies';
 import History from './pages/History';
 import Exhibitions from './pages/Exhibitions';
 import Manuscript from './pages/Manuscript';
-import Mural from './pages/Mural';
+// Import new mural pages
+import AnimalMuralsPage from './pages/AnimalMuralsPage';
+import DanceMuralsPage from './pages/DanceMuralsPage';
+import ArchitectureMuralsPage from './pages/ArchitectureMuralsPage';
+import FlyingApsarasMuralsPage from './pages/FlyingApsarasMuralsPage';
 import { LanguageProvider } from './contexts/LanguageContext';
 import "./styles/Global.css";
+
+// Import firebase config
+import { app, analytics, storage } from './firebase';
 
 console.log("Firebase Project ID:", import.meta.env.VITE_FIREBASE_PROJECT_ID);
 console.log("All env variables:", import.meta.env);
@@ -30,7 +37,12 @@ function App() {
           <Route path="/history" element={<History />} />
           <Route path="/exhibitions" element={<Exhibitions />} />
           <Route path="/manuscript" element={<Manuscript />} />
-          <Route path="/mural" element={<Mural />} />
+          
+          {/* Mural routes with original URL pattern */}
+          <Route path="/mural/animal" element={<AnimalMuralsPage />} />
+          <Route path="/mural/dance" element={<DanceMuralsPage />} />
+          <Route path="/mural/architecture" element={<ArchitectureMuralsPage />} />
+          <Route path="/mural/flying" element={<FlyingApsarasMuralsPage />} />
         </Routes>
       </div>
     </LanguageProvider>
