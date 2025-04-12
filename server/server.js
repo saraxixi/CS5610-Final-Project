@@ -8,7 +8,7 @@ import translationRoutes from './src/routes/translationRoutes.js';
 dotenv.config();
 import userRoutes from './src/routes/userRoutes.js';
 import artifactRoute from './src/routes/artifactRoutes.js';
-import caveRoutes from './src/routes/caveRoutes.js';
+import manuscriptRoutes from './src/routes/manuscriptRoutes.js';
 import exhibitionRoutes from './src/routes/exhibitionRoutes.js';
 import chatRoutes from './src/routes/chatRoutes.js';
 
@@ -19,6 +19,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public'))); // Serve static files
+app.use('/assets', express.static(path.join(__dirname, 'client/src/assets')));
 app.use('/api/translate', translationRoutes);
 
 // MongoDB connection - removed deprecated options
@@ -38,7 +39,7 @@ mongoose.connection.on('disconnected', () => {
 // API routes
 app.use('/api/users', userRoutes);
 app.use('/api/artifacts', artifactRoute);
-app.use('/api/caves', caveRoutes);
+app.use('/api/manuscripts', manuscriptRoutes);
 app.use('/api/exhibitions', exhibitionRoutes);
 app.use('/api/chat', chatRoutes);
 

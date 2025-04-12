@@ -25,16 +25,18 @@ const Navbar = () => {
             <li><Link to="/studies">Studies</Link></li>
             <li><Link to="/history">History</Link></li>
             <li className="dropdown">
-              <Link to="/mural">Mural</Link>
+              <Link to="/mural">Murals</Link>
               <ul className='dropdown-menu'>
-                <li><Link to="/mural/animal">Animal</Link></li>
+                <li><Link to="/mural/animal">Animals</Link></li>
                 <li><Link to="/mural/dance">Dance</Link></li>
                 <li><Link to="/mural/architecture">Architecture</Link></li>
-                <li><Link to="/mural/flying">Flying</Link></li>
+                <li><Link to="/mural/flying">Flying Apsaras</Link></li>
               </ul>
             </li>
             <li><Link to="/exhibitions">Exhibitions</Link></li>
             <li><Link to="/artifacts">Artifacts</Link></li>
+            <li><Link to="/manuscript">Manuscripts</Link></li>
+            <li><Link to="/creation">Co-created Works</Link></li>
             <GoogleTranslate />
           </ul>
         </nav>

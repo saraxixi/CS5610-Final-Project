@@ -1,4 +1,40 @@
-export const manuscriptData = [
+// src/seeds/safeSeed.js
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import fs from 'fs';
+
+// Get current file's directory
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Try multiple potential .env file locations
+const potentialPaths = [
+  path.join(__dirname, '../../.env'),              // server/.env
+  path.join(__dirname, '../../../.env'),           // project root .env
+  path.join(__dirname, '../.env'),                 // server/src/.env
+  path.join(__dirname, '.env')                     // server/src/seeds/.env
+];
+
+let envLoaded = false;
+
+for (const envPath of potentialPaths) {
+  if (fs.existsSync(envPath)) {
+    console.log(`Found .env file at: ${envPath}`);
+    dotenv.config({ path: envPath });
+    envLoaded = true;
+    break;
+  }
+}
+
+if (!envLoaded) {
+  console.log('No .env file found in common locations. Attempting default dotenv loading...');
+  dotenv.config();
+}
+
+// Define manuscript data
+const manuscriptData = [
   {
     title: "Dunhuang Manuscripts",
     period: "Northern Wei to Five Dynasties",
@@ -55,4 +91,47 @@ export const manuscriptData = [
   }
 ];
 
-export default manuscriptData;
+async function seedDatabase() {
+  try {
+    // Check if MONGODB_URI is defined
+    if (!process.env.MONGODB_URI) {
+      console.error('ERROR: MONGODB_URI environment variable is not defined!');
+      console.log('Please make sure your .env file contains the MongoDB connection string.');
+      console.log('Checked these locations for .env file:');
+      potentialPaths.forEach(path => console.log(` - ${path}`));
+      process.exit(1);
+    }
+    
+    console.log('MONGODB_URI is defined. Connecting to MongoDB...');
+    
+    // Connect to MongoDB
+    await mongoose.connect(process.env.MONGODB_URI, {
+      serverSelectionTimeoutMS: 60000, // 60 seconds
+      socketTimeoutMS: 90000, // 90 seconds
+    });
+    
+    console.log('Connected to MongoDB successfully!');
+    console.log(`Database name: ${mongoose.connection.db.databaseName}`);
+    
+    // Clear existing data
+    console.log('Clearing existing manuscripts...');
+    const deleteResult = await mongoose.connection.db.collection('manuscripts').deleteMany({});
+    console.log(`Cleared ${deleteResult.deletedCount} existing manuscripts`);
+    
+    // Insert data
+    console.log('Inserting new manuscripts...');
+    const result = await mongoose.connection.db.collection('manuscripts').insertMany(manuscriptData);
+    console.log(`Inserted ${result.insertedCount} manuscripts successfully!`);
+  } catch (error) {
+    console.error('Error:', error.message);
+    console.error(error.stack);
+  } finally {
+    if (mongoose.connection.readyState === 1) {
+      await mongoose.connection.close();
+      console.log('MongoDB connection closed');
+    }
+    process.exit(0);
+  }
+}
+
+seedDatabase();
