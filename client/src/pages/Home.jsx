@@ -78,26 +78,42 @@ const Home = () => {
             <div className="theme-card">
               <div className="theme-image"><img src={deerImage} alt="Animal Theme" /></div>
               <h3>Animals</h3>
-              <p>Animal paintings in Dunhuang caves are centered around Buddhist content...</p>
-              <div className="materials-count"><span>10</span> materials collected</div>
+              <p>
+                Animal paintings in Dunhuang caves are centered around Buddhist content. Exploring the history 
+                of animal paintings in Dunhuang caves not only allows viewers to feast their eyes on ancient 
+                expression forms and techniques.
+              </p>
+              <div className="materials-count"><span>12</span> materials collected</div>
             </div>
             <div className="theme-card">
               <div className="theme-image"><img src={danceImage} alt="Dance Theme" /></div>
               <h3>Dance</h3>
-              <p>The Dunhuang caves created dazzling and colorful dance images...</p>
-              <div className="materials-count"><span>9</span> materials collected</div>
+              <p>
+                The Dunhuang caves created dazzling and colorful dance images, such as: celestial musicians 
+                playing music and dancing along heavenly palace railings, celestial musicians in large sutra 
+                tableaux who occupy prominent positions.
+              </p>
+              <div className="materials-count"><span>12</span> materials collected</div>
             </div>
             <div className="theme-card">
               <div className="theme-image"><img src={architectureImage} alt="Architecture Theme" /></div>
               <h3>Architecture</h3>
-              <p>The various architectural images of palaces, city gates, temples...</p>
-              <div className="materials-count"><span>7</span> materials collected</div>
+              <p>
+                In Chinese painting, reflecting architectural beauty has a long history. Throughout dynasties, 
+                numerous wooden structures were created based on political systems, living customs, aesthetic 
+                consciousness, and construction techniques.
+              </p>
+              <div className="materials-count"><span>12</span> materials collected</div>
             </div>
             <div className="theme-card">
               <div className="theme-image"><img src={apsaraImage} alt="Flying Apsaras Theme" /></div>
               <h3>Flying Apsaras</h3>
-              <p>Flying Apsaras were transmitted from India to China via the Silk Road...</p>
-              <div className="materials-count"><span>4</span> materials collected</div>
+              <p>
+              Flying Apsaras is a form of Buddhist art. It was transmitted from India through the Western Regions 
+                to inland China, and after more than a thousand years of evolution and development, it gradually 
+                perfected and formed a sinicized style.
+              </p>
+              <div className="materials-count"><span>12</span> materials collected</div>
             </div>
           </div>
         </div>
@@ -139,17 +155,29 @@ const Home = () => {
             <div className="creation-card">
               <div className="creation-image"><img src={create1Image} alt="Millennial Music and Dance" /></div>
               <h3>Millennial Music and Dance</h3>
-              <p>This painting is based on the north wall mural of Cave 220...</p>
+              <p>
+                This creation is based on the north wall mural of Cave 220 from the Tang Dynasty in Dunhuang's 
+                Mogao Caves, digitally redrawing the iconic grand orchestra and Dipankara Bodhisattva scenes. 
+                Based on research into the original mural's colors, this piece attempts to recreate the vibrant 
+                colors of the mural from a thousand years ago.
+              </p>
             </div>
             <div className="creation-card creation-card-middle">
               <div className="creation-image"><img src={create2Image} alt="Nine-Colored Deer" /></div>
               <h3>Nine-Colored Deer</h3>
-              <p>3D model based on Cave 257 mural story painting.</p>
+              <p>
+                A three-dimensional model created based on the nine-colored deer image from the Deer King Jataka 
+                story painting in Cave 257 of the Mogao Caves.
+              </p>
             </div>
             <div className="creation-card">
               <div className="creation-image"><img src={create3Image} alt="Celestial Music Fantasy" /></div>
               <h3>Celestial Music Fantasy</h3>
-              <p>Inspired by mural from Cave 220 of a flying Bodhisattva playing Konghou.</p>
+              <p>
+                The imagery is inspired by the "Instruments Playing Themselves" image from the Tang Dynasty Cave 220 
+                mural in Dunhuang's Mogao Caves, redrawing representative instruments including the jie drum, 
+                ornate-edge ruan, fang-xiang, konghou, jilou drum, flute, and others.
+              </p>
             </div>
           </div>
         </div>
