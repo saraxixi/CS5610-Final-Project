@@ -205,7 +205,7 @@ module.exports = [
     category: "mural",
     subcategory: "architecture",
     rating: 5,
-    images: ["/assets/images/round-brick-tower.png"]
+    images: ["/assets/images/round-brick-tower1.png"]
   },
   {
     title: "Round Single-Story Brick and Stone Tower",
@@ -213,7 +213,7 @@ module.exports = [
     category: "mural",
     subcategory: "architecture",
     rating: 5,
-    images: ["/assets/images/round-stone-tower.png"]
+    images: ["/assets/images/round-brick-tower2.png"]
   },
   {
     title: "Western City",
