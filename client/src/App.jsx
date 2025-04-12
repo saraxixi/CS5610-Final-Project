@@ -8,6 +8,8 @@ import SearchResults from './pages/SearchResults';
 import Studies from './pages/Studies';
 import History from './pages/History';
 import Exhibitions from './pages/Exhibitions';
+import Manuscript from './pages/Manuscript';
+import Mural from './pages/Mural';
 import { LanguageProvider } from './contexts/LanguageContext';
 import "./styles/Global.css";
 
@@ -24,7 +26,8 @@ function App() {
           <Route path="/search" element={<SearchResults />} />
           <Route path="/history" element={<History />} />
           <Route path="/exhibitions" element={<Exhibitions />} />
-          {/* Add more routes as needed */}
+          <Route path="/manuscripts" element={<Manuscript />} />
+          <Route path="/murals" element={<Mural />} />
         </Routes>
       </div>
     </LanguageProvider>

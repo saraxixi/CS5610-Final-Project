@@ -1,16 +1,23 @@
+// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
 import { getStorage } from "firebase/storage";
 
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyAENHC4a4yiPf9XkP04_qgE09Osi5muREw",
-  authDomain: "dunhuang-c86fe.firebaseapp.com",
-  projectId: "dunhuang-c86fe",
-  storageBucket: "dunhuang-c86fe.firebasestorage.app",
-  messagingSenderId: "58152294971",
-  appId: "1:58152294971:web:5f7fb3147abcac436b1a1e",
-  measurementId: "G-N25BQFYWDL"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-export const storage = getStorage(app);
+const analytics = getAnalytics(app);
+const storage = getStorage(app);
+
+export { app, analytics, storage };
