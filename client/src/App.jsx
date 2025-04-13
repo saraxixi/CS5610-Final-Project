@@ -1,10 +1,9 @@
 import { Routes, Route } from 'react-router-dom';
-import { BrowserRouter as Router } from 'react-router-dom';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Profile from './pages/Profile';
 import AdminPanel from './pages/AdminPanel_new';
-import SearchResults from './pages/SearchResults';
+import SearchResults from './components/SearchResults';
 import Studies from './pages/Studies';
 import Exhibitions from './pages/Exhibitions';
 import Manuscript from './pages/Manuscript';
@@ -32,7 +31,6 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/admin" element={<AdminPanel />} />
           <Route path="/studies" element={<Studies />} />
-          <Route path="/search" element={<SearchResults />} />
           <Route path="/exhibitions" element={<Exhibitions />} />
           <Route path="/manuscript" element={<Manuscript />} />
           
@@ -41,8 +39,7 @@ function App() {
           <Route path="/mural/dance" element={<DanceMuralsPage />} />
           <Route path="/mural/architecture" element={<ArchitectureMuralsPage />} />
           <Route path="/mural/flying" element={<FlyingApsarasMuralsPage />} />
-
-          {/*Search results route */}
+          
           <Route path="/search" element={<SearchResults />} />
         </Routes>
       </div>

@@ -42,8 +42,8 @@ const Navbar = () => {
           <form onSubmit={handleSearch} className='search-form'>
             <input
               type="text"
-              placeholder="Search..."
-              className='search-box' 
+              placeholder="Search"
+              className="search-box"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               />

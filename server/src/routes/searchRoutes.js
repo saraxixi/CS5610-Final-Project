@@ -10,7 +10,6 @@ const router = Router();
 router.get('/', async (req, res) => {
   const { q } = req.query;
   if (!q) return res.status(400).json({ message: "Missing query param 'q'" });
-
   const regex = new RegExp(q, 'i');
 
   try {
@@ -50,6 +49,7 @@ router.get('/', async (req, res) => {
     });
 
     res.json({ murals, artifacts, caves, manuscripts, exhibitions });
+
   } catch (err) {
     console.error("Search error:", err);
     res.status(500).json({ message: err.message });
