@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import '../styles/SearchResults.css'; 
 
 const useQuery = () => new URLSearchParams(useLocation().search);
 
