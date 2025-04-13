@@ -14,6 +14,8 @@ import DanceMuralsPage from './pages/DanceMuralsPage';
 import ArchitectureMuralsPage from './pages/ArchitectureMuralsPage';
 import FlyingApsarasMuralsPage from './pages/FlyingApsarasMuralsPage';
 import { LanguageProvider } from './contexts/LanguageContext';
+// Search page
+import SearchResults from './components/SearchResults';
 import "./styles/Global.css";
 
 // Import firebase config
@@ -41,6 +43,9 @@ function App() {
           <Route path="/mural/dance" element={<DanceMuralsPage />} />
           <Route path="/mural/architecture" element={<ArchitectureMuralsPage />} />
           <Route path="/mural/flying" element={<FlyingApsarasMuralsPage />} />
+
+          {/*Search results route */}
+          <Route path="/search" element={<SearchResults />} />
         </Routes>
       </div>
     </LanguageProvider>
