@@ -1,15 +1,16 @@
-/* Individual mural card styling */
+
 .mural-card {
   width: 250px;
   background-color: #fff;
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-direction: column;
   transition: transform 0.2s ease;
   cursor: pointer;
+  flex-direction: row;
+  display: block !important;
 }
+
 .mural-card:hover {
   transform: translateY(-5px);
 }
@@ -29,94 +30,27 @@
 .mural-info {
   padding: 1rem;
   text-align: left;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
 }
 
 .mural-title {
   font-size: 1.2rem;
-  color: #2d2d2d;
   font-weight: 600;
+  color: #2d2d2d;
   margin: 0.3rem 0;
 }
 
-.mural-period {
+.mural-location {
   font-size: 0.95rem;
   color: #666;
   margin-bottom: 0.5rem;
 }
 
-.period-label {
-  font-weight: normal;
-}
-
-.period-value {
-  color: #8b4513;
-  font-weight: bold;
-}
-
-.mural-rating {
-  margin-bottom: 10px;
-}
-
-.star {
+.mural-rating .star {
   color: #d1d1d1;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   margin-right: 3px;
 }
 
-.star.filled {
+.mural-rating .star.filled {
   color: #ffc107;
-}
-
-.mural-divider {
-  height: 1px;
-  background-color: #d1b894;
-  margin: 15px 0 18px;
-  width: 100%;
-}
-
-.mural-location {
-  margin: 0 0 12px 0;
-  font-size: 1.1rem;
-  color: #555;
-}
-
-.location-label {
-  font-weight: bold;
-}
-
-.mural-description {
-  margin: 10px 0 0;
-  color: #333;
-  line-height: 1.7;
-  font-size: 1.05rem;
-}
-
-.mural-card-error {
-  padding: 20px;
-  text-align: center;
-  color: #d32f2f;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .mural-card {
-    flex-direction: column;
-  }
-  
-  .mural-image-container {
-    flex: 0 0 200px;
-    width: 100%;
-  }
-  
-  .mural-info {
-    padding: 20px;
-  }
-  
-  .mural-title {
-    font-size: 1.5rem;
-  }
 }

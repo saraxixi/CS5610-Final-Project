@@ -85,7 +85,7 @@ const AnimalMuralsPage = () => {
           Explore animal-themed murals from the Mogao Caves
         </p>
       </header>
-      /</div>
+      </div>
     </div>
 
     <div className="murals-container">
