@@ -6,7 +6,7 @@ export const manuscriptData = [
     category: "manuscript",
     subcategory: "buddhist text",
     rating: 5,
-    images: ["/assets/images/.png"]
+    images: ["https://firebasestorage.googleapis.com/v0/b/dunhuang-2e99c.firebasestorage.app/o/manuscripts%2Fdunhuang-manuscript.png?alt=media&token=a5c82e5c-b3a3-4f97-a929-d21c6aa0ca94"]
   },
   {
     title: "Prajnaparamita Sutra",
@@ -15,25 +15,25 @@ export const manuscriptData = [
     category: "manuscript",
     subcategory: "buddhist text",
     rating: 5,
-    images: ["/assets/images/prajnaparamita.png"]
+    images: ["https://firebasestorage.googleapis.com/v0/b/dunhuang-2e99c.firebasestorage.app/o/manuscripts%2Fprajnaparamita.png?alt=media&token=8864fe4f-a820-49bb-a73e-7119c8cc2b47"]
   },
   {
-    title: "Bhaisajyaguru-vaidurya-prabharaja Sutra",
+    title: "Bhaisajyaguru-vaidurya-prabharaja Sutra (Part 1)",
     period: "Northern Wei to Five Dynasties",
     description: "Bhaisajyaguru (Medicine Buddha) is a buddha in Buddhism believed to possess special healing and curative powers, and is worshipped as the Medicine Bodhisattva. This sutra describes the vows and powers of the Medicine Buddha, and how devotees can receive protection through faith and repentance. The Mogao murals at Dunhuang preserved a large number of Buddhist texts.",
     category: "manuscript",
     subcategory: "buddhist text",
     rating: 5,
-    images: ["/assets/images/medicine-buddha1.png"]
+    images: ["https://firebasestorage.googleapis.com/v0/b/dunhuang-2e99c.firebasestorage.app/o/manuscripts%2Fmedicine-buddha1.png?alt=media&token=ee5aed5a-be20-491b-b099-0f115e2f849f"]
   },
   {
-    title: "Bhaisajyaguru-vaidurya-prabharaja Sutra",
+    title: "Bhaisajyaguru-vaidurya-prabharaja Sutra (Part 2)",
     period: "Northern Wei to Five Dynasties",
     description: "Manuscripts discovered in the Library mural of Dunhuang Mogao Grottoes date from the Wei and Jin periods to the Song and Yuan dynasties, with the majority being Tang dynasty manuscripts. Those who copied sutras throughout history were mostly professional scribes, copyists, and monks skilled in writing. Some were hired, while others volunteered to copy. The primary focus when copying sutras was on the text itself, with accuracy being paramount.",
     category: "manuscript",
     subcategory: "buddhist text",
     rating: 5,
-    images: ["/assets/images/medicine-buddha2.png"]
+    images: ["https://firebasestorage.googleapis.com/v0/b/dunhuang-2e99c.firebasestorage.app/o/manuscripts%2Fmedicine-buddha2.png?alt=media&token=3ecda4aa-10dc-41d3-a259-ae11f9d5b3c3"]
   },
   {
     title: "Lotus Sutra",
@@ -42,7 +42,7 @@ export const manuscriptData = [
     category: "manuscript",
     subcategory: "buddhist text",
     rating: 5,
-    images: ["/assets/images/lotus-sutra.png"]
+    images: ["https://firebasestorage.googleapis.com/v0/b/dunhuang-2e99c.firebasestorage.app/o/manuscripts%2Flotus-sutra.png?alt=media&token=ef27e2ea-dd38-4846-9714-c70d86bb09ca"]
   },
   {
     title: "True and Cursive Thousand Character Classic Fragment",
@@ -51,7 +51,7 @@ export const manuscriptData = [
     category: "manuscript",
     subcategory: "caligraphy",
     rating: 5,
-    images: ["/assets/images/thousand-character.png"]
+    images: ["https://firebasestorage.googleapis.com/v0/b/dunhuang-2e99c.firebasestorage.app/o/manuscripts%2Fthousand-character.png?alt=media&token=4b9a70a2-b480-4e14-ad56-8ee901d9fc92"]
   }
 ];
 
