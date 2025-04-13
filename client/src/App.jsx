@@ -14,8 +14,6 @@ import DanceMuralsPage from './pages/DanceMuralsPage';
 import ArchitectureMuralsPage from './pages/ArchitectureMuralsPage';
 import FlyingApsarasMuralsPage from './pages/FlyingApsarasMuralsPage';
 import { LanguageProvider } from './contexts/LanguageContext';
-// Search page
-import SearchResults from './components/SearchResults';
 import "./styles/Global.css";
 
 // Import firebase config

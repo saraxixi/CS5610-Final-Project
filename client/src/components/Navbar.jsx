@@ -47,7 +47,7 @@ const Navbar = () => {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               />
-            /</form>
+            </form>
           {isLoggedIn ? (
             <>
               {isAdmin && (
