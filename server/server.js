@@ -39,11 +39,7 @@ mongoose.connection.on('disconnected', () => {
 
 // API routes
 app.use('/api/users', userRoutes);
-<<<<<<< HEAD
-app.use('/api/mural', muralRoutes);
-=======
 app.use('/api/murals', muralRoutes);       // Add new route for murals
->>>>>>> 0412Shuojun
 app.use('/api/manuscripts', manuscriptRoutes);
 app.use('/api/exhibitions', exhibitionRoutes);
 app.use('/api/chat', chatRoutes);
