@@ -4,7 +4,6 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import '../styles/AdminPanel.css';
 import ArtifactsPanel from '../components/ArtifactsPanel';
-import MuralsPanel from '../components/MuralPanel';
 import ExhibitionsPanel from '../components/ExhibitionsPanel';
 
 const AdminPanel = () => {
@@ -25,12 +24,6 @@ const AdminPanel = () => {
             Artifacts
           </button>
           <button
-            className={tab === "murals" ? "active" : ""}
-            onClick={() => setTab("murals")}
-          >
-            Murals
-          </button>
-          <button
             className={tab === "exhibitions" ? "active" : ""}
             onClick={() => setTab("exhibitions")}
           >
@@ -39,7 +32,6 @@ const AdminPanel = () => {
         </div>
 
         {tab === "artifacts" && <ArtifactsPanel />}
-        {tab === "murals" && <MuralsPanel />}
         {tab === "exhibitions" && <ExhibitionsPanel />}
       </div>
       <Footer />
