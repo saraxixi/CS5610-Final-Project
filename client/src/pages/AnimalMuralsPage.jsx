@@ -80,6 +80,7 @@ const AnimalMuralsPage = () => {
         </p>
         <header className="page-header align-left small-header">
         <h1 className="page-title">Animal Murals</h1>
+        <div className="title-underline"></div>
         <p className="page-subtitle">
           Explore animal-themed murals from the Mogao Caves
         </p>
