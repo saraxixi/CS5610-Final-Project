@@ -214,3 +214,7 @@
     border-radius: 4px;
     margin: 0 auto;
   }
+
+  .app-container {
+    background-color: white !important;
+  }
