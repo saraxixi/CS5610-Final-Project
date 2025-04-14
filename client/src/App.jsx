@@ -10,6 +10,7 @@ import Exhibitions from './pages/Exhibitions';
 import Manuscript from './pages/Manuscript';
 import Artifacts from './pages/Artifacts';
 import ArtifactDetails from './pages/ArtifactDetail';
+import PaymentSuccess from './pages/PaymentSuccess';
 // Import new mural pages
 import AnimalMuralsPage from './pages/AnimalMuralsPage';
 import DanceMuralsPage from './pages/DanceMuralsPage';
@@ -39,6 +40,7 @@ function App() {
           <Route path="/manuscript" element={<Manuscript />} />
           <Route path="/artifacts" element={<Artifacts />} />
           <Route path="/artifacts/:id" element={<ArtifactDetails />} />
+          <Route path="/payment-success" element={<PaymentSuccess />} />
           
           {/* Mural routes with original URL pattern */}
           <Route path="/mural/animal" element={<AnimalMuralsPage />} />

@@ -113,6 +113,24 @@ router.post('/:id/favorites', async (req, res) => {
   }
 });
 
+// DELETE all favorites for a user
+router.delete('/:id/favorites/all', async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
+    console.log("Deleting all favorites for:", user?.email);
+    if (!user) return res.status(404).json({ message: 'User not found' });
+
+    user.savedArtifacts = [];
+    await user.save();
+
+    console.log("Favorites after clear:", user.savedArtifacts);
+    res.json({ message: 'All favorites removed after checkout' });
+  } catch (err) {
+    console.error("ERROR in DELETE /favorites/all:", err);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
 // Delete user favorites
 router.delete('/:id/favorites/:artifactId', async (req, res) => {
   try {

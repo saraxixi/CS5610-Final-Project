@@ -6,6 +6,7 @@ import CartCard from "../components/CartCard";
 
 import { storage } from "../firebase";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
   const userId = localStorage.getItem("userId");
@@ -17,6 +18,7 @@ const Profile = () => {
   const [favorites, setFavorites] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [preview, setPreview] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (userId) {
@@ -46,7 +48,7 @@ const Profile = () => {
       alert("Failed to remove item.");
     }
   };
-  
+
   const handleChange = e => {
     setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
@@ -60,9 +62,8 @@ const Profile = () => {
 
     const downloadURL = await getDownloadURL(avatarRef);
     setFormData(prev => ({ ...prev, avatar: downloadURL }));
-    setPreview(downloadURL); // 立即显示预览
+    setPreview(downloadURL);
 
-    // 更新数据库头像字段
     await axios.put(`/api/users/${userId}`, { avatar: downloadURL });
   };
 
@@ -79,6 +80,20 @@ const Profile = () => {
         alert("Update failed.");
       });
   };
+
+  const handleCheckout = async () => {
+    try {
+      await axios.delete(`/api/users/${userId}/favorites/all`);
+      alert("Payment Successful!");
+      setFavorites([]);
+      navigate("/payment-success");
+    } catch (err) {
+      console.error("Failed to clear favorites after checkout:", err);
+      alert("Checkout failed.");
+    }
+  };
+
+  const total = favorites.reduce((acc, item) => acc + (item.price || 0), 0);
 
   return (
     <>
@@ -104,16 +119,33 @@ const Profile = () => {
             {favorites.length > 0 ? (
               favorites.map(item => (
                 <CartCard
-                key={item._id}
-                item={{ ...item, quantity: 1 }}
-                onQuantityChange={() => {}}
-                onRemove={handleRemove}
-              />
+                  key={item._id}
+                  item={{ ...item, quantity: 1 }}
+                  onQuantityChange={() => {}}
+                  onRemove={handleRemove}
+                />
               ))
             ) : (
               <p>You have no favorites yet.</p>
             )}
           </div>
+
+          {favorites.length > 0 && (
+            <div style={{ marginTop: "40px", textAlign: "right" }}>
+              <h4>Total: £{total.toFixed(2)}</h4>
+              <button onClick={handleCheckout} style={{
+                padding: "10px 20px",
+                backgroundColor: "#000",
+                color: "white",
+                border: "none",
+                borderRadius: "6px",
+                fontWeight: "bold",
+                cursor: "pointer"
+              }}>
+                Checkout
+              </button>
+            </div>
+          )}
         </div>
       </div>
 
