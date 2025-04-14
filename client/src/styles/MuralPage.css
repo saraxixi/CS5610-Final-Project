@@ -59,7 +59,6 @@
   margin-bottom: 2rem;
   height: 0px;
   padding-bottom: 1rem;
-  border-bottom: none;
   text-align: center;
 }
 
@@ -198,16 +197,14 @@
 }
 
 .title-underline {
-  width: 2000px;
+  width: 220px;
   height: 3px;
   background-color: #8b4513;
   margin-top: 0.5rem;
   margin-left: 0;
-  border-bottom: 2px solid #8b4513;
 }
 
 /* Detail page */
-
 
 .detail-title {
   text-align: center;

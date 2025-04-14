@@ -78,12 +78,13 @@ const AnimalMuralsPage = () => {
         the artistic styles and techniques of ancient times but also reveals the care and 
         compassion that the artists poured into their creations.
         </p>
+
         <header className="page-header align-left small-header">
-        <h1 className="page-title">Animal Murals</h1>
-        <div className="title-underline"></div>
-        <p className="page-subtitle">
-          Explore animal-themed murals from the Mogao Caves
-        </p>
+          <h1 className="page-title">Animal Murals</h1>
+          <div className="title-underline"></div>
+          <p className="page-subtitle">
+            Explore animal-themed murals from the Mogao Caves
+          </p>
       </header>
       </div>
     </div>
