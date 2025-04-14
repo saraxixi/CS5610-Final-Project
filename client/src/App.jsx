@@ -13,6 +13,8 @@ import DanceMuralsPage from './pages/DanceMuralsPage';
 import ArchitectureMuralsPage from './pages/ArchitectureMuralsPage';
 import FlyingApsarasMuralsPage from './pages/FlyingApsarasMuralsPage';
 import { LanguageProvider } from './contexts/LanguageContext';
+
+import MuralDetailPage from './pages/MuralDetailPage';
 import "./styles/Global.css";
 
 // Import firebase config
@@ -39,6 +41,8 @@ function App() {
           <Route path="/mural/dance" element={<DanceMuralsPage />} />
           <Route path="/mural/architecture" element={<ArchitectureMuralsPage />} />
           <Route path="/mural/flying" element={<FlyingApsarasMuralsPage />} />
+
+          <Route path="/murals/:id" element={<MuralDetailPage />} />
           
           <Route path="/search" element={<SearchResults />} />
         </Routes>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import '../styles/MuralCard.css';
 
 const MuralCard = ({ mural }) => {
@@ -9,7 +10,7 @@ const MuralCard = ({ mural }) => {
     : '/placeholder-image.jpg';
 
   return (
-    <div className="mural-card">
+    <Link to={`/murals/${mural._id}`} className="mural-card">
       <div className="mural-image-container">
         <img 
           src={displayImage} 
@@ -33,7 +34,7 @@ const MuralCard = ({ mural }) => {
           ))}
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 
