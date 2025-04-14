@@ -44,25 +44,20 @@ const ManuscriptsPage = () => {
   }
 
   return (
-    <div className="murals-page">
+    <div className="manuscripts-page">
       <Navbar />
 
-      <div className="mural-hero" style={{ backgroundImage: `url(${manuscriptBanner})` }}>
-        <div className="mural-hero-content">
-          <h1>Manuscripts</h1>
-          <p>
-            Explore the ancient treasures discovered in the Dunhuang Library Cave. These manuscripts provide insight into the history, religion, and daily life of ancient China.
-          </p>
-          <header className="page-header align-left small-header">
-            <h1 className="page-title">Dunhuang Manuscripts</h1>
-            <div className="title-underline"></div>
-            <p className="page-subtitle">Scrolls and scriptures from the Mogao Caves</p>
-          </header>
+      <div className="manuscript-hero" style={{ backgroundImage: `url(${manuscriptBanner})` }}>
+        <div className="manuscript-hero-overlay">
+          <div className="manuscript-hero-text">
+            <h1 className="manuscript-hero-title">Manuscripts</h1>
+            <p className="manuscript-hero-text">Explore the ancient treasures discovered in the Dunhuang Library Cave. These manuscripts provide insight into the history, religion, and daily life of ancient China.</p>
+          </div>
         </div>
       </div>
 
-      <div className="murals-container">
-        <div className="murals-grid">
+      <div className="manuscripts-container">
+        <div className="manuscripts-grid">
           {manuscripts.map(manuscript => (
             <ManuscriptCard key={manuscript._id} manuscript={manuscript} />
           ))}
