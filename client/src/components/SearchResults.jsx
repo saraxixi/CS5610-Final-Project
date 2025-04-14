@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import '../styles/SearchResults.css'; 
@@ -61,8 +61,14 @@ const SearchResults = () => {
                   <h3>{category.charAt(0).toUpperCase() + category.slice(1)}</h3>
                   {items.map(item => (
                     <div key={item._id} className="search-item">
-                      <h4>{item.title || item.name}</h4>
-                      <p>{item.description?.slice(0, 100) || item.significance?.slice(0, 100)}...</p>
+                      <h4>
+                        <Link to={`/${category.toLowerCase()}/${item._id}`}>
+                          {item.title || item.name}
+                        </Link>
+                      </h4>
+                      <p>
+                        {item.description?.slice(0, 100) || item.significance?.slice(0, 100)}...
+                      </p>
                     </div>
                   ))}
                 </div>
@@ -78,4 +84,5 @@ const SearchResults = () => {
 };
 
 export default SearchResults;
+
 
