@@ -1,43 +1,48 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import '../styles/MuralPage.css';
-
-// banner images
+import '../styles/MuralDetailPage.css';
+import architectureBanner from '../assets/images/architecture-banner.png';
 import animalBanner from '../assets/images/animal-banner.png';
 import danceBanner from '../assets/images/dance-banner.png';
+import flyingBanner from '../assets/images/flyingbanner.png';
 import architectureBanner from '../assets/images/architecture-banner.png';
-import flyingApsarasBanner from '../assets/images/flyingbanner.png';
+
+const categoryConfig = {
+  architecture: {
+    banner: architectureBanner,
+    title: "Architectural",
+    subtitle:
+      "In Chinese painting, there is a long-standing tradition of capturing the beauty of architecture. The Dunhuang murals feature a wide range of architectural depictions—palaces, city gates, temples, and residences."
+  },
+  animal: {
+    banner: animalBanner,
+    title: "Animal",
+    subtitle:
+      "The animal paintings in the Dunhuang Caves are centered around Buddhist themes. Exploring the history of these artworks not only offers a glimpse into the artistic styles and techniques of ancient times but also reveals the care and compassion that the artists poured into their creations."
+  },
+  dance: {
+    banner: danceBanner,
+    title: "Dance",
+    subtitle:
+      "The Dunhuang Caves gave rise to dazzling and richly varied dance imagery. These depictions can be broadly categorized into two types: celestial dances from the imagined world of deities and Buddhas, and secular dances reflecting life in the human world."
+  },
+  'flying apsaras': {
+    banner: flyingBanner,
+    title: "Flying Apsaras",
+    subtitle:
+      "The Feitian, or flying apsaras, are a form of Buddhist artistic expression. Introduced to inland China from India via the Western Regions, they underwent more than a thousand years of evolution and refinement, gradually developing into a distinctly Chinese visual form."
+  }
+};
 
 const MuralDetailPage = () => {
   const { id } = useParams();
-  const location = useLocation();
   const [mural, setMural] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
-  const subcategory = location.state?.subcategory || mural?.subcategory || '';
-
-  // choose banner image based on subcategory
-  let bannerImage;
-  switch (subcategory.toLowerCase()) {
-    case 'animal':
-      bannerImage = animalBanner;
-      break;
-    case 'dance':
-      bannerImage = danceBanner;
-      break;
-    case 'architecture':
-      bannerImage = architectureBanner;
-      break;
-    case 'flying apsaras':
-      bannerImage = flyingApsarasBanner;
-      break;
-    default:
-      bannerImage = '/placeholder-image.jpg';
-  }
 
   useEffect(() => {
     const fetchMural = async () => {
@@ -54,57 +59,59 @@ const MuralDetailPage = () => {
     fetchMural();
   }, [id]);
 
-  if (loading) return <div>Loading...</div>;
-  if (error || !mural) return <div>{error || 'Mural not found.'}</div>;
+  if (loading || error || !mural) {
+    return (
+      <div className="murals-page">
+        <Navbar />
+        <div className="murals-container">
+          {loading ? (
+            <div className="loading-container">
+              <div className="loader"></div>
+            </div>
+          ) : (
+            <div className="error-message">{error || 'Mural not found.'}</div>
+          )}
+        </div>
+        <Footer />
+      </div>
+    );
+  }
+
+  const category = mural.subcategory?.toLowerCase();
+  const banner = categoryConfig[category]?.banner;
+  const bannerTitle = categoryConfig[category]?.title || mural.title;
+  const bannerSubtitle = categoryConfig[category]?.subtitle;
 
   return (
-    <>
+    <div className="murals-page">
       <Navbar />
 
-      <div
-        className="mural-hero"
-        style={{ backgroundImage: `url(${bannerImage})` }}
-      >
+      <div className="mural-hero" style={{ backgroundImage: `url(${banner})` }}>
         <div className="mural-hero-content">
-          <h1>{mural.title}</h1>
-          <p>{mural.subtitle}</p>
+          <h1>{bannerTitle}</h1>
+          <p>{bannerSubtitle}</p>
         </div>
       </div>
 
       <div className="murals-container">
-        <h2 className="page-title" style={{ textAlign: 'center' }}>{mural.title}</h2>
-        <p className="page-subtitle" style={{ textAlign: 'center', maxWidth: '900px', margin: '1rem auto 2rem' }}>
-          {mural.description}
-        </p>
+        <h2 className="detail-title">{mural.title}</h2>
+        <p className="detail-subtitle">{mural.description}</p>
 
-        <div
-          className="mural-detail-images"
-          style={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            justifyContent: 'center',
-            gap: '20px',
-            marginBottom: '3rem'
-          }}
-        >
+        <div className="mural-detail-images">
           {Array.isArray(mural.images) &&
             mural.images.map((img, idx) => (
               <img
                 key={idx}
                 src={img}
                 alt={`Mural ${idx + 1}`}
-                style={{
-                  maxWidth: '45%',
-                  borderRadius: '8px',
-                  boxShadow: '0 2px 6px rgba(0,0,0,0.1)'
-                }}
+                className="mural-detail-image"
               />
             ))}
         </div>
       </div>
 
       <Footer />
-    </>
+    </div>
   );
 };
 
