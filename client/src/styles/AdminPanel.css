@@ -19,8 +19,27 @@
     background: none;
     cursor: pointer;
     font-size: 16px;
-    color: #000;
+    color: #444;
+    position: relative;
+    transition: all 0.3s ease;
   }
+
+  .admin-tabs button::after {
+    content: "";
+    display: block;
+    height: 2px;
+    background-color: #4682B4;
+    transition: width 0.3s;
+    width: 0%;
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+  }
+
+  .admin-tabs button:hover::after,
+  .admin-tabs button.active::after {
+    width: 100%;
+}
 
   .admin-tabs button:hover {
     color: #e29b40;
