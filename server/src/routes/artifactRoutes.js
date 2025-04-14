@@ -23,6 +23,16 @@ router.get('/', async (req, res) => {
   }
 });
 
+// Get top 3 artifacts
+router.get("/top3", async (req, res) => {
+  try {
+    const artifacts = await Artifact.find().limit(3);
+    res.json(artifacts);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 // Read one
 router.get('/:id', async (req, res) => {
   try {
@@ -55,5 +65,7 @@ router.delete('/:id', async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
+
+
 
 export default router;
