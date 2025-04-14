@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Navbar from "../components/Navbar";
 import "../styles/Profile.css";
+import CartCard from "../components/CartCard";
 
 import { storage } from "../firebase";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
@@ -35,6 +36,17 @@ const Profile = () => {
     }
   }, [userId]);
 
+  const handleRemove = async (item) => {
+    try {
+      await axios.delete(`/api/users/${userId}/favorites/${item._id}`);
+      setFavorites((prev) => prev.filter(fav => fav._id !== item._id));
+      alert("Removed from favorites.");
+    } catch (err) {
+      console.error("Remove failed:", err);
+      alert("Failed to remove item.");
+    }
+  };
+  
   const handleChange = e => {
     setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
@@ -91,10 +103,12 @@ const Profile = () => {
           <div className="favorites-grid">
             {favorites.length > 0 ? (
               favorites.map(item => (
-                <div key={item._id} className="favorite-card">
-                  <img src={item.image} alt={item.title} />
-                  <p>{item.title}</p>
-                </div>
+                <CartCard
+                key={item._id}
+                item={{ ...item, quantity: 1 }}
+                onQuantityChange={() => {}}
+                onRemove={handleRemove}
+              />
               ))
             ) : (
               <p>You have no favorites yet.</p>

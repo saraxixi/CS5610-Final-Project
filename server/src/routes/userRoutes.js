@@ -94,6 +94,43 @@ router.delete('/:id', async (req, res) => {
   }
 });
 
+// post user favorites
+router.post('/:id/favorites', async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
+    if (!user) return res.status(404).json({ message: 'User not found' });
+
+    const artifactId = req.body.artifactId;
+    if (!user.savedArtifacts.includes(artifactId)) {
+      user.savedArtifacts.push(artifactId);
+      await user.save();
+    }
+
+    res.json({ message: 'Artifact saved to favorites!' });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+// Delete user favorites
+router.delete('/:id/favorites/:artifactId', async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
+    if (!user) return res.status(404).json({ message: 'User not found' });
+
+    user.savedArtifacts = user.savedArtifacts.filter(
+      (artifactId) => artifactId.toString() !== req.params.artifactId
+    );
+    await user.save();
+
+    res.json({ message: 'Artifact removed from favorites!' });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
 // Get user favorites
 router.get('/:id/favorites', async (req, res) => {
   try {

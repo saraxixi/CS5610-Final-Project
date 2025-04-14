@@ -74,6 +74,7 @@ const Artifacts = () => {
           {carouselItems.map((item, index) => (
             <ArtifactCard
               key={index}
+              id={item._id}
               image={item.images}
               title={item.title}
               buttonText="View Details"
