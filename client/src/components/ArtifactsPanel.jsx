@@ -6,7 +6,7 @@ import { ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage
 
 const ArtifactsPanel = () => {
   const [artifacts, setArtifacts] = useState([]);
-  const [newArtifact, setNewArtifact] = useState({ title: '', type: '', era: '', description: '', location: '', images: null, conservationStatus: '', mural: '' });
+  const [newArtifact, setNewArtifact] = useState({ title: '', about: '', price: '', overview: '', images: null });
   const [editingArtifact, setEditingArtifact] = useState(null);
   const [message, setMessage] = useState({ text: '', type: '' });
   const [isLoading, setIsLoading] = useState(false);
@@ -54,16 +54,14 @@ const ArtifactsPanel = () => {
 
       const artifactData = {
         title: newArtifact.title.trim(),
-        type: newArtifact.type?.trim() || "",
-        era: newArtifact.era?.trim() || "",
-        description: newArtifact.description?.trim() || "",
-        location: newArtifact.location?.trim() || "",
-        conservationStatus: newArtifact.conservationStatus?.trim() || "",
+        about: newArtifact.about.trim(),
+        price: parseFloat(newArtifact.price),
+        overview: newArtifact.overview.trim(),
         images: imageURL
       };
 
       await axios.post("http://localhost:4000/api/artifacts", artifactData);
-      setNewArtifact({ title: '', type: '', era: '', description: '', location: '', images: null, conservationStatus: '', mural: '' });
+      setNewArtifact({ title: '', about: '', price: '', overview: '', images: null });
       fetchArtifacts();
       setMessage({ text: 'Artifact created successfully', type: 'success' });
     } catch (error) {
@@ -91,11 +89,9 @@ const ArtifactsPanel = () => {
       const updatedData = {
         _id: editingArtifact._id,
         title: editingArtifact.title.trim(),
-        type: editingArtifact.type?.trim() || "",
-        era: editingArtifact.era?.trim() || "",
-        description: editingArtifact.description?.trim() || "",
-        location: editingArtifact.location?.trim() || "",
-        conservationStatus: editingArtifact.conservationStatus?.trim() || "",
+        about: editingArtifact.about.trim(),
+        price: parseFloat(editingArtifact.price),
+        overview: editingArtifact.overview.trim(),
         images: imageURL
       };
 
@@ -145,28 +141,20 @@ const ArtifactsPanel = () => {
               <input type="text" value={editingArtifact.title} onChange={(e) => setEditingArtifact({ ...editingArtifact, title: e.target.value })} required />
             </div>
             <div className="form-group">
-              <label>Type:</label>
-              <input type="text" value={editingArtifact.type || ''} onChange={(e) => setEditingArtifact({ ...editingArtifact, type: e.target.value })} />
+              <label>About:</label>
+              <input type="text" value={editingArtifact.about} onChange={(e) => setEditingArtifact({ ...editingArtifact, about: e.target.value })} required />
             </div>
             <div className="form-group">
-              <label>Era:</label>
-              <input type="text" value={editingArtifact.era || ''} onChange={(e) => setEditingArtifact({ ...editingArtifact, era: e.target.value })} />
+              <label>Price:</label>
+              <input type="number" value={editingArtifact.price} onChange={(e) => setEditingArtifact({ ...editingArtifact, price: e.target.value })} required />
             </div>
             <div className="form-group">
-              <label>Location:</label>
-              <input type="text" value={editingArtifact.location || ''} onChange={(e) => setEditingArtifact({ ...editingArtifact, location: e.target.value })} />
+              <label>Overview:</label>
+              <textarea value={editingArtifact.overview} onChange={(e) => setEditingArtifact({ ...editingArtifact, overview: e.target.value })} rows="4" />
             </div>
             <div className="form-group">
               <label>Replace Image:</label>
               <input type="file" accept="image/*" onChange={(e) => setEditingArtifact({ ...editingArtifact, newImageFile: e.target.files[0] })} />
-            </div>
-            <div className="form-group">
-              <label>Conservation Status:</label>
-              <input type="text" value={editingArtifact.conservationStatus || ''} onChange={(e) => setEditingArtifact({ ...editingArtifact, conservationStatus: e.target.value })} />
-            </div>
-            <div className="form-group">
-              <label>Description:</label>
-              <textarea value={editingArtifact.description || ''} onChange={(e) => setEditingArtifact({ ...editingArtifact, description: e.target.value })} rows="4" />
             </div>
             <div className="form-actions">
               <button type="submit" className="save-btn">Save Changes</button>
@@ -183,28 +171,20 @@ const ArtifactsPanel = () => {
               <input type="text" value={newArtifact.title} onChange={(e) => setNewArtifact({ ...newArtifact, title: e.target.value })} required />
             </div>
             <div className="form-group">
-              <label>Type:</label>
-              <input type="text" value={newArtifact.type} onChange={(e) => setNewArtifact({ ...newArtifact, type: e.target.value })} />
+              <label>About:</label>
+              <input type="text" value={newArtifact.about} onChange={(e) => setNewArtifact({ ...newArtifact, about: e.target.value })} required />
             </div>
             <div className="form-group">
-              <label>Era:</label>
-              <input type="text" value={newArtifact.era} onChange={(e) => setNewArtifact({ ...newArtifact, era: e.target.value })} />
+              <label>Price:</label>
+              <input type="number" value={newArtifact.price} onChange={(e) => setNewArtifact({ ...newArtifact, price: e.target.value })} required />
             </div>
             <div className="form-group">
-              <label>Location:</label>
-              <input type="text" value={newArtifact.location} onChange={(e) => setNewArtifact({ ...newArtifact, location: e.target.value })} />
+              <label>Overview:</label>
+              <textarea value={newArtifact.overview} onChange={(e) => setNewArtifact({ ...newArtifact, overview: e.target.value })} rows="4" />
             </div>
             <div className="form-group">
               <label>Upload Image:</label>
               <input type="file" accept="image/*" onChange={(e) => setNewArtifact({ ...newArtifact, images: e.target.files[0] })} />
-            </div>
-            <div className="form-group">
-              <label>Conservation Status:</label>
-              <input type="text" value={newArtifact.conservationStatus} onChange={(e) => setNewArtifact({ ...newArtifact, conservationStatus: e.target.value })} />
-            </div>
-            <div className="form-group">
-              <label>Description:</label>
-              <textarea value={newArtifact.description} onChange={(e) => setNewArtifact({ ...newArtifact, description: e.target.value })} rows="4" />
             </div>
             <button type="submit" className="create-btn">Create Artifact</button>
           </form>
@@ -220,8 +200,8 @@ const ArtifactsPanel = () => {
                 <tr>
                   <th>Image</th>
                   <th>Title</th>
-                  <th>Type</th>
-                  <th>Era</th>
+                  <th>About</th>
+                  <th>Price</th>
                   <th>Actions</th>
                 </tr>
               </thead>
@@ -236,8 +216,8 @@ const ArtifactsPanel = () => {
                       )}
                     </td>
                     <td>{artifact.title}</td>
-                    <td>{artifact.type || '-'}</td>
-                    <td>{artifact.era || '-'}</td>
+                    <td>{artifact.about}</td>
+                    <td>${artifact.price}</td>
                     <td className="action-buttons">
                       <button onClick={() => handleEditArtifact(artifact)} className="edit-btn">Edit</button>
                       <button onClick={() => handleDeleteArtifact(artifact._id)} className="delete-btn">Delete</button>

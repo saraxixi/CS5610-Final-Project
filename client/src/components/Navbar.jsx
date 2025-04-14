@@ -34,7 +34,7 @@ const Navbar = () => {
               </ul>
             </li>
             <li><Link to="/manuscript">Manuscripts</Link></li>
-            <li><Link to="/artificats">Artifacts</Link></li>
+            <li><Link to="/artifacts">Artifacts</Link></li>
             <GoogleTranslate />
           </ul>
         </nav>

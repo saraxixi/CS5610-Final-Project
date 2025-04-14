@@ -5,20 +5,21 @@ const artifactSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  type: { // the type of the artifact: pottery, sculpture, etc...
-    type: String
-  },
-  era: String,
-  description: String,
-  location: String,
-  images: {
+  about: {
     type: String,
     required: true
   },
-  conservationStatus: String, // the conservation status of the artifact
-  mural: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'mural'
+  price: {
+    type: Number,
+    required: true
+  },
+  overview: {
+    type: String,
+    required: true
+  },
+  images: {
+    type: String,
+    required: true
   }
 }, {
   timestamps: true
