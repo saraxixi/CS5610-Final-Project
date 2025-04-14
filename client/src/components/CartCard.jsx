@@ -17,7 +17,7 @@ const CartCard = ({ item, onQuantityChange, onRemove }) => {
       <div className="cart-product">
         <img src={images} alt={title} className="cart-image" />
         <div className="cart-title">{title}</div>
-        <div className="cart-price">£{price.toFixed(2)}</div>
+        <div className="cart-price">${price.toFixed(2)}</div>
         <input
           type="number"
           min="1"

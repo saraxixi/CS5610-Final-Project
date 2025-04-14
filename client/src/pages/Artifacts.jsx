@@ -59,8 +59,7 @@ const Artifacts = () => {
               <img src={item.images} alt={`Artifact ${index + 1}`} />
               <div className="carousel-overlay">
                 <h2>{item.title}</h2>
-                <p>{item.description || item.overview || "Discover more from Dunhuang's legacy."}</p>
-                <a href="#" className="carousel-button">Add to Cart</a>
+                <p>{item.overview || "Discover more from Dunhuang's legacy."}</p>
               </div>
             </div>
           ))}
