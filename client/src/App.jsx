@@ -8,6 +8,7 @@ import SearchResults from './pages/SearchResults';
 import Studies from './pages/Studies';
 import Exhibitions from './pages/Exhibitions';
 import Manuscript from './pages/Manuscript';
+import Artifacts from './pages/Artifacts';
 // Import new mural pages
 import AnimalMuralsPage from './pages/AnimalMuralsPage';
 import DanceMuralsPage from './pages/DanceMuralsPage';
@@ -35,6 +36,7 @@ function App() {
           <Route path="/search" element={<SearchResults />} />
           <Route path="/exhibitions" element={<Exhibitions />} />
           <Route path="/manuscript" element={<Manuscript />} />
+          <Route path="/artifacts" element={<Artifacts />} />
           
           {/* Mural routes with original URL pattern */}
           <Route path="/mural/animal" element={<AnimalMuralsPage />} />
