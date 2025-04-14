@@ -59,10 +59,10 @@ const ManuscriptsPage = () => {
           </p>
         </div>
       </div>
-      <header className="page-header small-header left-header">
+      <div className="section-title-row">
         <h1 className="page-title">Manuscripts Cave Documents</h1>
-        <div className="title-underline"></div>
-      </header>
+        <div className="title-underline-line"></div>
+      </div>
 
       <div className="manuscripts-container">
         <div className="manuscripts-grid">
