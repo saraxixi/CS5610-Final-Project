@@ -1,3 +1,42 @@
+.mural-hero {
+  width: 100%;
+  height: auto;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+  font-family: "Noto Serif SC", serif;
+  box-sizing: border-box;
+  padding: 100px 30px 120px 30px; 
+}
+
+
+.mural-hero-content {
+  position: relative;
+  z-index: 1;
+  padding-top: 15px; 
+  padding-bottom: 0;
+}
+
+.mural-hero h1 {
+  font-size: 2.4rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+.mural-hero p {
+  font-size: 1.2rem;
+  max-width: 900px;
+  line-height: 1.8;
+  margin: 0 auto;
+}
+
+
 .murals-page {
   min-height: 100vh;
   display: flex;
@@ -7,23 +46,25 @@
 }
 
 .murals-container {
-  padding: 2rem;
-  flex-grow: 1;
+  padding: 0;
   max-width: 1200px;
-  margin: 150px auto 0;
+  margin: 0 auto;
   width: 100%;
+  display: block;
+  margin-top: 0;
+  padding-top: 0; 
 }
 
 .page-header {
   margin-bottom: 2rem;
-  border-bottom: 2px solid #8b4513;
-  padding-bottom: 1rem;
-  text-align: center;
+  height: 0px;
+  text-align: left;
+  border-bottom: none; 
 }
 
 .page-title {
   font-size: 2.2rem;
-  color: #8b4513;
+  color: solid #8b4513;
   margin: 0;
   font-weight: bold;
 }
@@ -31,7 +72,7 @@
 .page-subtitle {
   font-size: 1rem;
   color: #666;
-  margin: 0.5rem 0 0;
+  margin: 0;
 }
 
 .category-tabs {
@@ -50,7 +91,7 @@
   cursor: pointer;
   font-size: 1rem;
   transition: all 0.3s ease;
-  color: #8b4513;
+  color: solid #8b4513;
 }
 
 .category-tab:hover {
@@ -64,9 +105,10 @@
 }
 
 .murals-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 30px;
+  justify-items: center;
 }
 
 .no-results {
@@ -111,18 +153,77 @@
   max-width: 800px;
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
   .page-title {
     font-size: 1.8rem;
   }
   
   .murals-container {
-    padding: 1rem;
+    padding: 2rem;
+    flex-grow: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
   }
   
   .category-tab {
     font-size: 0.9rem;
     padding: 6px 12px;
   }
+}
+
+.page-header.align-left {
+  text-align: left;
+  padding: 0;
+  margin: 2rem auto 1rem auto;
+  max-width: 1200px;
+  width: 100%;
+  box-sizing: border-box;
+  padding-left: 0; 
+}
+
+.small-header .page-title {
+  font-size: 1.3rem;
+  color: #8b4513;
+  margin-bottom: 0.3rem;
+  font-weight: 600;
+}
+
+.small-header .page-subtitle {
+  font-size: 0.95rem;
+  color: #666;
+  margin: 0;
+}
+
+/* Detail page */
+
+.detail-title {
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #8b4513;
+}
+
+.detail-subtitle {
+  text-align: center;
+  max-width: 800px;
+  margin: 1rem auto 2rem;
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+.mural-detail-images {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding-bottom: 3rem;
+}
+
+.mural-detail-image {
+  max-width: 45%;
+  height: auto;
+  border-radius: 8px;
 }

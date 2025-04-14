@@ -39,7 +39,15 @@ const Navbar = () => {
           </ul>
         </nav>
         <div className='navbar-right'>
-          <input type="text" placeholder='search' className='search-box' />
+          <form onSubmit={handleSearch} className='search-form'>
+            <input
+              type="text"
+              placeholder="Search"
+              className="search-box"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              />
+            </form>
           {isLoggedIn ? (
             <>
               {isAdmin && (

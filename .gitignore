@@ -26,4 +26,6 @@ dist-ssr
 # files
 .env
 .history
+package-lock.json
+package.json
 

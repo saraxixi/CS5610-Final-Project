@@ -5,6 +5,7 @@ import Footer from "../components/Footer";
 import ExhibitionCard from "../components/ExhibitionCard";
 import EventsCard from "../components/EventsCard";
 import "../styles/Exhibitions.css";
+import exhibitionBanner from "../assets/images/background2.jpg";
 
 const Exhibitions = () => {
   const [exhibitions, setExhibitions] = useState([]);
@@ -66,6 +67,14 @@ const Exhibitions = () => {
   return (
     <>
       <Navbar />
+      <div
+        className="exhibition-hero"
+        style={{ backgroundImage: `url(${exhibitionBanner})` }}
+      >
+        <div className="exhibition-hero-content">
+          <h1 className="exhibition-hero-title">Exhibitions</h1>
+        </div>
+      </div>
       <div className="exhibitions-page">
         <div className="container">
           <h1>Exhibitions and Events</h1>

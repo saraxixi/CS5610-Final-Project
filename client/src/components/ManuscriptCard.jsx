@@ -6,6 +6,7 @@ const ManuscriptCard = ({ manuscript }) => {
   const displayImage = manuscript.images && manuscript.images.length > 0 
     ? manuscript.images[0] 
     : '/assets/placeholder-manuscript.jpg';
+    
 
   return (
     <div className="manuscript-card">

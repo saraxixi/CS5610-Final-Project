@@ -12,6 +12,7 @@ import manuscriptRoutes from './src/routes/manuscriptRoutes.js';
 import exhibitionRoutes from './src/routes/exhibitionRoutes.js';
 import chatRoutes from './src/routes/chatRoutes.js';
 import artifactRoutes from './src/routes/artifactRoutes.js';
+import searchRoutes from './src/routes/searchRoutes.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -44,6 +45,8 @@ app.use('/api/manuscripts', manuscriptRoutes);
 app.use('/api/exhibitions', exhibitionRoutes);
 app.use('/api/chat', chatRoutes);
 app.use('/api/artifacts', artifactRoutes);
+app.use('/api/search', searchRoutes);
+
 
 // Test route
 app.get('/', (req, res) => {

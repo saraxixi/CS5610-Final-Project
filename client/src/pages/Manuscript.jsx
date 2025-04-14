@@ -3,50 +3,81 @@ import axios from 'axios';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import ManuscriptCard from '../components/ManuscriptCard';
+import "../styles/MuralPage.css";
 import "../styles/ManuscriptPage.css";
+import manuscriptBanner from '../assets/images/banner-two.png';
 
 const ManuscriptsPage = () => {
   const [manuscripts, setManuscripts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  
+
   useEffect(() => {
     const fetchManuscripts = async () => {
       try {
-        setLoading(true);
         const response = await axios.get('/api/manuscripts');
         setManuscripts(response.data);
-        setLoading(false);
       } catch (err) {
-        setError('Failed to fetch manuscripts. Please try again later.');
-        setLoading(false);
         console.error('Error fetching manuscripts:', err);
+        setError('Failed to fetch manuscripts. Please try again later.');
+      } finally {
+        setLoading(false);
       }
     };
-    
+
     fetchManuscripts();
   }, []);
-  
-  if (loading) return <div className="loading-container"><div className="loader"></div></div>;
-  if (error) return <div className="error-message">{error}</div>;
-  
+
+  if (loading || error) {
+    return (
+      <div className="murals-page">
+        <Navbar />
+        <div className="murals-container">
+          {loading ? (
+            <div className="loading-container">
+              <div className="loader"></div>
+            </div>
+          ) : (
+            <div className="error-message">{error}</div>
+          )}
+        </div>
+        <Footer />
+      </div>
+    );
+  }
+
   return (
     <div className="manuscripts-page">
       <Navbar />
-      <div className="manuscripts-container">
-        <div className="page-header">
-          <h1 className="page-title">Manuscripts</h1>
+
+      <div className="manuscript-hero" style={{ backgroundImage: `url(${manuscriptBanner})` }}>
+        <div className="manuscript-hero-content">
+          <h1 className="manuscript-hero-title">Manuscripts</h1>
+          <p className="manuscript-hero-subtitle">
+            Explore the ancient treasures discovered in the Dunhuang Library Cave. <br />
+            These manuscripts provide insight into the history, religion, and daily life of ancient China.
+          </p>
         </div>
-        
+      </div>
+      <div className="section-title-row">
+        <h1 className="page-title">Manuscripts Cave Documents</h1>
+        <div className="title-underline-line"></div>
+      </div>
+
+      <div className="manuscripts-container">
         <div className="manuscripts-grid">
-          {manuscripts.map(manuscript => (
+          {manuscripts.map((manuscript) => (
             <ManuscriptCard key={manuscript._id} manuscript={manuscript} />
           ))}
         </div>
       </div>
+
       <Footer />
     </div>
   );
 };
 
 export default ManuscriptsPage;
+
+
+

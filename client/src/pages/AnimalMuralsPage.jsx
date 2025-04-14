@@ -4,6 +4,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import MuralCard from '../components/MuralCard';
 import "../styles/MuralPage.css";
+import animalBanner from '../assets/images/animal-banner.png';
 
 const AnimalMuralsPage = () => {
   const [murals, setMurals] = useState([]);
@@ -64,30 +65,47 @@ const AnimalMuralsPage = () => {
   
   return (
     <div className="murals-page">
-      <Navbar />
-      <div className="murals-container">
-        <header className="page-header">
+    <Navbar />
+    <div
+      className="mural-hero"
+      style={{ backgroundImage: `url(${animalBanner})` }}
+    >
+      <div className="mural-hero-content">
+        <h1>Animal</h1>
+        <p>
+        The animal paintings in the Dunhuang Caves are centered around Buddhist themes. 
+        Exploring the history of these artworks not only offers a glimpse into 
+        the artistic styles and techniques of ancient times but also reveals the care and 
+        compassion that the artists poured into their creations.
+        </p>
+
+        <header className="page-header align-left small-header">
           <h1 className="page-title">Animal Murals</h1>
+          <div className="title-underline"></div>
           <p className="page-subtitle">
             Explore animal-themed murals from the Mogao Caves
           </p>
-        </header>
-        
-        <div className="murals-grid">
-          {murals.length > 0 ? (
-            murals.map(mural => (
-              <MuralCard key={mural._id} mural={mural} />
-            ))
-          ) : (
-            <div className="no-results">
-              No animal murals found.
-            </div>
-          )}
-        </div>
+      </header>
       </div>
-      <Footer />
     </div>
-  );
-};
+
+    <div className="murals-container">
+      <div className="murals-grid">
+        {murals.length > 0 ? (
+          murals.map(mural => (
+            <MuralCard key={mural._id} mural={mural} />
+          ))
+        ) : (
+          <div className="no-results">
+            No animal murals found.
+          </div>
+        )}
+      </div>
+    </div>
+
+    <Footer />
+  </div>
+);
+}
 
 export default AnimalMuralsPage;

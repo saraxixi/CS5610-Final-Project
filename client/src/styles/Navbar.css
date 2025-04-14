@@ -93,6 +93,8 @@
   padding: 0 15px;
   font-size: 16px;
   outline: none;
+  pointer-events: auto;
+  color: #333;
 }
 
 .search-box::placeholder {

@@ -1,10 +1,9 @@
 import { Routes, Route } from 'react-router-dom';
-import { BrowserRouter as Router } from 'react-router-dom';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Profile from './pages/Profile';
 import AdminPanel from './pages/AdminPanel_new';
-import SearchResults from './pages/SearchResults';
+import SearchResults from './components/SearchResults';
 import Studies from './pages/Studies';
 import Exhibitions from './pages/Exhibitions';
 import Manuscript from './pages/Manuscript';
@@ -17,6 +16,8 @@ import DanceMuralsPage from './pages/DanceMuralsPage';
 import ArchitectureMuralsPage from './pages/ArchitectureMuralsPage';
 import FlyingApsarasMuralsPage from './pages/FlyingApsarasMuralsPage';
 import { LanguageProvider } from './contexts/LanguageContext';
+
+import MuralDetailPage from './pages/MuralDetailPage';
 import "./styles/Global.css";
 
 // Import firebase config
@@ -35,7 +36,6 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/admin" element={<AdminPanel />} />
           <Route path="/studies" element={<Studies />} />
-          <Route path="/search" element={<SearchResults />} />
           <Route path="/exhibitions" element={<Exhibitions />} />
           <Route path="/manuscript" element={<Manuscript />} />
           <Route path="/artifacts" element={<Artifacts />} />
@@ -47,6 +47,10 @@ function App() {
           <Route path="/mural/dance" element={<DanceMuralsPage />} />
           <Route path="/mural/architecture" element={<ArchitectureMuralsPage />} />
           <Route path="/mural/flying" element={<FlyingApsarasMuralsPage />} />
+
+          <Route path="/murals/:id" element={<MuralDetailPage />} />
+          
+          <Route path="/search" element={<SearchResults />} />
         </Routes>
       </div>
     </LanguageProvider>
