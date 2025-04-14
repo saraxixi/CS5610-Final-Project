@@ -4,12 +4,11 @@ import axios from 'axios';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import '../styles/MuralPage.css';
-import '../styles/MuralDetailPage.css';
 import architectureBanner from '../assets/images/architecture-banner.png';
 import animalBanner from '../assets/images/animal-banner.png';
 import danceBanner from '../assets/images/dance-banner.png';
 import flyingBanner from '../assets/images/flyingbanner.png';
-import architectureBanner from '../assets/images/architecture-banner.png';
+
 
 const categoryConfig = {
   architecture: {
