@@ -1,17 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { FaBox, FaTruck, FaUniversity } from "react-icons/fa";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-
-import carousel1 from "../assets/images/carousel1.png";
-import carousel2 from "../assets/images/carousel2.png";
-import carousel3 from "../assets/images/carousel3.png";
-
 import "../styles/Artifacts.css";
+import axios from "axios";
+import ArtifactCard from "../components/ArtifactCard";
 
 const Artifacts = () => {
+  const [carouselItems, setCarouselItems] = useState([]);
+
+  useEffect(() => {
+    const fetchTopArtifacts = async () => {
+      try {
+        const res = await axios.get("http://localhost:4000/api/artifacts/top3");
+        setCarouselItems(res.data);
+      } catch (err) {
+        console.error("Error fetching artifacts:", err);
+      }
+    };
+    fetchTopArtifacts();
+  }, []);
+
   return (
     <>
       <Navbar />
@@ -32,7 +43,6 @@ const Artifacts = () => {
       </div>
 
       {/* Carousel Section */}
-
       <div className="carousel-container">
         <Carousel
           showThumbs={false}
@@ -44,35 +54,34 @@ const Artifacts = () => {
           interval={5000}
           swipeable
         >
-          <div className="carousel-slide">
-            <img src={carousel1} alt="Slide 1" />
-            <div className="carousel-overlay">
-              <h2>First blooms of the season</h2>
-              <p>Celebrate the end of winter with fashion, homeware and jewellery<br />featuring show-stopping florals</p>
-              <a href="#" className="carousel-button">Shop now →</a>
+          {carouselItems.map((item, index) => (
+            <div className="carousel-slide" key={index}>
+              <img src={item.images} alt={`Artifact ${index + 1}`} />
+              <div className="carousel-overlay">
+                <h2>{item.title}</h2>
+                <p>{item.description || item.overview || "Discover more from Dunhuang's legacy."}</p>
+                <a href="#" className="carousel-button">Add to Cart</a>
+              </div>
             </div>
-          </div>
-
-          <div className="carousel-slide">
-            <img src={carousel2} alt="Slide 2" />
-            <div className="carousel-overlay">
-              <h2>First blooms of the season</h2>
-              <p>Celebrate the end of winter with fashion, homeware and jewellery<br />featuring show-stopping florals</p>
-              <a href="#" className="carousel-button">Shop now →</a>
-            </div>
-          </div>
-
-          <div className="carousel-slide">
-            <img src={carousel3} alt="Slide 3" />
-            <div className="carousel-overlay">
-              <h2>First blooms of the season</h2>
-              <p>Celebrate the end of winter with fashion, homeware and jewellery<br />featuring show-stopping florals</p>
-              <a href="#" className="carousel-button">Shop now →</a>
-            </div>
-          </div>
+          ))}
         </Carousel>
       </div>
 
+      {/* Artifact Cards Section */}
+      <div className="artifact-cards">
+        <h2>Explore Our Artifacts</h2>
+        <div className="artifact-card-container">
+          {carouselItems.map((item, index) => (
+            <ArtifactCard
+              key={index}
+              image={item.images}
+              title={item.title}
+              buttonText="View Details"
+              onClick={() => console.log(`Clicked on ${item.title}`)}
+            />
+          ))}
+        </div>
+      </div>
       <Footer />
     </>
   );

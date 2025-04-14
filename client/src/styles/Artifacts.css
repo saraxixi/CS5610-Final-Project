@@ -97,3 +97,18 @@
   background: #000;
   opacity: 0.9;
 }
+
+.artifact-cards {
+  max-width: 1200px;
+  margin: 60px auto;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.artifact-card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 40px;
+}
