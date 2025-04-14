@@ -10,7 +10,7 @@ const MuralCard = ({ mural }) => {
     : '/placeholder-image.jpg';
 
   return (
-    <Link to={`/murals/${mural._id}`} className="mural-card">
+    <Link to={`/murals/${mural._id}`} state={{ subcategory: mural.subcategory }} className="mural-card">
       <div className="mural-image-container">
         <img 
           src={displayImage} 
