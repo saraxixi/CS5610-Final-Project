@@ -4,6 +4,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import ManuscriptCard from '../components/ManuscriptCard';
 import "../styles/MuralPage.css";
+import "../styles/ManuscriptPage.css";
 import manuscriptBanner from '../assets/images/banner-two.png';
 
 const ManuscriptsPage = () => {
@@ -33,7 +34,9 @@ const ManuscriptsPage = () => {
         <Navbar />
         <div className="murals-container">
           {loading ? (
-            <div className="loading-container"><div className="loader"></div></div>
+            <div className="loading-container">
+              <div className="loader"></div>
+            </div>
           ) : (
             <div className="error-message">{error}</div>
           )}
@@ -48,17 +51,22 @@ const ManuscriptsPage = () => {
       <Navbar />
 
       <div className="manuscript-hero" style={{ backgroundImage: `url(${manuscriptBanner})` }}>
-        <div className="manuscript-hero-overlay">
-          <div className="manuscript-hero-text">
-            <h1 className="manuscript-hero-title">Manuscripts</h1>
-            <p className="manuscript-hero-text">Explore the ancient treasures discovered in the Dunhuang Library Cave. These manuscripts provide insight into the history, religion, and daily life of ancient China.</p>
-          </div>
+        <div className="manuscript-hero-content">
+          <h1 className="manuscript-hero-title">Manuscripts</h1>
+          <p className="manuscript-hero-subtitle">
+            Explore the ancient treasures discovered in the Dunhuang Library Cave. <br />
+            These manuscripts provide insight into the history, religion, and daily life of ancient China.
+          </p>
         </div>
       </div>
+      <header className="page-header small-header left-header">
+        <h1 className="page-title">Manuscripts Cave Documents</h1>
+        <div className="title-underline"></div>
+      </header>
 
       <div className="manuscripts-container">
         <div className="manuscripts-grid">
-          {manuscripts.map(manuscript => (
+          {manuscripts.map((manuscript) => (
             <ManuscriptCard key={manuscript._id} manuscript={manuscript} />
           ))}
         </div>
@@ -70,3 +78,6 @@ const ManuscriptsPage = () => {
 };
 
 export default ManuscriptsPage;
+
+
+

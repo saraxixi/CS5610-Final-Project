@@ -137,23 +137,20 @@
 
   .manuscript-hero {
     position: relative;
-  width: 100%;
-  height: 300px;
-  background-size: cover; 
-  background-position: center center;
-  background-repeat: no-repeat;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
+    height: 300px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
   }
   
-  .manuscript-hero-overlay {
-    background-color: rgba(0, 0, 0, 0.6);
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
+  .manuscript-hero-content {
+    color: white;
     padding: 2rem 3rem;
+    width: 100%;
+    text-align: right;
   }
 
   .manuscript-hero-text {
@@ -163,16 +160,26 @@
   }
   
   .manuscript-hero-title {
-    font-size: 2.6rem;
+    font-size: 2.5rem;
     font-weight: bold;
-    color: #f2d3b1;
+    color: #f5deb3;
     font-family: "Noto Serif SC", serif;
-    margin-bottom: 0.5rem;
+    margin: 0 0 1rem 0;
   }
   
   .manuscript-hero-subtitle {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     color: #eee;
     font-family: "Noto Sans SC", sans-serif;
+    margin: 0;
+  }
+
+  .page-header.small-header.left-header {
+    max-width: 1200px;
+    margin: 2rem auto 0;
+    padding-left: 2rem;
+    text-align: left;
+    background-color: #f5f5f5;
+    border-bottom: none;
   }
   
