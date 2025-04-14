@@ -1,0 +1,21 @@
+.artifact-banner {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #ddd; /* 灰色背景 */
+  padding: 20px;
+  margin-top: 110px;
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+.artifact-feature {
+  flex: 1;
+  min-width: 250px;
+  padding: 10px;
+}
+
+.artifact-icon {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
