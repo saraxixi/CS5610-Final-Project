@@ -16,6 +16,13 @@ https://dunhuang-museum.onrender.com
 - Xi Xi: https://youtu.be/hMG4uQLy4kk
 - Shuojun Chen: https://youtu.be/T6_ktecRWzY
 
+
+###iteration 3: 
+- Lian Liu: https://youtu.be/oToeS0dNUPI
+- Xi Xi: 
+- Shuojun Chen:
+
+
 ## Features
 - Authentication: Sign up, log in, and manage user sessions with role-based access for admins.
 - AI Chatbot: Interact with an AI assistant to explore historical context and learn about artifacts and Dunhuang culture.
@@ -96,7 +103,7 @@ Based on our MongoDB data modeling:
 
     - Contributions go through a review system
 - Delete
-    - Admins can delete inappropriate content
+    - Admins can delete inappropriate content(exhibitions or artifacts)
 
 
 
@@ -120,15 +127,27 @@ Based on our MongoDB data modeling:
 - Lian Liu: 
     - Set up backend framework using Express.js and MongoDB
     
-    - Developed the Admin Panel for managing artifacts and murals
+    - Developed the Admin Panel for managing artifacts and exhibitions
 
     - Implemented CRUD logic (create, update, delete) with error handling
 
     - Designed role-based access (admin vs. user) and route protection
 
-    -  Styled the dashboard and added image preview logic
+    - Built image preview and dynamic form logic for editing artifacts and exhibitions
+
+    - Connected frontend to backend using Axios for full-stack integration
+
+    -  Styled dashboard views with custom CSS to ensure visual clarity and consistency
 
     - Integrated with backend using Axios for full-stack functionality
+
+    - Added responsive hero banners and unified layout styles across key pages:
+    
+        Studies, Animal Murals, Flying Murals, Dance, Architecture, Manuscripts, Exhibitions, Admin Panel
+
+    - Implemented search page with dynamic query support (/search?q=) and structured result grouping
+
+    - Added a static 5-star rating display for mural cards to enhance UX and prepare for future review features
     <p align="center">
     <img src="./src/liulian1.jpg" width="600"/>
     <img src="./src/liulian2.jpg" width="600">
