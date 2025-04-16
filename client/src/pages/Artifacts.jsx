@@ -10,6 +10,7 @@ import ArtifactCard from "../components/ArtifactCard";
 
 const Artifacts = () => {
   const [carouselItems, setCarouselItems] = useState([]);
+  const [allArtifacts, setAllArtifacts] = useState([]);
 
   useEffect(() => {
     const fetchTopArtifacts = async () => {
@@ -20,6 +21,16 @@ const Artifacts = () => {
         console.error("Error fetching artifacts:", err);
       }
     };
+
+    const fetchAllArtifacts = async () => {
+      try {
+        const res = await axios.get("/api/artifacts");
+        setAllArtifacts(res.data);
+      } catch (err) {
+        console.error("Error fetching all artifacts:", err);
+      }
+    };
+    fetchAllArtifacts();
     fetchTopArtifacts();
   }, []);
 
@@ -70,7 +81,7 @@ const Artifacts = () => {
       <div className="artifact-cards">
         <h2>Explore Our Artifacts</h2>
         <div className="artifact-card-container">
-          {carouselItems.map((item, index) => (
+          {allArtifacts.map((item, index) => (
             <ArtifactCard
               key={index}
               id={item._id}
