@@ -7,6 +7,10 @@ import EventsCard from "../components/EventsCard";
 import "../styles/Exhibitions.css";
 import exhibitionBanner from "../assets/images/background2.jpg";
 
+import event1 from "../assets/images/event1.jpg";
+import event2 from "../assets/images/event2.jpg";
+import event3 from "../assets/images/event3.jpg";
+
 const Exhibitions = () => {
   const [exhibitions, setExhibitions] = useState([]);
 
@@ -15,7 +19,7 @@ const Exhibitions = () => {
       title: "Silk Road Caravan Experience",
       description:
         "Step into the ancient trade routes with a guided experience through the desert, exploring the lives of Silk Road merchants.",
-      image: "../src/assets/images/event1.jpg", 
+      image: event1,
       category: "Immersive Tour",
       date: "Various dates",
       price: "Free",
@@ -25,7 +29,7 @@ const Exhibitions = () => {
       title: "Digital Dome: Mural Reawakens",
       description:
         "Experience the magic of Dunhuang murals through a 360° immersive dome projection with sound and light storytelling.",
-      image: "../src/assets/images/event2.jpg",
+      image: event2,
       category: "Multimedia Show",
       date: "3 May 2025",
       price: "Free",
@@ -35,7 +39,7 @@ const Exhibitions = () => {
       title: "Celestial Rhythms: Dunhuang Dance",
       description:
         "A captivating dance performance inspired by the flying apsaras and musical motifs of Dunhuang mural art.",
-      image: "../src/assets/images/event3.jpg",
+      image: event3,
       category: "Performance",
       date: "25 May 2025",
       price: "Free",
