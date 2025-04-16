@@ -52,7 +52,6 @@ const ArchitectureMuralsPage = () => {
   return (
     <div className="murals-page">
       <Navbar />
-
       <div
         className="mural-hero"
         style={{ backgroundImage: `url(${architectureBanner})` }}

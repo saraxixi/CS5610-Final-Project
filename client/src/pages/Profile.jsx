@@ -132,7 +132,7 @@ const Profile = () => {
 
           {favorites.length > 0 && (
             <div style={{ marginTop: "40px", textAlign: "right" }}>
-              <h4>Total: £{total.toFixed(2)}</h4>
+              <h4>Total: ${total.toFixed(2)}</h4>
               <button onClick={handleCheckout} style={{
                 padding: "10px 20px",
                 backgroundColor: "#000",
