@@ -3,12 +3,14 @@ import "../styles/Studies.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
+import exhibitionBanner from "../assets/images/banner-two.png";
+import wenhua from "../assets/images/wenhua.png";
 const Studies = () => {
   return (
     <>
       <Navbar />
 
-      <div className="studies_banner">
+      <div className="studies_banner"  style={{ backgroundImage: `url(${exhibitionBanner})` }}>
         <h3>Studies & History</h3>
         <p>Ancient manuscripts and cultural treasures</p>
       </div>
@@ -18,7 +20,7 @@ const Studies = () => {
           The Emergence of Dunhuang Studies
         </h3>
         <div className="studies_main_txt">
-          <img className="wenhua" src="../src/assets/images/wenhua.png" alt="Cultural Illustration" />
+          <img className="wenhua" src={wenhua} alt="Cultural Illustration" />
           <p>
             On May 26, 1900 (Lunar Calendar), an unforgettable date, a hidden mural was discovered in the Mogao Grottoes
             of Dunhuang. The mural was filled with ancient manuscripts. Among the over 50,000 documents unearthed, about
