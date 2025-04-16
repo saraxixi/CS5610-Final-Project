@@ -14,7 +14,7 @@ const Artifacts = () => {
   useEffect(() => {
     const fetchTopArtifacts = async () => {
       try {
-        const res = await axios.get("http://localhost:4000/api/artifacts/top3");
+        const res = await axios.get("/api/artifacts/top3");
         setCarouselItems(res.data);
       } catch (err) {
         console.error("Error fetching artifacts:", err);

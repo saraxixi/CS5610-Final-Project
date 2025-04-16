@@ -51,7 +51,7 @@ const Exhibitions = () => {
   useEffect(() => {
     const fetchExhibitions = async () => {
       try {
-        const res = await axios.get("http://localhost:4000/api/exhibitions");
+        const res = await axios.get("/api/exhibitions");
         const formatted = res.data.map((ex) => ({
           title: ex.title,
           subtitle: ex.theme,
