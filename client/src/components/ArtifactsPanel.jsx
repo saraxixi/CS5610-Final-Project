@@ -18,7 +18,7 @@ const ArtifactsPanel = () => {
   const fetchArtifacts = async () => {
     try {
       setIsLoading(true);
-      const res = await axios.get("http://localhost:4000/api/artifacts");
+      const res = await axios.get("/api/artifacts");
       setArtifacts(res.data);
     } catch (error) {
       setMessage({ text: 'Error fetching artifacts', type: 'error' });
@@ -60,7 +60,7 @@ const ArtifactsPanel = () => {
         images: imageURL
       };
 
-      await axios.post("http://localhost:4000/api/artifacts", artifactData);
+      await axios.post("/api/artifacts", artifactData);
       setNewArtifact({ title: '', about: '', price: '', overview: '', images: null });
       fetchArtifacts();
       setMessage({ text: 'Artifact created successfully', type: 'success' });
@@ -95,7 +95,7 @@ const ArtifactsPanel = () => {
         images: imageURL
       };
 
-      await axios.put(`http://localhost:4000/api/artifacts/${editingArtifact._id}`, updatedData);
+      await axios.put(`/api/artifacts/${editingArtifact._id}`, updatedData);
       setEditingArtifact(null);
       fetchArtifacts();
       setMessage({ text: 'Artifact updated successfully', type: 'success' });
@@ -111,7 +111,7 @@ const ArtifactsPanel = () => {
     if (!window.confirm("Are you sure you want to delete this artifact?")) return;
     try {
       setIsLoading(true);
-      await axios.delete(`http://localhost:4000/api/artifacts/${id}`);
+      await axios.delete(`/api/artifacts/${id}`);
       await handleDeleteImageFromStorage(artifactToDelete?.images);
       setArtifacts(prev => prev.filter(a => a._id !== id));
       setMessage({ text: 'Artifact deleted', type: 'success' });

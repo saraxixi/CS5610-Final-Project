@@ -28,7 +28,7 @@ const Home = () => {
     console.log("userRole:", userRole);
     console.log("isAdmin:", isAdmin);
 
-    fetch('http://localhost:4000/api/artifacts')
+    fetch('/api/artifacts')
       .then(res => res.json())
       .then(data => setArtifacts(data))
       .catch(err => console.error(err));
@@ -37,7 +37,7 @@ const Home = () => {
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure you want to delete this artifact?")) return;
     try {
-      await fetch(`http://localhost:4000/api/artifacts/${id}`, {
+      await fetch(`/api/artifacts/${id}`, {
         method: 'DELETE'
       });
       setArtifacts(prev => prev.filter(item => item._id !== id));

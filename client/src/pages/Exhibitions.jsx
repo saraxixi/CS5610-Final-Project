@@ -80,7 +80,7 @@ const Exhibitions = () => {
         </div>
       </div>
       <div className="exhibitions-page">
-        <div className="container">
+        <div className="exhibition-container">
           <h1>Exhibitions and Events</h1>
 
           <div className="guide-tour">
