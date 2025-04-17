@@ -26,7 +26,7 @@ router.post('/', async (req, res) => {
     });
     
     const data = await response.json();
-    console.log('OpenRouter raw response:', data); // ✅ 添加这行
+    console.log('OpenRouter raw response:', data);
     let reply = data.choices?.[0]?.message?.content || 'Sorry, I have no response.';
     
     // If language is not English, translate the response
