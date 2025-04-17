@@ -18,7 +18,7 @@ router.post('/', async (req, res) => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        model: 'anthropic/claude-3-7-sonnet',
+        model: 'anthropic/claude-3-sonnet',
         messages: [
           { role: 'user', content: message }
         ]
@@ -26,6 +26,7 @@ router.post('/', async (req, res) => {
     });
     
     const data = await response.json();
+    console.log('OpenRouter raw response:', data);
     let reply = data.choices?.[0]?.message?.content || 'Sorry, I have no response.';
     
     // If language is not English, translate the response
