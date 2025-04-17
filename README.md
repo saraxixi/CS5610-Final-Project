@@ -86,6 +86,10 @@ Represents murals and their classification details.
 - `images` (Array of Strings): List of image URLs
 - `createdAt`: Creation date (timestamp)
 
+### Sample Murals Documents
+```json
+{"_id":{"$oid":"67fa272a014f83eae1208552"},"title":"Elegance of Tang","theme":"Fashion of the Tang Dynasty","image":"https://firebasestorage.googleapis.com/v0/b/dunhuang-c86fe.firebasestorage.app/o/exhibitionImages%2Fexhibition_1.jpg_1744447273788?alt=media&token=64d8f038-9e8c-4adc-9d49-7d322b243251","startDate":{"$date":{"$numberLong":"1745107200000"}},"endDate":{"$date":{"$numberLong":"1745712000000"}},"location":"ROOM 25","narrative":"The exhibition presents a diverse and enriching display featuring sketches, artistically reproduced garments, innovative fashion designs, videos, academic books, and cultural creative products. It is organized into six key sections: Compassion and Serenity: Bodhisattva Attire in Dunhuang, Pure Land Splendor: Heavenly Beings’ Attire in Dunhuang, Worldly Scenes: Secular Figures in Dunhuang Costume, Blooming Elegance: Patterns of Dunhuang Attire, Faithful Representation: Artistic Recreation of Dunhuang Clothing, and Innovation with Integrity: Contemporary Designs Inspired by Dunhuang Garments. Together, these sections offer a comprehensive view of Tang Dynasty clothing culture in Dunhuang, highlighting its rich cultural heritage and diverse decorative techniques. The exhibition serves as a valuable resource for scholars, designers, and creatives engaged in artistic practice and theoretical research.","createdAt":{"$date":{"$numberLong":"1744447274790"}},"updatedAt":{"$date":{"$numberLong":"1744447274790"}},"__v":{"$numberInt":"0"}}
+```
 ---
 
 ### 📜 Manuscripts Collection
