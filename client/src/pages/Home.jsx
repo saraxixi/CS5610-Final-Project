@@ -61,7 +61,7 @@ const Home = () => {
               It preserves 735 murals from the 4th to 11th centuries, over 3,000 painted sculptures, 45,000 square meters
               of murals, and five wooden structures from the Tang and Song dynasties.
             </p>
-            <Link to="/DunhuangMuseum" className="learn-more-btn">Learn More</Link>
+            <Link to="/studies" className="learn-more-btn">Learn More</Link>
           </div>
         </div>
       </div>
