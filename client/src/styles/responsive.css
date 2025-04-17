@@ -1,91 +1,349 @@
-/* Base styles for smallest devices (iPhone SE, etc.) */
-@media screen and (max-width: 375px) {
-    /* Adjustments for very small screens */
-    .container {
-      padding: 8px !important;
-    }
-    /* Add other overrides for smallest screens */
+/* responsive.css - Complete version */
+
+/* Reset viewport */
+@viewport {
+    width: device-width;
+    zoom: 1.0;
   }
   
-  /* Small phones (iPhone SE, Galaxy A51, etc.) */
-  @media screen and (min-width: 376px) and (max-width: 480px) {
-    /* Small phone adjustments */
-  }
-  
-  /* Medium phones (iPhone XR, iPhone 12 Pro, Pixel 7) */
-  @media screen and (min-width: 481px) and (max-width: 767px) {
-    /* Medium phone adjustments */
-  }
-  
-  /* Large phones (iPhone 14 Pro Max, Galaxy S20 Ultra) */
-  @media screen and (min-width: 768px) and (max-width: 896px) {
-    /* Large phone adjustments */
-  }
-  
-  /* Small tablets (iPad Mini, Surface Duo) */
-  @media screen and (min-width: 897px) and (max-width: 1023px) {
-    /* Small tablet adjustments */
-  }
-  
-  /* Large tablets (iPad Air, iPad Pro, Surface Pro) */
-  @media screen and (min-width: 1024px) and (max-width: 1366px) {
-    /* Large tablet adjustments */
-  }
-  
-  /* Foldables in folded state */
-  @media screen and (max-width: 586px) and (min-height: 850px) {
-    /* Folded Galaxy Z Fold, Asus Zenbook Fold */
-  }
-  
-  /* Foldables in unfolded state and larger devices */
-  @media screen and (min-width: 1367px) {
-    /* Unfolded foldable and desktop adjustments */
-  }
-  
-  /* Orientation-specific rules */
-  @media screen and (orientation: portrait) {
-    /* Portrait-specific rules */
-  }
-  
-  @media screen and (orientation: landscape) {
-    /* Landscape-specific rules */
-  }
-  
-  /* Shared responsive rules for all mobile devices */
-  @media screen and (max-width: 1023px) {
-    /* Common mobile & tablet overrides */
-    .desktop-only {
-      display: none !important;
+  /* Base mobile styles for all elements */
+  @media screen and (max-width: 1024px) {
+    /* Critical fix for vertical text in navigation */
+    * {
+      writing-mode: horizontal-tb !important;
+      text-orientation: mixed !important;
+      white-space: normal !important;
+      word-wrap: break-word !important;
     }
     
+    /* Container fixes */
+    .app-container, .container, div[class*="container"], 
+    section, article, main {
+      width: 100% !important;
+      max-width: 100% !important;
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+      padding-left: 15px !important;
+      padding-right: 15px !important;
+      box-sizing: border-box !important;
+      overflow-x: hidden !important;
+    }
+    
+    /* Image fixes */
     img, video {
       max-width: 100% !important;
       height: auto !important;
+      object-fit: cover !important;
     }
     
-    /* Navigation for mobile */
-    .main-nav {
-      /* Mobile navigation adjustments */
+    /* Fix banner and hero sections */
+    #banner, .banner-content, .mural-hero, .manuscript-hero {
+      height: auto !important;
+      min-height: 300px !important;
+      padding: 20px !important;
     }
     
-    /* Forms */
-    input, select, textarea {
-      font-size: 16px !important; /* Prevents iOS zoom on focus */
-    }
-    
-    /* Common layout adjustments */
-    .container {
+    /* Fix footer */
+    .footer {
       width: 100% !important;
-      padding: 10px !important;
+      margin-top: 20px !important;
+      padding: 20px 10px !important;
     }
     
-    /* Make multi-column layouts stack */
-    .row, .columns, .flex-container {
+    /* Fix navbar */
+    .navbar {
+      height: auto !important;
+      padding: 10px 0 !important;
+      position: relative !important;
+    }
+    
+    .navbar-container {
       flex-direction: column !important;
+      align-items: center !important;
+      width: 100% !important;
     }
     
-    .column, .col {
+    .navbar-menu ul {
+      flex-direction: row !important;
+      flex-wrap: wrap !important;
+      justify-content: center !important;
+      gap: 15px !important;
+      padding: 10px 0 !important;
+    }
+    
+    .navbar-menu ul li {
+      font-size: 16px !important;
+    }
+    
+    .navbar-right {
+      margin-top: 10px !important;
+    }
+    
+    /* Fix category cards (mural cards) */
+    .theme-cards, .creation-cards, .murals-grid {
+      display: flex !important;
+      flex-direction: row !important;
+      flex-wrap: wrap !important;
+      justify-content: center !important;
+      gap: 15px !important;
+    }
+    
+    .theme-card, .creation-card, .mural-card {
+      width: 45% !important;
+      margin: 10px !important;
+    }
+    
+    /* Fix text in vertical category items */
+    .mural-categories a, .Animals, .Dance, .Architecture, .Flying, 
+    [class*="category"], [class*="Category"] {
+      writing-mode: horizontal-tb !important;
+      text-orientation: mixed !important;
+    }
+    
+    /* Fix search box */
+    .search-box {
       width: 100% !important;
-      margin: 10px 0 !important;
+      max-width: 200px !important;
+    }
+    
+    /* Fix star ratings display */
+    .mural-rating, .star, .filled, 
+    .star.filled, .mural-rating .star, .mural-rating .star.filled,
+    [class*="rating"], [class*="stars"] {
+      display: inline-block !important;
+      flex-direction: row !important;
+      writing-mode: horizontal-tb !important;
+      line-height: 1 !important;
+      white-space: nowrap !important;
+      margin-right: 2px !important;
+    }
+    
+    /* Ensure stars display side-by-side */
+    .mural-rating .star, .rating .star, .star {
+      display: inline-block !important;
+      font-size: 18px !important;
+      color: #ffc107 !important;
+      margin-right: 2px !important;
+      line-height: 1 !important;
+    }
+  }
+  
+  /* Special fix for the specific issues we're seeing */
+  @media screen and (max-width: 768px) {
+    /* Fix the navbar text that appears vertical */
+    .navbar-menu ul li a, .navbar-menu ul li,
+    nav a, header a, .nav-item, .nav-link {
+      writing-mode: horizontal-tb !important;
+      text-orientation: mixed !important;
+      display: inline-block !important;
+      margin: 5px !important;
+    }
+    
+    /* Ensure the murals display properly */
+    .mural-card, .mural-categories {
+      display: flex !important;
+      flex-direction: column !important;
+      width: 100% !important;
+      max-width: 300px !important;
+      writing-mode: horizontal-tb !important;
+    }
+    
+    /* Ensure images display properly */
+    .mural-image-container, .manuscript-image-container {
+      width: 100% !important;
+      height: auto !important;
+      max-height: 200px !important;
+    }
+    
+    /* Make navbar fully visible and properly styled */
+    .navbar, nav, header {
+      position: relative !important;
+      width: 100% !important;
+      padding: 10px 0 !important;
+      height: auto !important;
+      z-index: 100 !important;
+    }
+    
+    /* Ensure navbar content is properly displayed */
+    .navbar-container, .nav-container {
+      flex-direction: column !important;
+      width: 100% !important;
+      padding: 0 10px !important;
+    }
+    
+    /* Fix navigation menu and links */
+    .navbar-menu, .nav-menu {
+      width: 100% !important;
+    }
+    
+    .navbar-menu ul, .nav-menu ul {
+      display: flex !important;
+      flex-direction: row !important;
+      flex-wrap: wrap !important;
+      justify-content: center !important;
+      width: 100% !important;
+      padding: 10px 0 !important;
+      gap: 10px !important;
+    }
+    
+    .navbar-menu ul li, .nav-menu ul li {
+      width: auto !important;
+      margin: 5px !important;
+    }
+    
+    /* Ensure text is visible and doesn't get cut off */
+    p, h1, h2, h3, h4, h5, h6, span, a, div, section {
+      overflow: visible !important;
+      text-overflow: clip !important;
+      white-space: normal !important;
+      word-break: break-word !important;
+      word-wrap: break-word !important;
+      max-width: 100% !important;
+    }
+    
+    /* Only apply display:block to elements that need it */
+    p, h1, h2, h3, h4, h5, h6, section {
+      display: block !important;
+    }
+    
+    /* Allow inline display for elements that should remain inline */
+    span, a, .star, .filled, .mural-rating .star {
+      display: inline-block !important;
+    }
+    
+    /* Fix intro text sections on all pages */
+    .intro-text, .page-intro, .hero-content, .description, 
+    [class*="description"], [class*="intro"], [class*="content"] {
+      display: block !important;
+      width: 100% !important;
+      padding: 15px !important;
+      box-sizing: border-box !important;
+      white-space: normal !important;
+    }
+    
+    /* Fix search box and login */
+    .search-box, input[type="search"] {
+      width: 100% !important;
+      max-width: 200px !important;
+      margin: 10px auto !important;
+    }
+    
+    .login-btn, .profile-btn, .admin-button {
+      margin: 10px auto !important;
+      display: block !important;
+      text-align: center !important;
+    }
+    
+    /* Ensure studies page content is visible */
+    .studies-container, .study-content, .study-items {
+      width: 100% !important;
+      padding: 15px !important;
+      overflow: visible !important;
+    }
+    
+    /* Fix animal murals page */
+    .animal-murals, .mural-container, .murals-container {
+      width: 100% !important;
+      padding: 15px !important;
+      overflow: visible !important;
+    }
+    
+    /* Make sure content areas have proper padding from screen edges */
+    .container, .content, .app-container, main, section, article {
+      padding-left: 15px !important;
+      padding-right: 15px !important;
+      box-sizing: border-box !important;
+    }
+    
+    /* Ensure buttons and interactive elements are easy to tap */
+    button, .btn, [class*="button"], [class*="Button"], a[role="button"] {
+      min-height: 44px !important;
+      min-width: 44px !important;
+      padding: 10px !important;
+      margin: 5px !important;
+    }
+    
+    /* Specific fix for star ratings */
+    .mural-rating, .star-rating, .rating {
+      display: flex !important;
+      flex-direction: row !important;
+      align-items: center !important;
+      flex-wrap: nowrap !important;
+      margin: 5px 0 !important;
+    }
+    
+    /* Fix star icons */
+    .star, .star.filled, 
+    .rating-star, .star-icon, 
+    [class*="star"], [class*="Star"] {
+      display: inline-block !important;
+      width: auto !important;
+      height: auto !important;
+      font-size: 16px !important;
+      margin-right: 2px !important; 
+      color: #ffc107 !important;
+    }
+  }
+  
+  /* Further adjustments for smaller screens */
+  @media screen and (max-width: 480px) {
+    /* Single column layouts for small screens */
+    .theme-card, .creation-card, .mural-card {
+      width: 100% !important;
+    }
+    
+    /* Reduce font sizes */
+    h1 {
+      font-size: 24px !important;
+      line-height: 1.3 !important;
+    }
+    
+    h2 {
+      font-size: 20px !important;
+      line-height: 1.3 !important;
+    }
+    
+    /* Adjust navbar font size */
+    .navbar-menu ul li {
+      font-size: 14px !important;
+    }
+    
+    /* Stack navbar elements */
+    .navbar-menu ul {
+      gap: 10px !important;
+    }
+    
+    /* Banner adjustments */
+    .banner-text h1 {
+      font-size: 28px !important;
+      margin-bottom: 20px !important;
+    }
+    
+    .learn-more-btn {
+      padding: 8px 16px !important;
+      font-size: 16px !important;
+    }
+    
+    /* Reduce padding to maximize content space */
+    .container, .content, .app-container, main, section, article {
+      padding-left: 10px !important;
+      padding-right: 10px !important;
+    }
+    
+    /* Make navbar more compact */
+    .navbar-menu ul li a, .nav-menu ul li a {
+      font-size: 14px !important;
+      padding: 8px !important;
+    }
+    
+    /* Ensure text is readable */
+    p, li, span {
+      font-size: 16px !important;
+      line-height: 1.5 !important;
+    }
+    
+    /* Fix star ratings for very small screens */
+    .star, .star.filled {
+      font-size: 14px !important;
     }
   }
