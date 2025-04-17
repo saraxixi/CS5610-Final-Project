@@ -42,8 +42,6 @@ Create account and copy paste the OPENROUTER_API_KEY to .env
 
 This project uses MongoDB schema modeling. Below are the collections and their corresponding fields based on the implemented Mongoose models.
 
----
-
 ### 🏺 Artifacts Collection
 
 Stores artifact product information.
@@ -56,6 +54,21 @@ Stores artifact product information.
 - `images` (String): URL of the artifact image
 - `createdAt` / `updatedAt`: Automatically generated timestamps
 
+### Sample Artifacts Documents
+
+```json
+{
+    "_id":{"$oid":"67fc74457a843b182e9675ac"},
+    "title":"Colorful Lotus Ceramic Tea Cups",
+    "about":"These ceramic cups draw inspiration from ancient temple pottery, blending modern color with classic lotus flower motifs. A serene addition to any tea ritual or decorative shelf.",
+    "price":{"$numberDouble":"45.99"},
+    "overview":"Elegant tea cups crafted with vibrant matte glaze and lotus embossing.",
+    "images":"https://firebasestorage.googleapis.com/v0/b/dunhuang-c86fe.firebasestorage.app/o/artifacts%2Fcarousel2.png_1744598085021?alt=media&token=eda344a7-debf-4caa-bd61-aac530e0f65c",
+    "createdAt":{"$date":{"$numberLong":"1744598085923"}},
+    "updatedAt":{"$date":{"$numberLong":"1744598085923"}},
+    "__v":{"$numberInt":"0"}
+}
+```
 ---
 
 ### 🖼️ Murals Collection
@@ -135,6 +148,7 @@ Stores user authentication and profile information.
   "createdAt": "2025-04-02T05:06:54.753Z",
   "updatedAt": "2025-04-02T05:06:54.753Z"
 }
+```
 
 #### Regular User
 ```json
@@ -148,6 +162,7 @@ Stores user authentication and profile information.
   "createdAt": "2025-04-03T08:52:08.224Z",
   "updatedAt": "2025-04-03T08:52:08.224Z"
 }
+```
 
 ## CRUD Operations
 - Create
