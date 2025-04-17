@@ -88,7 +88,16 @@ Represents murals and their classification details.
 
 ### Sample Murals Documents
 ```json
-{"_id":{"$oid":"67fb02f1582e2a62fe8702c9"},"title":"Crouching Tiger","period":"Northern Wei Dynasty (386-534 CE)","description":"Crouching tiger depicted on the south wall of the main chamber in Mogao mural 285. The dynamic posture and naturalistic rendering of the tiger shows the artistic mastery of Northern Wei artists.","category":"mural","subcategory":"animal","rating":{"$numberInt":"5"},"location":"South wall of the main chamber, Mogao Cave 285","images":["https://firebasestorage.googleapis.com/v0/b/dunhuang-2e99c.firebasestorage.app/o/murals%2Fanimal%2Ftiger.png?alt=media&token=6b576700-d2fa-47a7-99bb-f5730179b780"]}
+{
+    "_id":{"$oid":"67fb02f1582e2a62fe8702c9"},
+    "title":"Crouching Tiger",
+    "period":"Northern Wei Dynasty (386-534 CE)",
+    "description":"Crouching tiger depicted on the south wall of the main chamber in Mogao mural 285. The dynamic posture and naturalistic rendering of the tiger shows the artistic mastery of Northern Wei artists.",
+    "category":"mural",
+    "subcategory":"animal",
+    "rating":{"$numberInt":"5"},"location":"South wall of the main chamber, Mogao Cave 285",
+    "images":["https://firebasestorage.googleapis.com/v0/b/dunhuang-2e99c.firebasestorage.app/o/murals%2Fanimal%2Ftiger.png?alt=media&token=6b576700-d2fa-47a7-99bb-f5730179b780"]
+}
 ```
 ---
 
@@ -106,6 +115,19 @@ Contains ancient manuscript records.
 - `images` (Array of Strings): List of image URLs
 - `createdAt`: Timestamp of creation
 
+### Sample Manuscripts documents
+```json
+{
+    "_id":{"$oid":"67fb02f1582e2a62fe8702c3"},
+    "title":"Dunhuang Manuscripts",
+    "period":"Northern Wei to Five Dynasties",
+    "description":"Dunhuang manuscripts are treasures among ancient Chinese texts. After the discovery of manuscript scrolls in the Dunhuang Library mural in 1900, the long-hidden Dunhuang documents were scattered, and many complete manuscript scrolls were looted by foreign explorers. It wasn't until 1910 that the Qing Dynasty's Ministry of Education transported the remaining portions to Beijing.",
+    "category":"manuscript",
+    "subcategory":"buddhist text",
+    "rating":{"$numberInt":"5"},
+    "images":["https://firebasestorage.googleapis.com/v0/b/dunhuang-2e99c.firebasestorage.app/o/manuscripts%2Fdunhuang-manuscript.png?alt=media&token=a5c82e5c-b3a3-4f97-a929-d21c6aa0ca94"]
+}
+```
 ---
 
 ### 🖥️ Digital Exhibitions Collection
@@ -121,6 +143,20 @@ Manages digital exhibition data.
 - `narrative` (String): Exhibition introduction or narrative
 - `createdAt` / `updatedAt`: Timestamps
 
+### Sample Exhibitions Documents
+```json
+{
+    "_id":{"$oid":"67fa272a014f83eae1208552"},
+    "title":"Elegance of Tang",
+    "theme":"Fashion of the Tang Dynasty",
+    "image":"https://firebasestorage.googleapis.com/v0/b/dunhuang-c86fe.firebasestorage.app/o/exhibitionImages%2Fexhibition_1.jpg_1744447273788?alt=media&token=64d8f038-9e8c-4adc-9d49-7d322b243251",
+    "startDate":{"$date":{"$numberLong":"1745107200000"}},
+    "endDate":{"$date":{"$numberLong":"1745712000000"}},
+    "location":"ROOM 25",
+    "narrative":"The exhibition presents a diverse and enriching display featuring sketches, artistically reproduced garments, innovative fashion designs, videos, academic books, and cultural creative products. It is organized into six key sections: Compassion and Serenity: Bodhisattva Attire in Dunhuang, Pure Land Splendor: Heavenly Beings’ Attire in Dunhuang, Worldly Scenes: Secular Figures in Dunhuang Costume, Blooming Elegance: Patterns of Dunhuang Attire, Faithful Representation: Artistic Recreation of Dunhuang Clothing, and Innovation with Integrity: Contemporary Designs Inspired by Dunhuang Garments. Together, these sections offer a comprehensive view of Tang Dynasty clothing culture in Dunhuang, highlighting its rich cultural heritage and diverse decorative techniques. The exhibition serves as a valuable resource for scholars, designers, and creatives engaged in artistic practice and theoretical research.","createdAt":{"$date":{"$numberLong":"1744447274790"}},
+    "updatedAt":{"$date":{"$numberLong":"1744447274790"}},
+    "__v":{"$numberInt":"0"}}
+```
 ---
 
 ### 👤 Users Collection
