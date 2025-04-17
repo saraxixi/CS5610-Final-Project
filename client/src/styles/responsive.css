@@ -1,4 +1,4 @@
-/* responsive.css - Complete version */
+/* responsive.css - Complete version with exhibition card fixes */
 
 /* Reset viewport */
 @viewport {
@@ -125,6 +125,88 @@
       color: #ffc107 !important;
       margin-right: 2px !important;
       line-height: 1 !important;
+    }
+    
+    /* FIX FOR EXHIBITION CARDS WITH VERTICAL TEXT */
+    .exhibition-card, .event-card, .tour-card,
+    [class*="exhibition-card"], [class*="event-card"], [class*="tour-card"] {
+      display: flex !important;
+      flex-direction: row !important;
+      width: 100% !important;
+      height: 150px !important;
+      margin: 15px 0 !important;
+      background-color: #fff !important;
+      border-radius: 8px !important;
+      overflow: hidden !important;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1) !important;
+    }
+    
+    /* Exhibition card image container */
+    .exhibition-card .image-container, .event-card .image-container,
+    [class*="exhibition"] .image-container, [class*="event"] .image-container,
+    [class*="tour"] .image-container {
+      width: 40% !important;
+      height: 100% !important;
+      overflow: hidden !important;
+    }
+    
+    /* Exhibition card image */
+    .exhibition-card img, .event-card img, .tour-card img,
+    [class*="exhibition"] img, [class*="event"] img, [class*="tour"] img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+    }
+    
+    /* Exhibition card text container */
+    .exhibition-card .text-container, .event-card .text-container,
+    [class*="exhibition"] .text-container, [class*="event"] .text-container,
+    [class*="exhibition"] .card-content, [class*="event"] .card-content,
+    [class*="tour"] .text-container, [class*="tour"] .card-content {
+      width: 60% !important;
+      padding: 15px !important;
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: space-between !important;
+    }
+    
+    /* Exhibition card title */
+    .exhibition-card h3, .event-card h3, .tour-card h3,
+    [class*="exhibition"] h3, [class*="event"] h3, [class*="tour"] h3,
+    [class*="exhibition"] .title, [class*="event"] .title, [class*="tour"] .title {
+      font-size: 18px !important;
+      margin: 0 0 10px 0 !important;
+      writing-mode: horizontal-tb !important;
+      text-orientation: mixed !important;
+      width: 100% !important;
+      color: #333 !important;
+    }
+    
+    /* Exhibition card description */
+    .exhibition-card p, .event-card p, .tour-card p,
+    [class*="exhibition"] p, [class*="event"] p, [class*="tour"] p,
+    [class*="exhibition"] .description, [class*="event"] .description, 
+    [class*="tour"] .description {
+      font-size: 14px !important;
+      color: #666 !important;
+      margin: 0 !important;
+      writing-mode: horizontal-tb !important;
+      text-orientation: mixed !important;
+      width: 100% !important;
+    }
+    
+    /* Free badge */
+    .free-badge, [class*="badge"], [class*="free"] {
+      position: absolute !important;
+      top: 10px !important;
+      right: 10px !important;
+      background-color: white !important;
+      color: #333 !important;
+      font-weight: bold !important;
+      padding: 5px 10px !important;
+      border-radius: 15px !important;
+      font-size: 14px !important;
+      z-index: 10 !important;
     }
   }
   
@@ -283,73 +365,31 @@
       margin-right: 2px !important; 
       color: #ffc107 !important;
     }
-  }
-  
-  /* Further adjustments for smaller screens */
-  @media screen and (max-width: 480px) {
-    /* Single column layouts for small screens */
-    .theme-card, .creation-card, .mural-card {
-      width: 100% !important;
+    
+    /* ADDITIONAL FIXES FOR EXHIBITION CARDS ON MOBILE */
+    @media screen and (max-width: 480px) {
+      .exhibition-card, .event-card, .tour-card,
+      [class*="exhibition-card"], [class*="event-card"], [class*="tour-card"] {
+        flex-direction: column !important;
+        height: auto !important;
+        max-height: none !important;
+      }
+      
+      .exhibition-card .image-container, .event-card .image-container,
+      [class*="exhibition"] .image-container, [class*="event"] .image-container,
+      [class*="tour"] .image-container {
+        width: 100% !important;
+        height: 150px !important;
+      }
+      
+      .exhibition-card .text-container, .event-card .text-container,
+      [class*="exhibition"] .text-container, [class*="event"] .text-container,
+      [class*="exhibition"] .card-content, [class*="event"] .card-content,
+      [class*="tour"] .text-container, [class*="tour"] .card-content {
+        width: 100% !important;
+      }
     }
     
-    /* Reduce font sizes */
-    h1 {
-      font-size: 24px !important;
-      line-height: 1.3 !important;
-    }
-    
-    h2 {
-      font-size: 20px !important;
-      line-height: 1.3 !important;
-    }
-    
-    /* Adjust navbar font size */
-    .navbar-menu ul li {
-      font-size: 14px !important;
-    }
-    
-    /* Stack navbar elements */
-    .navbar-menu ul {
-      gap: 10px !important;
-    }
-    
-    /* Banner adjustments */
-    .banner-text h1 {
-      font-size: 28px !important;
-      margin-bottom: 20px !important;
-    }
-    
-    .learn-more-btn {
-      padding: 8px 16px !important;
-      font-size: 16px !important;
-    }
-    
-    /* Reduce padding to maximize content space */
-    .container, .content, .app-container, main, section, article {
-      padding-left: 10px !important;
-      padding-right: 10px !important;
-    }
-    
-    /* Make navbar more compact */
-    .navbar-menu ul li a, .nav-menu ul li a {
-      font-size: 14px !important;
-      padding: 8px !important;
-    }
-    
-    /* Ensure text is readable */
-    p, li, span {
-      font-size: 16px !important;
-      line-height: 1.5 !important;
-    }
-    
-    /* Fix star ratings for very small screens */
-    .star, .star.filled {
-      font-size: 14px !important;
-    }
-  }
-
-  /* Add these specific fixes for the mural page headings and dropdown menus */
-@media screen and (max-width: 1024px) {
     /* Fix for mural page headers and descriptions */
     .mural-hero-content, .mural-description, .page-title, .page-subtitle,
     [class*="hero-content"], [class*="description"], [class*="page-title"],
@@ -425,10 +465,7 @@
       color: #333 !important;
       border-radius: 4px !important;
     }
-  }
-  
-  /* Special fix for specifically vertical elements we're still seeing */
-  @media screen and (max-width: 768px) {
+    
     /* Target the exact vertical text elements seen in your screenshots */
     .Animals, .Dance, .category-tab, [class*="category-nav"],
     .vertical-text, .vertical-label, [class*="vertical"] {
@@ -444,27 +481,125 @@
       padding: 5px !important;
     }
     
-    /* Ensure all text is horizontally aligned */
-    * {
+    /* Fix specifically for tour cards text */
+    .tour-title, .guided-tour, .tour-name, .tour-description,
+    .digital-dome, .celestial-rhythms, .silk-road,
+    [class*="tour-title"], [class*="tour-name"], [class*="tour-description"] {
       writing-mode: horizontal-tb !important;
       text-orientation: mixed !important;
+      display: block !important;
+      white-space: normal !important;
+      word-wrap: break-word !important;
+      width: 100% !important;
+      text-align: left !important;
+      padding: 0 !important;
+      margin: 5px 0 !important;
+      line-height: 1.4 !important;
+    }
+  }
+  
+  /* Further adjustments for smaller screens */
+  @media screen and (max-width: 480px) {
+    /* Single column layouts for small screens */
+    .theme-card, .creation-card, .mural-card {
+      width: 100% !important;
     }
     
-    /* Ensure proper display of dropdown menus */
-    .dropdown-menu, .dropdown ul, .navbar-menu .dropdown-menu {
+    /* Reduce font sizes */
+    h1 {
+      font-size: 24px !important;
+      line-height: 1.3 !important;
+    }
+    
+    h2 {
+      font-size: 20px !important;
+      line-height: 1.3 !important;
+    }
+    
+    /* Adjust navbar font size */
+    .navbar-menu ul li {
+      font-size: 14px !important;
+    }
+    
+    /* Stack navbar elements */
+    .navbar-menu ul {
+      gap: 10px !important;
+    }
+    
+    /* Banner adjustments */
+    .banner-text h1 {
+      font-size: 28px !important;
+      margin-bottom: 20px !important;
+    }
+    
+    .learn-more-btn {
+      padding: 8px 16px !important;
+      font-size: 16px !important;
+    }
+    
+    /* Reduce padding to maximize content space */
+    .container, .content, .app-container, main, section, article {
+      padding-left: 10px !important;
+      padding-right: 10px !important;
+    }
+    
+    /* Make navbar more compact */
+    .navbar-menu ul li a, .nav-menu ul li a {
+      font-size: 14px !important;
+      padding: 8px !important;
+    }
+    
+    /* Ensure text is readable */
+    p, li, span {
+      font-size: 16px !important;
+      line-height: 1.5 !important;
+    }
+    
+    /* Fix star ratings for very small screens */
+    .star, .star.filled {
+      font-size: 14px !important;
+    }
+    
+    /* Fix exhibition cards for very small screens */
+    .exhibition-card, .event-card, .tour-card {
+      margin-bottom: 20px !important;
+    }
+  }
+
+  /* Add these specific fixes for dropdown menus */
+@media screen and (max-width: 1024px) {
+    /* Hide dropdown menus by default */
+    .dropdown-menu, .dropdown ul, .navbar-menu .dropdown-menu, 
+    [class*="dropdown-menu"], [class*="dropdown"] ul {
       display: none !important; /* Hide by default */
+      position: absolute !important;
+      visibility: hidden !important;
+      opacity: 0 !important;
     }
     
-    /* Show dropdown when parent is hovered/clicked */
-    .dropdown:hover .dropdown-menu, .dropdown.active .dropdown-menu {
-      display: flex !important;
-      flex-direction: column !important;
+    /* Only show dropdown when parent is hovered or clicked */
+    .dropdown:hover .dropdown-menu, 
+    .dropdown:focus .dropdown-menu,
+    .dropdown:focus-within .dropdown-menu,
+    .dropdown.active .dropdown-menu,
+    .dropdown.show .dropdown-menu,
+    .dropdown.open .dropdown-menu {
+      display: block !important;
       position: absolute !important;
+      visibility: visible !important;
+      opacity: 1 !important;
       top: 100% !important;
       left: 0 !important;
       width: 200px !important;
-      background: white !important;
-      box-shadow: 0 3px 6px rgba(0,0,0,0.2) !important;
       z-index: 1000 !important;
+    }
+    
+    /* Ensure dropdown items within are properly styled when shown */
+    .dropdown:hover .dropdown-menu li,
+    .dropdown:focus .dropdown-menu li,
+    .dropdown.active .dropdown-menu li,
+    .dropdown.show .dropdown-menu li {
+      display: block !important;
+      width: 100% !important;
     }
   }
