@@ -17,7 +17,7 @@ export async function translateText(text, targetLanguage) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        model: 'openai/gpt-3.5-turbo',
+        model: 'anthropic/claude-3-7-sonnet-20240229',
         messages: [
           { 
             role: 'user', 

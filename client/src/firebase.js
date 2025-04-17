@@ -4,13 +4,13 @@ import { getStorage } from "firebase/storage";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyAENHC4a4yiPf9XkP04_qgE09Osi5muREw",
-  authDomain: "dunhuang-c86fe.firebaseapp.com",
-  projectId: "dunhuang-c86fe",
-  storageBucket: "dunhuang-c86fe.firebasestorage.app",
-  messagingSenderId: "58152294971",
-  appId: "1:58152294971:web:5f7fb3147abcac436b1a1e",
-  measurementId: "G-N25BQFYWDL"
+  apiKey: "AIzaSyBhnkDeNHhAAxbr9TP-V8hLG2GC6wgSryw",
+  authDomain: "dunhuang-2e99c.firebaseapp.com",
+  projectId: "dunhuang-2e99c",
+  storageBucket: "dunhuang-2e99c.appspot.com", // Changed from .firebasestorage.app to .appspot.com
+  messagingSenderId: "211218442087",
+  appId: "1:211218442087:web:df82b4866b4e16a39031c2",
+  measurementId: "G-NR34JBBP1T"
 };
 
 // Initialize Firebase
