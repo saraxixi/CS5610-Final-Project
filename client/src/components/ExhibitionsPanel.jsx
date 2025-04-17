@@ -17,7 +17,7 @@ const ExhibitionsPanel = () => {
   const fetchExhibitions = async () => {
     try {
       setIsLoading(true);
-      const res = await axios.get("http://localhost:4000/api/exhibitions");
+      const res = await axios.get("/api/exhibitions");
       setExhibitions(res.data);
     } catch (error) {
       setMessage({ text: 'Error fetching exhibitions', type: 'error' });
@@ -60,7 +60,7 @@ const ExhibitionsPanel = () => {
         narrative: newExhibition.narrative.trim()
       };
 
-      await axios.post("http://localhost:4000/api/exhibitions", data);
+      await axios.post("/api/exhibitions", data);
       setNewExhibition({ title: '', theme: '', image: null, startDate: '', endDate: '', location: '', narrative: '' });
       fetchExhibitions();
       setMessage({ text: 'Exhibition created successfully', type: 'success' });
@@ -96,7 +96,7 @@ const ExhibitionsPanel = () => {
         narrative: editingExhibition.narrative.trim()
       };
 
-      await axios.put(`http://localhost:4000/api/exhibitions/${editingExhibition._id}`, updatedData);
+      await axios.put(`/api/exhibitions/${editingExhibition._id}`, updatedData);
       setEditingExhibition(null);
       fetchExhibitions();
       setMessage({ text: 'Exhibition updated successfully', type: 'success' });
@@ -112,7 +112,7 @@ const ExhibitionsPanel = () => {
     if (!window.confirm("Are you sure you want to delete this exhibition?")) return;
     try {
       setIsLoading(true);
-      await axios.delete(`http://localhost:4000/api/exhibitions/${id}`);
+      await axios.delete(`/api/exhibitions/${id}`);
       await handleDeleteImageFromStorage(exhibitionToDelete?.image);
       setExhibitions(prev => prev.filter(e => e._id !== id));
       setMessage({ text: 'Exhibition deleted successfully', type: 'success' });

@@ -14,7 +14,7 @@ const ArtifactDetail = () => {
 
   const handleAddToFavorites = async () => {
     try {
-      await axios.post(`http://localhost:4000/api/users/${userId}/favorites`, {
+      await axios.post(`/api/users/${userId}/favorites`, {
         artifactId: artifact._id
       });
       alert("Saved to favorites!");
@@ -25,7 +25,7 @@ const ArtifactDetail = () => {
   };
 
   useEffect(() => {
-    axios.get(`http://localhost:4000/api/artifacts/${id}`)
+    axios.get(`/api/artifacts/${id}`)
       .then(res => setArtifact(res.data))
       .catch(err => console.error(err));
   }, [id]);
