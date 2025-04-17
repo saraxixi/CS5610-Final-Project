@@ -14,9 +14,14 @@ router.post('/', async (req, res) => {
 });
 
 // Read all
-router.get('/', async (req, res) => {
+router.get("/", async (req, res) => {
   try {
-    const artifacts = await Artifact.find();
+    const { sort } = req.query;
+    let query = Artifact.find();
+    if (sort === "popular") {
+      query = query.sort({ popularity: -1 });
+    }
+    const artifacts = await query.exec();
     res.json(artifacts);
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -65,6 +70,7 @@ router.delete('/:id', async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
+
 
 
 

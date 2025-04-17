@@ -10,33 +10,41 @@ import ArtifactCard from "../components/ArtifactCard";
 
 const Artifacts = () => {
   const [carouselItems, setCarouselItems] = useState([]);
-  const [allArtifacts, setAllArtifacts] = useState([]);
+  const [allArtifacts, setAllArtifacts]   = useState([]);
+  const [sortOption, setSortOption]       = useState("default");
 
   useEffect(() => {
-    const fetchTopArtifacts = async () => {
+    async function fetchTop3() {
       try {
         const res = await axios.get("/api/artifacts/top3");
         setCarouselItems(res.data);
       } catch (err) {
-        console.error("Error fetching artifacts:", err);
+        console.error("Error fetching top3 artifacts:", err);
       }
-    };
+    }
+    fetchTop3();
+  }, []);
 
-    const fetchAllArtifacts = async () => {
+  useEffect(() => {
+    async function fetchList() {
       try {
-        const res = await axios.get("/api/artifacts");
+        const url =
+          sortOption === "default"
+            ? "/api/artifacts"
+            : `/api/artifacts?sort=${sortOption}`;
+        const res = await axios.get(url);
         setAllArtifacts(res.data);
       } catch (err) {
-        console.error("Error fetching all artifacts:", err);
+        console.error("Error fetching artifacts:", err);
       }
-    };
-    fetchAllArtifacts();
-    fetchTopArtifacts();
-  }, []);
+    }
+    fetchList();
+  }, [sortOption]);
 
   return (
     <>
       <Navbar />
+
       {/* Banner Section */}
       <div className="artifact-banner">
         <div className="artifact-feature">
@@ -58,41 +66,55 @@ const Artifacts = () => {
         <Carousel
           showThumbs={false}
           showArrows={false}
-          showIndicators={true}
+          showIndicators
           showStatus={false}
           autoPlay
           infiniteLoop
           interval={5000}
           swipeable
         >
-          {carouselItems.map((item, index) => (
-            <div className="carousel-slide" key={index}>
-              <img src={item.images} alt={`Artifact ${index + 1}`} />
+          {carouselItems.map((item, idx) => (
+            <div className="carousel-slide" key={idx}>
+              <img src={item.images} alt={`Artifact ${idx + 1}`} />
               <div className="carousel-overlay">
                 <h2>{item.title}</h2>
-                <p>{item.overview || "Discover more from Dunhuang's legacy."}</p>
+                <p>{item.overview ?? "Discover more from Dunhuang's legacy."}</p>
               </div>
             </div>
           ))}
         </Carousel>
       </div>
 
+      {/* Sort Control */}
+      <div style={{ padding: "1rem", textAlign: "right" }}>
+        <label>
+          Sort by:&nbsp;
+          <select
+            value={sortOption}
+            onChange={(e) => setSortOption(e.target.value)}
+          >
+            <option value="default">Default</option>
+            <option value="popular">Most Popular</option>
+          </select>
+        </label>
+      </div>
+
       {/* Artifact Cards Section */}
       <div className="artifact-cards">
         <h2>Explore Our Artifacts</h2>
         <div className="artifact-card-container">
-          {allArtifacts.map((item, index) => (
+          {allArtifacts.map((item) => (
             <ArtifactCard
-              key={index}
+              key={item._id}
               id={item._id}
               image={item.images}
               title={item.title}
               buttonText="View Details"
-              onClick={() => console.log(`Clicked on ${item.title}`)}
             />
           ))}
         </div>
       </div>
+
       <Footer />
     </>
   );
