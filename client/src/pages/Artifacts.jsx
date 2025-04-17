@@ -11,6 +11,7 @@ import ArtifactCard from "../components/ArtifactCard";
 const Artifacts = () => {
   const [carouselItems, setCarouselItems] = useState([]);
   const [allArtifacts, setAllArtifacts] = useState([]);
+  const [sortOption, setSortOption] = useState("default");
 
   useEffect(() => {
     const fetchTopArtifacts = async () => {
@@ -34,6 +35,30 @@ const Artifacts = () => {
     fetchTopArtifacts();
   }, []);
 
+  useEffect(() => {
+    if (allArtifacts.length > 0) {
+      sortArtifacts(sortOption);
+    }
+  }, [sortOption]);
+  
+  const sortArtifacts = (option) => {
+    const sorted = [...allArtifacts];
+    switch (option) {
+      case "price":
+        sorted.sort((a, b) => a.price - b.price);
+        break;
+      case "purchaseCount":
+        sorted.sort((a, b) => b.purchaseCount - a.purchaseCount);
+        break;
+      case "createdAt":
+        sorted.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+        break;
+      default:
+        return; // do nothing
+    }
+    setAllArtifacts(sorted);
+  };
+  
   return (
     <>
       <Navbar />
@@ -79,7 +104,19 @@ const Artifacts = () => {
 
       {/* Artifact Cards Section */}
       <div className="artifact-cards">
-        <h2>Explore Our Artifacts</h2>
+        <div className="artifact-header">
+          <h2>Explore Our Artifacts</h2>
+          <select
+            value={sortOption}
+            onChange={(e) => setSortOption(e.target.value)}
+            className="artifact-sort-dropdown"
+          >
+            <option value="default">Sort By</option>
+            <option value="price">Price (Low to High)</option>
+            <option value="purchaseCount">Most Purchased</option>
+            <option value="createdAt">Newest</option>
+          </select>
+        </div>
         <div className="artifact-card-container">
           {allArtifacts.map((item, index) => (
             <ArtifactCard
