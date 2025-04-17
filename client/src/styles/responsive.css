@@ -1,0 +1,91 @@
+/* Base styles for smallest devices (iPhone SE, etc.) */
+@media screen and (max-width: 375px) {
+    /* Adjustments for very small screens */
+    .container {
+      padding: 8px !important;
+    }
+    /* Add other overrides for smallest screens */
+  }
+  
+  /* Small phones (iPhone SE, Galaxy A51, etc.) */
+  @media screen and (min-width: 376px) and (max-width: 480px) {
+    /* Small phone adjustments */
+  }
+  
+  /* Medium phones (iPhone XR, iPhone 12 Pro, Pixel 7) */
+  @media screen and (min-width: 481px) and (max-width: 767px) {
+    /* Medium phone adjustments */
+  }
+  
+  /* Large phones (iPhone 14 Pro Max, Galaxy S20 Ultra) */
+  @media screen and (min-width: 768px) and (max-width: 896px) {
+    /* Large phone adjustments */
+  }
+  
+  /* Small tablets (iPad Mini, Surface Duo) */
+  @media screen and (min-width: 897px) and (max-width: 1023px) {
+    /* Small tablet adjustments */
+  }
+  
+  /* Large tablets (iPad Air, iPad Pro, Surface Pro) */
+  @media screen and (min-width: 1024px) and (max-width: 1366px) {
+    /* Large tablet adjustments */
+  }
+  
+  /* Foldables in folded state */
+  @media screen and (max-width: 586px) and (min-height: 850px) {
+    /* Folded Galaxy Z Fold, Asus Zenbook Fold */
+  }
+  
+  /* Foldables in unfolded state and larger devices */
+  @media screen and (min-width: 1367px) {
+    /* Unfolded foldable and desktop adjustments */
+  }
+  
+  /* Orientation-specific rules */
+  @media screen and (orientation: portrait) {
+    /* Portrait-specific rules */
+  }
+  
+  @media screen and (orientation: landscape) {
+    /* Landscape-specific rules */
+  }
+  
+  /* Shared responsive rules for all mobile devices */
+  @media screen and (max-width: 1023px) {
+    /* Common mobile & tablet overrides */
+    .desktop-only {
+      display: none !important;
+    }
+    
+    img, video {
+      max-width: 100% !important;
+      height: auto !important;
+    }
+    
+    /* Navigation for mobile */
+    .main-nav {
+      /* Mobile navigation adjustments */
+    }
+    
+    /* Forms */
+    input, select, textarea {
+      font-size: 16px !important; /* Prevents iOS zoom on focus */
+    }
+    
+    /* Common layout adjustments */
+    .container {
+      width: 100% !important;
+      padding: 10px !important;
+    }
+    
+    /* Make multi-column layouts stack */
+    .row, .columns, .flex-container {
+      flex-direction: column !important;
+    }
+    
+    .column, .col {
+      width: 100% !important;
+      margin: 10px 0 !important;
+    }
+  }
