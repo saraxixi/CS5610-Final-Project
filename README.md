@@ -20,7 +20,7 @@ https://dunhuang-museum.onrender.com
 ### iteration 3: 
 - Lian Liu: https://youtu.be/oToeS0dNUPI
 - Xi Xi: https://youtu.be/_Mobo66Dm8Y
-- Shuojun Chen:
+- Shuojun Chen: https://youtu.be/KBC3NWB9Tt4
 
 
 ## Features
@@ -38,16 +38,12 @@ https://dunhuang-museum.onrender.com
 ## External API
 ### Chatbot API
 Openrouter: https://openrouter.ai/
-Create account and copy paste the OPENROUTER_API_KEY to .env
+- We access Claude 3.7 Sonnet through OpenRouter's API for our chatbot and dynamic translation features
+- Create an account and add your OPENROUTER_API_KEY to .env file
+- Our implementation uses Claude 3.7 Sonnet for its advanced multilingual capabilities and reasoning performance
 
-<<<<<<< HEAD
 ## Firestore Collections and Data Model
 Based on our MongoDB data modeling: https://console.firebase.google.com/project/dunhuang-2e99c/storage/dunhuang-2e99c.firebasestorage.app/files
-=======
-## 🔥 Firestore Collections and Data Models
->>>>>>> aebad070d217443ba4c796f557bfc379133ae373
-
-This project uses MongoDB schema modeling. Below are the collections and their corresponding fields based on the implemented Mongoose models.
 
 ### 🏺 Artifacts Collection
 
@@ -303,4 +299,5 @@ Stores user authentication and profile information.
     <img src="./src/shuojun1.png" width="600" />
     <img src="./src/shuojun2.png" width="600" />
     <img src="./src/shuojun3.png" width="600" />
+    <img src="./src/shuojun4.png" width="600" />
     </p>
