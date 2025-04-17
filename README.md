@@ -28,17 +28,19 @@ https://dunhuang-museum.onrender.com
 - AI Chatbot: Interact with an AI assistant to explore historical context and learn about artifacts and Dunhuang culture.
 - Artifact Management: Admins can upload, edit, and organize artifact data with images and metadata.
 - Digital Exhibitions: Create and curate virtual exhibitions showcasing selected artifacts and stories.
+- Thematic Mural Collections: Browse murals organized by themes such as Animals, Dance, Architecture, and Flying Apsaras, stored in  MongoDB and Firebase.
+- Manuscripts Section: Access and explore historical manuscripts with detailed information, stored in  MongoDB and Firebase.
 - Profile Management: Edit personal profile information and view browsing or collection history.
 - Admin Dashboard: Manage users, moderate AI responses, and maintain exhibitions through a centralized panel.
-- Dynamic Translation: Add multi-language support to Chatbot by using LLM
-- Static Translation: Add google translate for all texts on our webpage
+- Dynamic Translation: Add multi-language support to Chatbot using LLM technology.
+- Static Translation: Implement Google Translate for all webpage text content.
 
 ### Chatbot API
 Openrouter: https://openrouter.ai/
 Create account and copy paste the OPENROUTER_API_KEY to .env
 
 ## Firestore Collections and Data Model
-Based on our MongoDB data modeling:
+Based on our MongoDB data modeling: https://console.firebase.google.com/project/dunhuang-2e99c/storage/dunhuang-2e99c.firebasestorage.app/files
 
 ### Artifacts Collection
 - id: Unique artifact ID
@@ -155,13 +157,25 @@ Based on our MongoDB data modeling:
     </p>
 
 - Shuojun Chen:
-    - Implement 10 languages' translations to Chatbot through the OpenRouter API, to better serve non-English users
+    - Created robust Mongoose schemas for Manuscripts and Murals with detailed field specifications including validation requirements.
 
-    - Built up the google translate widget for all static texts on website
+    - Developed comprehensive seed scripts to populate MongoDB with structured manuscript and mural data.
 
-    - Add search functionality to the nav bar
+    - Set up Firebase storage for manuscripts and themed mural categories with organized folder structures.
 
-    - Collaborated on testing, debugging, and UI improvements to enhance overall user experience
+    - Created the homepage with three distinct sections: murals, manuscripts, and co-created works.
+
+    - Developed card-based components for manuscripts and murals displaying images and information.
+
+    - Built API routes for manuscripts and murals collections, enabling data retrieval and filtering by subcategories.
+
+    - Connected Mongoose models to routes, ensuring proper data validation and consistent formatting.
+
+    - Implemented 10 languages' translations to the AI Chatbot through OpenRouter API.
+
+    - Built and integrated the Google Translate widget for all static texts on the website.
+
+    - Collaborated on testing, debugging, and UI improvements.
         <p align="center">
     <img src="./src/shuojun1.png" width="600" />
     <img src="./src/shuojun2.png" width="600" />
