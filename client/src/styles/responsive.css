@@ -603,3 +603,111 @@
       width: 100% !important;
     }
   }
+
+  /* Enhanced styling for the manuscript section on the homepage */
+@media screen and (max-width: 1024px) {
+    /* Main manuscript section container */
+    .manuscripts-section, 
+    [class*="manuscripts-section"],
+    [class*="manuscript-list"],
+    [class*="manuscripts-list"] {
+      padding: 25px 15px !important;
+      background-color: rgba(0, 0, 0, 0.7) !important; /* Semi-transparent background */
+      border-radius: 8px !important;
+      margin: 15px auto !important;
+      max-width: 95% !important;
+    }
+    
+    /* Manuscript section header */
+    .manuscripts-section h2,
+    [class*="manuscripts-section"] h2,
+    [class*="manuscript"] h2 {
+      font-size: 26px !important;
+      font-weight: bold !important;
+      color: #fff !important;
+      margin-bottom: 15px !important;
+      text-align: center !important;
+      letter-spacing: 0.5px !important;
+    }
+    
+    /* Manuscript section subtitle */
+    .manuscripts-section p,
+    [class*="manuscripts-section"] p,
+    [class*="manuscript-intro"] {
+      font-size: 16px !important;
+      color: #eee !important;
+      text-align: center !important;
+      margin-bottom: 20px !important;
+      font-style: italic !important;
+      line-height: 1.5 !important;
+    }
+    
+    /* Selections label */
+    .selections-label, 
+    [class*="selections"],
+    .manuscripts-section .label {
+      font-size: 18px !important;
+      font-weight: bold !important;
+      color: #ffc107 !important; /* Gold accent color */
+      margin: 15px 0 10px 0 !important;
+      text-decoration: underline !important;
+    }
+    
+    /* Manuscript items list */
+    .manuscripts-list, 
+    [class*="manuscripts-list"],
+    .manuscript-items {
+      list-style: none !important;
+      padding: 0 !important;
+      margin: 0 !important;
+    }
+    
+    /* Individual manuscript items */
+    .manuscript-item, 
+    [class*="manuscript-item"],
+    .manuscripts-list li {
+      background-color: rgba(255, 255, 255, 0.1) !important;
+      margin-bottom: 10px !important;
+      padding: 12px 15px !important;
+      border-radius: 6px !important;
+      border-left: 3px solid #ffc107 !important; /* Gold accent border */
+      font-size: 16px !important;
+      color: #fff !important;
+      transition: background-color 0.3s ease !important;
+    }
+    
+    /* Hover effect for manuscript items */
+    .manuscript-item:hover, 
+    [class*="manuscript-item"]:hover,
+    .manuscripts-list li:hover {
+      background-color: rgba(255, 255, 255, 0.2) !important;
+      cursor: pointer !important;
+    }
+    
+    /* Ensure proper spacing between groups of manuscripts */
+    .manuscript-group, 
+    [class*="manuscript-group"] {
+      margin-bottom: 20px !important;
+    }
+    
+    /* Add a subtle divider between manuscript groups */
+    .manuscript-group:not(:last-child),
+    [class*="manuscript-group"]:not(:last-child) {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important;
+      padding-bottom: 15px !important;
+      margin-bottom: 15px !important;
+    }
+    
+    /* Style for thumbnail images if present */
+    .manuscript-thumbnail,
+    [class*="manuscript-thumbnail"],
+    .manuscripts-section img {
+      width: 80px !important;
+      height: 80px !important;
+      object-fit: cover !important;
+      border-radius: 4px !important;
+      margin: 10px auto !important;
+      display: block !important;
+      border: 2px solid rgba(255, 255, 255, 0.3) !important;
+    }
+  }
