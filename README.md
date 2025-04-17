@@ -10,16 +10,16 @@ https://dunhuang-museum.onrender.com
 - Shuojun Chen
 
 ## Video Link
-
+### Demo
 ### iteration 2: 
 - Lian Liu: https://youtu.be/-tr40KSYCRo
 - Xi Xi: https://youtu.be/hMG4uQLy4kk
 - Shuojun Chen: https://youtu.be/T6_ktecRWzY
 
 
-###iteration 3: 
+### iteration 3: 
 - Lian Liu: https://youtu.be/oToeS0dNUPI
-- Xi Xi: 
+- Xi Xi: https://youtu.be/_Mobo66Dm8Y
 - Shuojun Chen:
 
 
@@ -33,59 +33,122 @@ https://dunhuang-museum.onrender.com
 - Dynamic Translation: Add multi-language support to Chatbot by using LLM
 - Static Translation: Add google translate for all texts on our webpage
 
+## External API
 ### Chatbot API
 Openrouter: https://openrouter.ai/
 Create account and copy paste the OPENROUTER_API_KEY to .env
 
-## Firestore Collections and Data Model
-Based on our MongoDB data modeling:
+## 🔥 Firestore Collections and Data Models
 
-### Artifacts Collection
-- id: Unique artifact ID
+This project uses MongoDB schema modeling. Below are the collections and their corresponding fields based on the implemented Mongoose models.
 
-- title, type, era, description, location
+---
 
-- images: Array of image URLs
+### 🏺 Artifacts Collection
 
-### murals Collection
-- id, name, creationPeriod, architectural Features, significance
+Stores artifact product information.
 
-- artifacts: Array of artifact references
-- images: Array of image URLs
+**Fields:**
+- `title` (String): Title of the artifact
+- `about` (String): Short description or background
+- `price` (Number): Price of the artifact
+- `overview` (String): Detailed overview or highlights
+- `images` (String): URL of the artifact image
+- `createdAt` / `updatedAt`: Automatically generated timestamps
 
-### Users Collection
-- id, username, email, password
+---
 
-#### Example Data Models
-- Sample Admin User Document 
+### 🖼️ Murals Collection
+
+Represents murals and their classification details.
+
+**Fields:**
+- `title` (String): Title of the mural
+- `period` (String): Historical period
+- `description` (String): Description of the mural
+- `category` (String): Main category (e.g., religious, decorative)
+- `subcategory` (String): More specific classification
+- `rating` (Number): Rating from 1 to 5
+- `location` (String): Location of the mural
+- `images` (Array of Strings): List of image URLs
+- `createdAt`: Creation date (timestamp)
+
+---
+
+### 📜 Manuscripts Collection
+
+Contains ancient manuscript records.
+
+**Fields:**
+- `title` (String): Manuscript title
+- `period` (String): Time period or dynasty
+- `description` (String): Detailed description
+- `category` (String): Main category
+- `subcategory` (String): Sub-category
+- `rating` (Number): Rating from 1 to 5
+- `images` (Array of Strings): List of image URLs
+- `createdAt`: Timestamp of creation
+
+---
+
+### 🖥️ Digital Exhibitions Collection
+
+Manages digital exhibition data.
+
+**Fields:**
+- `title` (String): Title of the digital exhibition
+- `theme` (String): Exhibition theme
+- `image` (String): Banner or feature image URL
+- `startDate` / `endDate` (Date): Exhibition period
+- `location` (String): Location (physical or virtual)
+- `narrative` (String): Exhibition introduction or narrative
+- `createdAt` / `updatedAt`: Timestamps
+
+---
+
+### 👤 Users Collection
+
+Stores user authentication and profile information.
+
+**Fields:**
+- `username` (String): Unique username
+- `email` (String): User email address
+- `password` (String): Encrypted password
+- `role` (String): Role of the user (either `'user'` or `'admin'`)
+- `avatar` (String): Avatar image URL (default provided)
+- `savedArtifacts` (Array of ObjectId): References to saved artifacts
+- `createdAt` / `updatedAt`: Timestamps
+
+---
+
+### 👥 Sample User Documents
+
+#### Admin User
 ```json
 {
-        "_id": "67ecc5ee92156e21cf9072ec",
-        "username": "admin1",
-        "email": "admin1@example.com",
-        "password": "admin123",
-        "role": "admin",
-        "savedArtifacts": [],
-        "createdAt": "2025-04-02T05:06:54.753Z",
-        "updatedAt": "2025-04-02T05:06:54.753Z",
-        "__v": 0
+  "_id": "67ecc5ee92156e21cf9072ec",
+  "username": "admin1",
+  "email": "admin1@example.com",
+  "password": "admin123",
+  "role": "admin",
+  "savedArtifacts": [],
+  "createdAt": "2025-04-02T05:06:54.753Z",
+  "updatedAt": "2025-04-02T05:06:54.753Z"
 }
-```
 
-- Sample User Document 
+#### Regular User
 ```json
 {
-        "_id": "67ee4c386954b7644bc2635c",
-        "username": "testuser1",
-        "email": "user1@example.com",
-        "password": "user123",
-        "role": "user",
-        "savedArtifacts": [],
-        "createdAt": "2025-04-03T08:52:08.224Z",
-        "updatedAt": "2025-04-03T08:52:08.224Z",
-        "__v": 0
-    }
-```
+  "_id": "67ee4c386954b7644bc2635c",
+  "username": "testuser1",
+  "email": "user1@example.com",
+  "password": "user123",
+  "role": "user",
+  "savedArtifacts": [],
+  "createdAt": "2025-04-03T08:52:08.224Z",
+  "updatedAt": "2025-04-03T08:52:08.224Z"
+}
+
 ## CRUD Operations
 - Create
     - Users register
