@@ -67,5 +67,20 @@ router.delete('/:id', async (req, res) => {
 });
 
 
+// Increment purchaseCount
+router.put('/:id/increment-purchase', async (req, res) => {
+  try {
+    const artifact = await Artifact.findByIdAndUpdate(
+      req.params.id,
+      { $inc: { purchaseCount: 1 } },
+      { new: true }
+    );
+    if (!artifact) return res.status(404).json({ error: 'Artifact not found' });
+    res.json(artifact);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 
 export default router;
