@@ -347,3 +347,124 @@
       font-size: 14px !important;
     }
   }
+
+  /* Add these specific fixes for the mural page headings and dropdown menus */
+@media screen and (max-width: 1024px) {
+    /* Fix for mural page headers and descriptions */
+    .mural-hero-content, .mural-description, .page-title, .page-subtitle,
+    [class*="hero-content"], [class*="description"], [class*="page-title"],
+    .animal-description, .dance-description, .architecture-description, .flying-description {
+      display: block !important;
+      width: 100% !important;
+      text-align: center !important;
+      padding: 15px !important;
+      margin: 0 auto !important;
+      background-color: rgba(255, 255, 255, 0.8) !important;
+      color: #333 !important;
+      border-radius: 5px !important;
+      white-space: normal !important;
+      word-wrap: break-word !important;
+      word-break: normal !important;
+      overflow: visible !important;
+    }
+    
+    /* Fix for dropdown menus in navbar */
+    .dropdown-menu, .dropdown ul, .navbar-menu .dropdown-menu, 
+    [class*="dropdown-menu"], [class*="dropdown"] ul {
+      position: relative !important;
+      display: flex !important;
+      flex-direction: column !important;
+      flex-wrap: nowrap !important;
+      width: 100% !important;
+      max-width: 200px !important;
+      margin: 0 auto !important;
+      padding: 5px !important;
+      background-color: white !important;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2) !important;
+      z-index: 1000 !important;
+      visibility: visible !important;
+      text-align: center !important;
+    }
+    
+    /* Fix the dropdown menu items */
+    .dropdown-menu li, .dropdown-menu a, .dropdown ul li, .dropdown ul a,
+    [class*="dropdown-menu"] li, [class*="dropdown-menu"] a {
+      display: block !important;
+      writing-mode: horizontal-tb !important;
+      text-orientation: mixed !important;
+      width: 100% !important;
+      text-align: center !important;
+      padding: 8px !important;
+      margin: 2px 0 !important;
+    }
+    
+    /* Fix specifically for any vertical text on the mural pages */
+    [class*="animal"], [class*="dance"], [class*="architecture"], [class*="flying"],
+    [class*="mural"], [class*="Mural"], [class*="Animal"], [class*="Dance"],
+    [class*="Architecture"], [class*="Flying"] {
+      writing-mode: horizontal-tb !important;
+      text-orientation: mixed !important;
+      display: block !important;
+      white-space: normal !important;
+      word-wrap: break-word !important;
+      max-width: 100% !important;
+      line-height: 1.5 !important;
+      margin: 0 auto !important;
+    }
+    
+    /* Fix for any text containers in mural pages */
+    .animal-text, .dance-text, .architecture-text, .flying-text,
+    [class*="animal-text"], [class*="dance-text"], [class*="architecture-text"], [class*="flying-text"],
+    [class*="mural-text"], [class*="description-text"], [class*="intro-text"] {
+      display: block !important;
+      width: 100% !important;
+      padding: 10px !important;
+      margin: 0 auto !important;
+      text-align: center !important;
+      background-color: rgba(255, 255, 255, 0.7) !important;
+      color: #333 !important;
+      border-radius: 4px !important;
+    }
+  }
+  
+  /* Special fix for specifically vertical elements we're still seeing */
+  @media screen and (max-width: 768px) {
+    /* Target the exact vertical text elements seen in your screenshots */
+    .Animals, .Dance, .category-tab, [class*="category-nav"],
+    .vertical-text, .vertical-label, [class*="vertical"] {
+      writing-mode: horizontal-tb !important;
+      text-orientation: mixed !important;
+      text-transform: none !important;
+      display: inline-block !important;
+      white-space: normal !important;
+      letter-spacing: normal !important;
+      width: auto !important;
+      line-height: 1.5 !important;
+      margin: 5px !important;
+      padding: 5px !important;
+    }
+    
+    /* Ensure all text is horizontally aligned */
+    * {
+      writing-mode: horizontal-tb !important;
+      text-orientation: mixed !important;
+    }
+    
+    /* Ensure proper display of dropdown menus */
+    .dropdown-menu, .dropdown ul, .navbar-menu .dropdown-menu {
+      display: none !important; /* Hide by default */
+    }
+    
+    /* Show dropdown when parent is hovered/clicked */
+    .dropdown:hover .dropdown-menu, .dropdown.active .dropdown-menu {
+      display: flex !important;
+      flex-direction: column !important;
+      position: absolute !important;
+      top: 100% !important;
+      left: 0 !important;
+      width: 200px !important;
+      background: white !important;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.2) !important;
+      z-index: 1000 !important;
+    }
+  }
