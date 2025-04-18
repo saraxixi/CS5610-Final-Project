@@ -20,7 +20,11 @@ const artifactSchema = new mongoose.Schema({
   images: {
     type: String,
     required: true
-  }
+  },
+  purchaseCount: {
+    type: Number,
+    default: 0
+  },
 }, {
   timestamps: true
 });
