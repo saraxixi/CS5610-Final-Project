@@ -83,15 +83,25 @@ const Profile = () => {
 
   const handleCheckout = async () => {
     try {
+      // Step 1: Increment purchaseCount for each artifact in favorites
+      await Promise.all(
+        favorites.map(item =>
+          axios.put(`/api/artifacts/${item._id}/increment-purchase`)
+        )
+      );
+  
+      // Step 2: Clear all favorites
       await axios.delete(`/api/users/${userId}/favorites/all`);
+  
+      // Step 3: Notify user and redirect
       alert("Payment Successful!");
       setFavorites([]);
       navigate("/payment-success");
     } catch (err) {
-      console.error("Failed to clear favorites after checkout:", err);
+      console.error("Failed to complete checkout:", err);
       alert("Checkout failed.");
     }
-  };
+  };  
 
   const total = favorites.reduce((acc, item) => acc + (item.price || 0), 0);
 

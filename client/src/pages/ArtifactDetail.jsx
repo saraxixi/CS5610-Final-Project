@@ -20,7 +20,7 @@ const ArtifactDetail = () => {
       alert("Saved to favorites!");
     } catch (error) {
       console.error("Add to favorites failed", error);
-      alert("Failed to save.");
+      alert("Failed to save. Please login first.");
     }
   };
 

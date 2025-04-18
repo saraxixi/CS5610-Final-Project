@@ -10,41 +10,58 @@ import ArtifactCard from "../components/ArtifactCard";
 
 const Artifacts = () => {
   const [carouselItems, setCarouselItems] = useState([]);
-  const [allArtifacts, setAllArtifacts]   = useState([]);
-  const [sortOption, setSortOption]       = useState("default");
+  const [allArtifacts, setAllArtifacts] = useState([]);
+  const [sortOption, setSortOption] = useState("default");
 
   useEffect(() => {
-    async function fetchTop3() {
+    const fetchTopArtifacts = async () => {
       try {
         const res = await axios.get("/api/artifacts/top3");
         setCarouselItems(res.data);
       } catch (err) {
-        console.error("Error fetching top3 artifacts:", err);
+        console.error("Error fetching artifacts:", err);
       }
-    }
-    fetchTop3();
+    };
+
+    const fetchAllArtifacts = async () => {
+      try {
+        const res = await axios.get("/api/artifacts");
+        setAllArtifacts(res.data);
+      } catch (err) {
+        console.error("Error fetching all artifacts:", err);
+      }
+    };
+    fetchAllArtifacts();
+    fetchTopArtifacts();
   }, []);
 
   useEffect(() => {
-    async function fetchList() {
-      try {
-        const url =
-          sortOption === "default"
-            ? "/api/artifacts"
-            : `/api/artifacts?sort=${sortOption}`;
-        const res = await axios.get(url);
-        setAllArtifacts(res.data);
-      } catch (err) {
-        console.error("Error fetching artifacts:", err);
-      }
+    if (allArtifacts.length > 0) {
+      sortArtifacts(sortOption);
     }
-    fetchList();
   }, [sortOption]);
-
+  
+  const sortArtifacts = (option) => {
+    const sorted = [...allArtifacts];
+    switch (option) {
+      case "price":
+        sorted.sort((a, b) => a.price - b.price);
+        break;
+      case "purchaseCount":
+        sorted.sort((a, b) => b.purchaseCount - a.purchaseCount);
+        break;
+      case "createdAt":
+        sorted.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+        break;
+      default:
+        return; // do nothing
+    }
+    setAllArtifacts(sorted);
+  };
+  
   return (
     <>
       <Navbar />
-
       {/* Banner Section */}
       <div className="artifact-banner">
         <div className="artifact-feature">
@@ -66,55 +83,53 @@ const Artifacts = () => {
         <Carousel
           showThumbs={false}
           showArrows={false}
-          showIndicators
+          showIndicators={true}
           showStatus={false}
           autoPlay
           infiniteLoop
           interval={5000}
           swipeable
         >
-          {carouselItems.map((item, idx) => (
-            <div className="carousel-slide" key={idx}>
-              <img src={item.images} alt={`Artifact ${idx + 1}`} />
+          {carouselItems.map((item, index) => (
+            <div className="carousel-slide" key={index}>
+              <img src={item.images} alt={`Artifact ${index + 1}`} />
               <div className="carousel-overlay">
                 <h2>{item.title}</h2>
-                <p>{item.overview ?? "Discover more from Dunhuang's legacy."}</p>
+                <p>{item.overview || "Discover more from Dunhuang's legacy."}</p>
               </div>
             </div>
           ))}
         </Carousel>
       </div>
 
-      {/* Sort Control */}
-      <div style={{ padding: "1rem", textAlign: "right" }}>
-        <label>
-          Sort by:&nbsp;
+      {/* Artifact Cards Section */}
+      <div className="artifact-cards">
+        <div className="artifact-header">
+          <h2>Explore Our Artifacts</h2>
           <select
             value={sortOption}
             onChange={(e) => setSortOption(e.target.value)}
+            className="artifact-sort-dropdown"
           >
-            <option value="default">Default</option>
-            <option value="popular">Most Popular</option>
+            <option value="default">Sort By</option>
+            <option value="price">Price (Low to High)</option>
+            <option value="purchaseCount">Most Purchased</option>
+            <option value="createdAt">Newest</option>
           </select>
-        </label>
-      </div>
-
-      {/* Artifact Cards Section */}
-      <div className="artifact-cards">
-        <h2>Explore Our Artifacts</h2>
+        </div>
         <div className="artifact-card-container">
-          {allArtifacts.map((item) => (
+          {allArtifacts.map((item, index) => (
             <ArtifactCard
-              key={item._id}
+              key={index}
               id={item._id}
               image={item.images}
               title={item.title}
               buttonText="View Details"
+              onClick={() => console.log(`Clicked on ${item.title}`)}
             />
           ))}
         </div>
       </div>
-
       <Footer />
     </>
   );
