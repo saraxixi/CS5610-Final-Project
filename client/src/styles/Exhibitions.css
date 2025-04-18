@@ -25,15 +25,17 @@
 
 .event-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 40px;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  padding: 1rem 0;
 }
 
 
 .exhibition-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
-  gap: 40px;
+  gap: 1rem;
+  padding: 1rem 0;
 }
 
 .exhibition-hero {
@@ -59,4 +61,11 @@
   font-weight: bold;
   margin: 0;
   font-family: "Noto Serif SC", serif;
+}
+
+@media (max-width: 600px) {
+  .exhibition-grid,
+  .event-grid {
+    grid-template-columns: 1fr;
+  }
 }
